@@ -10,38 +10,32 @@ export default function FAQSection() {
     {
       question: 'What makes SEORDP different?',
       answer: 'We provide shared access to premium software at affordable monthly rates. Our platform ensures reliable service with consistent uptime and dedicated customer support.',
-      icon: '🎯',
-      color: 'from-teal-500 to-cyan-500'
+      logo: 'https://img.icons8.com/color/96/star--v1.png'
     },
     {
       question: 'How quickly can I start using the tools?',
       answer: 'Account activation is instant. Once you complete your purchase, you receive immediate access to your selected tools and services through our secure platform.',
-      icon: '🤝',
-      color: 'from-purple-500 to-pink-500'
+      logo: 'https://img.icons8.com/color/96/rocket.png'
     },
     {
       question: 'What payment methods do you accept?',
       answer: 'We accept all major credit cards, PayPal, and other secure payment methods. All transactions are encrypted and processed through trusted payment gateways.',
-      icon: '⚖️',
-      color: 'from-blue-500 to-indigo-500'
+      logo: 'https://img.icons8.com/color/96/bank-card-back-side.png'
     },
     {
       question: 'What is your service reliability?',
       answer: 'Our infrastructure maintains exceptional reliability with multiple backup systems. We monitor all services continuously to ensure smooth operation and minimal downtime.',
-      icon: '🛡️',
-      color: 'from-green-500 to-emerald-500'
+      logo: 'https://img.icons8.com/color/96/shield.png'
     },
     {
       question: 'How flexible are the subscriptions?',
       answer: 'All our plans are month-to-month with complete flexibility. You have full control to upgrade, downgrade, or cancel whenever needed without penalties.',
-      icon: '✅',
-      color: 'from-amber-500 to-orange-500'
+      logo: 'https://img.icons8.com/color/96/calendar.png'
     },
     {
       question: 'How can I get help if needed?',
       answer: 'Our dedicated support team is available around the clock through multiple channels including live chat, email, and ticketing system to assist you promptly.',
-      icon: '💬',
-      color: 'from-rose-500 to-red-500'
+      logo: 'https://img.icons8.com/color/96/chat.png'
     },
   ];
 
@@ -60,11 +54,8 @@ export default function FAQSection() {
             <span className="text-2xl">❓</span>
             <span className="text-sm font-bold text-teal-400 uppercase tracking-wide">FAQ</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Your Questions,
-            <span className="block bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent mt-1">
-              Our Answers
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Your Questions, Our Answers
           </h2>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             Find answers to common questions about our services and platform
@@ -81,18 +72,19 @@ export default function FAQSection() {
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Gradient Accent Line */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${faq.color} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-              
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full p-6 flex items-start gap-4 text-left transition-all duration-300"
               >
-                {/* Icon */}
-                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${faq.color} flex items-center justify-center text-2xl shadow-lg transform transition-transform duration-300 ${
+                {/* Logo */}
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center shadow-lg transition-all duration-300 ${
                   openIndex === index ? 'scale-110' : ''
                 }`}>
-                  {faq.icon}
+                  <img 
+                    src={faq.logo}
+                    alt={faq.question}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 
                 {/* Question */}
@@ -130,24 +122,6 @@ export default function FAQSection() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16 animate-fade-in-up">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-8 card-gradient rounded-2xl">
-            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center text-3xl shadow-xl animate-float">
-              💡
-            </div>
-            <div className="text-center sm:text-left">
-              <h3 className="text-xl font-bold text-white mb-1">Need More Help?</h3>
-              <p className="text-slate-400">We&apos;re available around the clock to assist you</p>
-            </div>
-            <a 
-              href="#" 
-              className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              Contact Support
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

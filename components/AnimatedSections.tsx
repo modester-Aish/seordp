@@ -6,113 +6,100 @@ import Image from 'next/image';
 import Typewriter from './Typewriter';
 import ModernReveal from './ModernReveal';
 
-// Why Choose SEORDP Section - Modern Grid Design
+// Why Choose SEORDP Section - Professional Corporate Design
 export const WhyChooseSection = () => {
   const features = [
     { 
-      icon: '💎', 
-      title: 'Premium Quality', 
-      desc: 'Enterprise-grade services with professional support and reliability you can trust.',
-      gradient: 'from-teal-500 to-cyan-500',
-      delay: '0s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+        </svg>
+      ),
+      title: 'Enterprise Quality', 
+      desc: 'Professional-grade services backed by industry-leading infrastructure and 99.9% uptime guarantee.'
     },
     { 
-      icon: '⚡', 
-      title: 'Lightning Fast', 
-      desc: 'Instant activation and blazing-fast performance optimized for your workflow.',
-      gradient: 'from-purple-500 to-pink-500',
-      delay: '0.1s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      title: 'Instant Activation', 
+      desc: 'Zero wait time with immediate access to all services upon purchase. Start working within minutes.'
     },
     { 
-      icon: '🎯', 
-      title: 'Easy to Use', 
-      desc: 'Intuitive interface designed for seamless navigation and effortless management.',
-      gradient: 'from-amber-500 to-orange-500',
-      delay: '0.2s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      title: 'Bank-Level Security', 
+      desc: 'Advanced encryption and security protocols to protect your data and ensure complete privacy.'
     },
     { 
-      icon: '🛡️', 
-      title: 'Secure & Safe', 
-      desc: 'Bank-level encryption protecting your data with advanced security protocols.',
-      gradient: 'from-green-500 to-emerald-500',
-      delay: '0.3s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Global Infrastructure', 
+      desc: 'Worldwide presence with local data centers ensuring optimal performance from anywhere.'
     },
     { 
-      icon: '🌍', 
-      title: 'Global Access', 
-      desc: 'Available worldwide with multi-language support and local payment options.',
-      gradient: 'from-blue-500 to-indigo-500',
-      delay: '0.4s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      ),
+      title: '24/7 Expert Support', 
+      desc: 'Dedicated technical support team available round the clock to assist with any queries.'
     },
     { 
-      icon: '💬', 
-      title: 'Expert Support', 
-      desc: 'Dedicated support team ready to assist you anytime, anywhere you need help.',
-      gradient: 'from-rose-500 to-red-500',
-      delay: '0.5s' 
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+      ),
+      title: 'Trusted by Thousands', 
+      desc: 'Join over 10,000 satisfied customers who trust our platform for their business needs.'
     },
   ];
 
   return (
-    <section className="py-20 relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 -left-20 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="py-24 bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 mb-6">
-            <span className="text-teal-400 font-bold text-sm">WHY CHOOSE US</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 mb-6">
+            <span className="text-teal-400 font-semibold text-sm tracking-wide">WHY CHOOSE SEORDP</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Built for <span className="bg-gradient-to-r from-teal-400 to-purple-500 bg-clip-text text-transparent">Professionals</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Built for Professionals
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Powerful features and reliable service designed to help you succeed
+            Enterprise-grade solutions with the reliability and support your business demands
           </p>
         </div>
 
-        {/* Features Grid - Modern Card Design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Features Grid - Clean Professional Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="group relative card-gradient p-8 border-2 border-slate-700 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-teal-500/20 animate-fade-in-up overflow-hidden"
-              style={{ animationDelay: feature.delay }}
+              className="group bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-teal-500 hover:shadow-xl hover:shadow-teal-500/10 transition-all duration-300"
             >
-              {/* Gradient Top Border */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${feature.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
-              
               {/* Icon */}
-              <div className="relative mb-6">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-3xl shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 ${
-                  index % 3 === 0 ? 'animate-float' : index % 3 === 1 ? 'animate-float-delay-1' : 'animate-float-delay-2'
-                }`}>
-                  {feature.icon}
-                </div>
-                {/* Glow Effect */}
-                <div className={`absolute inset-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300`}></div>
+              <div className="w-14 h-14 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center mb-5 group-hover:bg-teal-500 group-hover:text-white transition-all duration-300">
+                {feature.icon}
               </div>
 
               {/* Content */}
-              <div>
-                <h3 className="text-xl font-black text-white mb-3 group-hover:text-teal-400 transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-slate-300 leading-relaxed text-sm">
-                  {feature.desc}
-                </p>
-              </div>
-
-              {/* Arrow on Hover */}
-              <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
+              <h3 className="text-xl font-bold text-white mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-slate-400 leading-relaxed">
+                {feature.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -123,6 +110,8 @@ export const WhyChooseSection = () => {
 
 // Popular Tools Section - Using Local SVG Logos
 export const PopularToolsSection = () => {
+  const [showAll, setShowAll] = useState(false);
+  
   const tools = [
     {
       name: 'AHREF$',
@@ -187,8 +176,266 @@ export const PopularToolsSection = () => {
       originalPrice: '$20.00',
       image: '/tools/claude-logo.svg',
       description: 'Next-generation AI development assistant'
+    },
+    {
+      name: 'Grammarly',
+      id: 'grammarly',
+      price: '$4.99',
+      originalPrice: '$12.00',
+      image: 'https://img.icons8.com/color/96/grammarly.png',
+      description: 'AI-powered writing assistant tool'
+    },
+    {
+      name: 'Notion',
+      id: 'notion',
+      price: '$4.99',
+      originalPrice: '$10.00',
+      image: 'https://img.icons8.com/fluency/96/notion.png',
+      description: 'All-in-one workspace for notes and tasks'
+    },
+    {
+      name: 'Adobe Creative',
+      id: 'adobe',
+      price: '$9.99',
+      originalPrice: '$54.99',
+      image: 'https://img.icons8.com/color/96/adobe-creative-cloud.png',
+      description: 'Complete creative cloud suite access'
+    },
+    {
+      name: 'Spotify Premium',
+      id: 'spotify',
+      price: '$3.99',
+      originalPrice: '$9.99',
+      image: 'https://img.icons8.com/color/96/spotify.png',
+      description: 'Ad-free music streaming service'
+    },
+    {
+      name: 'Jasper AI',
+      id: 'jasper',
+      price: '$4.99',
+      originalPrice: '$49.00',
+      image: 'https://img.icons8.com/color/96/chatgpt.png',
+      description: 'AI content creation and copywriting'
+    },
+    {
+      name: 'Surfer SEO',
+      id: 'surfer',
+      price: '$4.99',
+      originalPrice: '$59.00',
+      image: 'https://img.icons8.com/color/96/google-logo.png',
+      description: 'Content optimization and SEO platform'
+    },
+    {
+      name: 'Mailchimp',
+      id: 'mailchimp',
+      price: '$4.99',
+      originalPrice: '$20.00',
+      image: 'https://img.icons8.com/color/96/email.png',
+      description: 'Email marketing automation tool'
+    },
+    {
+      name: 'Hootsuite',
+      id: 'hootsuite',
+      price: '$4.99',
+      originalPrice: '$49.00',
+      image: 'https://img.icons8.com/color/96/twitter--v1.png',
+      description: 'Social media management platform'
+    },
+    {
+      name: 'Figma Pro',
+      id: 'figma',
+      price: '$4.99',
+      originalPrice: '$15.00',
+      image: 'https://img.icons8.com/color/96/figma.png',
+      description: 'Professional design and prototyping'
+    },
+    {
+      name: 'HubSpot',
+      id: 'hubspot',
+      price: '$9.99',
+      originalPrice: '$50.00',
+      image: 'https://img.icons8.com/color/96/business.png',
+      description: 'CRM and marketing automation suite'
+    },
+    {
+      name: 'QuillBot',
+      id: 'quillbot',
+      price: '$3.99',
+      originalPrice: '$9.95',
+      image: 'https://img.icons8.com/color/96/documents.png',
+      description: 'AI paraphrasing and writing tool'
+    },
+    {
+      name: 'Midjourney',
+      id: 'midjourney',
+      price: '$4.99',
+      originalPrice: '$30.00',
+      image: 'https://img.icons8.com/color/96/image-gallery.png',
+      description: 'AI image generation and art creation'
+    },
+    {
+      name: 'Envato Elements',
+      id: 'envato',
+      price: '$4.99',
+      originalPrice: '$16.50',
+      image: 'https://img.icons8.com/color/96/design.png',
+      description: 'Unlimited creative assets and templates'
+    },
+    {
+      name: 'Buzzsumo',
+      id: 'buzzsumo',
+      price: '$4.99',
+      originalPrice: '$99.00',
+      image: 'https://img.icons8.com/color/96/graph.png',
+      description: 'Content research and social analytics'
+    },
+    {
+      name: 'Helium 10',
+      id: 'helium10',
+      price: '$9.99',
+      originalPrice: '$97.00',
+      image: 'https://img.icons8.com/color/96/amazon.png',
+      description: 'Complete Amazon seller toolkit'
+    },
+    {
+      name: 'Leonardo.AI',
+      id: 'leonardo',
+      price: '$4.99',
+      originalPrice: '$10.00',
+      image: 'https://img.icons8.com/color/96/artificial-intelligence.png',
+      description: 'AI-powered image generation tool'
+    },
+    {
+      name: 'Freepik Premium',
+      id: 'freepik',
+      price: '$4.99',
+      originalPrice: '$12.99',
+      image: 'https://img.icons8.com/color/96/image.png',
+      description: 'Million+ graphic resources library'
+    },
+    {
+      name: 'CapCut Pro',
+      id: 'capcut',
+      price: '$4.99',
+      originalPrice: '$9.99',
+      image: 'https://img.icons8.com/color/96/video-editing.png',
+      description: 'Professional video editing software'
+    },
+    {
+      name: 'InVideo',
+      id: 'invideo',
+      price: '$4.99',
+      originalPrice: '$30.00',
+      image: 'https://img.icons8.com/color/96/video.png',
+      description: 'Video creation and editing platform'
+    },
+    {
+      name: 'Coursera Plus',
+      id: 'coursera',
+      price: '$4.99',
+      originalPrice: '$59.00',
+      image: 'https://img.icons8.com/color/96/graduation-cap.png',
+      description: 'Unlimited online courses access'
+    },
+    {
+      name: 'Udemy Pro',
+      id: 'udemy',
+      price: '$4.99',
+      originalPrice: '$19.99',
+      image: 'https://img.icons8.com/color/96/udemy.png',
+      description: 'Professional course learning platform'
+    },
+    {
+      name: 'Turnitin',
+      id: 'turnitin',
+      price: '$4.99',
+      originalPrice: '$3.00',
+      image: 'https://img.icons8.com/color/96/checked-2.png',
+      description: 'Plagiarism detection and checking'
+    },
+    {
+      name: 'WordHero',
+      id: 'wordhero',
+      price: '$4.99',
+      originalPrice: '$49.00',
+      image: 'https://img.icons8.com/color/96/edit.png',
+      description: 'AI writing and content generation'
+    },
+    {
+      name: 'Copy.ai',
+      id: 'copyai',
+      price: '$4.99',
+      originalPrice: '$49.00',
+      image: 'https://img.icons8.com/color/96/document.png',
+      description: 'AI-powered copywriting assistant'
+    },
+    {
+      name: 'Majestic SEO',
+      id: 'majestic',
+      price: '$4.99',
+      originalPrice: '$99.99',
+      image: 'https://img.icons8.com/color/96/link.png',
+      description: 'Backlink checker and SEO analysis'
+    },
+    {
+      name: 'SpyFu',
+      id: 'spyfu',
+      price: '$4.99',
+      originalPrice: '$39.00',
+      image: 'https://img.icons8.com/color/96/search.png',
+      description: 'Competitor research and analysis'
+    },
+    {
+      name: 'Ubersuggest',
+      id: 'ubersuggest',
+      price: '$4.99',
+      originalPrice: '$29.00',
+      image: 'https://img.icons8.com/color/96/analytics.png',
+      description: 'SEO and keyword research tool'
+    },
+    {
+      name: 'Scribd Premium',
+      id: 'scribd',
+      price: '$3.99',
+      originalPrice: '$11.99',
+      image: 'https://img.icons8.com/color/96/book.png',
+      description: 'Unlimited books and audiobooks'
+    },
+    {
+      name: 'Prime Video',
+      id: 'primevideo',
+      price: '$3.99',
+      originalPrice: '$8.99',
+      image: 'https://img.icons8.com/color/96/amazon-prime-video.png',
+      description: 'Amazon streaming entertainment'
+    },
+    {
+      name: 'Prezi',
+      id: 'prezi',
+      price: '$4.99',
+      originalPrice: '$15.00',
+      image: 'https://img.icons8.com/color/96/presentation.png',
+      description: 'Dynamic presentation software'
+    },
+    {
+      name: 'Epidemic Sound',
+      id: 'epidemicsound',
+      price: '$4.99',
+      originalPrice: '$15.00',
+      image: 'https://img.icons8.com/color/96/music.png',
+      description: 'Royalty-free music for creators'
+    },
+    {
+      name: 'StoryBlocks',
+      id: 'storyblocks',
+      price: '$4.99',
+      originalPrice: '$40.00',
+      image: 'https://img.icons8.com/color/96/movie.png',
+      description: 'Stock video and audio library'
     }
   ];
+
+  const displayedTools = showAll ? tools : tools.slice(0, 20);
 
   return (
     <section id="popular-tools" className="section-padding bg-slate-800">
@@ -208,7 +455,7 @@ export const PopularToolsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {tools.map((tool, index) => (
+          {displayedTools.map((tool, index) => (
             <div 
               key={index} 
               className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-6 group animate-fade-in-up hover:bg-white/15 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2"
@@ -242,124 +489,173 @@ export const PopularToolsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* View More Button */}
+        {tools.length > 20 && (
+          <div className="text-center mt-12 animate-fade-in-up">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg inline-flex items-center gap-2"
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </>
+              ) : (
+                <>
+                  View More Tools ({tools.length - 20} more)
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-// Testimonials Section - With Scrolling Reviews
+// Testimonials Section - Tandym Style (Dark Theme)
 export const TestimonialsSection = () => {
+  const [showMore, setShowMore] = useState(false);
+  
   const facebookReviews = [
-    { name: 'Sarah K.', rating: 5, review: 'Excellent platform with reliable service. Very satisfied with my experience!', platform: 'facebook' },
-    { name: 'Ahmed R.', rating: 5, review: 'Great value and professional support. Highly recommend to others!', platform: 'facebook' },
-    { name: 'Maria S.', rating: 4, review: 'Quick setup and responsive customer service team.', platform: 'facebook' },
-    { name: 'James T.', rating: 5, review: 'Reliable platform with excellent features. Very happy customer!', platform: 'facebook' },
-    { name: 'Nina P.', rating: 5, review: 'Professional service and great pricing. Exactly what I needed!', platform: 'facebook' },
-    { name: 'Carlos M.', rating: 4, review: 'Smooth experience from start to finish. Good support team.', platform: 'facebook' },
+    { name: 'Sarah K.', rating: 5, review: 'Setting up my SEORDP account was incredibly easy. The platform is user-friendly and intuitive for browsing tools, checkout, and managing my subscription. Looking forward to them expanding their tool library even more!' },
+    { name: 'Ahmed R.', rating: 5, review: 'I had a great experience with SEORDP when subscribing to Ahrefs. The transaction was seamless, I got instant access to the tool, paid my monthly bill without hassle, and even earned reward points!' },
+    { name: 'Maria S.', rating: 5, review: 'Quick and seamless! I set up my SEORDP account with SEMrush in less than 5 minutes and started using it right away. Plus, I am earning rewards with every payment which is an added bonus!' },
   ];
 
   const trustpilotReviews = [
-    { name: 'John M.', rating: 5, review: 'Outstanding quality and exceptional customer support. Worth every penny!', platform: 'trustpilot' },
-    { name: 'Lisa W.', rating: 5, review: 'Best decision for my business growth. Professional service throughout!', platform: 'trustpilot' },
-    { name: 'David C.', rating: 4, review: 'Impressive platform with powerful features and tools.', platform: 'trustpilot' },
-    { name: 'Emma R.', rating: 5, review: 'Fantastic experience! Easy setup and reliable performance.', platform: 'trustpilot' },
-    { name: 'Michael B.', rating: 5, review: 'Top-notch service with great customer care. Highly satisfied!', platform: 'trustpilot' },
-    { name: 'Sophie L.', rating: 4, review: 'Great platform with useful features. Professional and reliable.', platform: 'trustpilot' },
+    { name: 'John M.', rating: 5, review: 'Outstanding quality and exceptional customer support. The enterprise features have helped scale our operations efficiently. Worth every penny for our business!' },
+    { name: 'Lisa W.', rating: 5, review: 'Best decision for my business growth. Professional service throughout with consistent results. The platform is reliable and feature-rich for all our marketing needs.' },
+    { name: 'David C.', rating: 5, review: 'Impressive platform with powerful features and tools. The integration capabilities have streamlined our workflow significantly and saved us countless hours!' },
   ];
 
-  return (
-    <section className="py-12 relative overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-            What People Are <span className="text-teal-600">Saying</span>
-          </h2>
-          <p className="text-base text-gray-600 max-w-3xl mx-auto">
-            Authentic reviews from satisfied customers who chose our platform
-          </p>
-        </div>
+  const displayedTrustpilot = showMore ? [...trustpilotReviews, 
+    { name: 'Emma R.', rating: 5, review: 'Fantastic experience! Easy setup and reliable performance. The customer support team is incredibly responsive and helpful.' },
+    { name: 'Michael B.', rating: 5, review: 'Top-notch service with great customer care. Highly satisfied!' },
+    { name: 'Sophie L.', rating: 4, review: 'Great platform with useful features. Professional and reliable.' }
+  ] : trustpilotReviews;
 
-        {/* Facebook Reviews */}
-        <div className="mb-12">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
+  return (
+    <section className="py-24 bg-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Facebook Section - Tandym Style */}
+        <div className="mb-20">
+          {/* Header with Stats Card */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
+            {/* Left: Text */}
+            <div>
+              <div className="text-blue-400 font-semibold text-sm tracking-wide mb-4">LOVED BY USERS</div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Loved by your best customers
+              </h2>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                We&apos;re obsessed with delivering outstanding customer experiences that are a reflection of your brand.
+              </p>
             </div>
-            Facebook Reviews
-          </h3>
-          
-          <div className="relative overflow-hidden">
-            <div className="flex gap-4 animate-slide-left-to-right">
-              {[...facebookReviews, ...facebookReviews].map((review, index) => (
-                <div 
-                  key={index}
-                  className="card-gradient p-4 flex-shrink-0 hover:shadow-xl transition-shadow duration-300"
-                  style={{ width: '320px' }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                      {review.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-white text-sm">{review.name}</h4>
-                      <div className="flex items-center gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className={`w-3 h-3 ${i < review.rating ? 'text-yellow-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                          </svg>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">{review.review}</p>
+
+            {/* Right: Rating Card */}
+            <div className="flex justify-end">
+              <div className="bg-white rounded-2xl p-8 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-300 w-64">
+                <div className="text-6xl font-black text-slate-900 mb-2">4.9</div>
+                <div className="text-lg font-bold text-slate-700">Industry-leading Rating</div>
+                <div className="text-sm text-slate-500 mt-1">As of November 2024</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider with Platform */}
+          <div className="relative mb-12">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-700"></div>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="bg-slate-800 px-6 py-2 flex items-center gap-3">
+                <span className="text-slate-400 text-sm">All 5-star reviews on</span>
+                <div className="flex items-center gap-2 bg-blue-600 px-3 py-1 rounded">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  <span className="text-white text-sm font-bold">Facebook</span>
                 </div>
-              ))}
+              </div>
             </div>
+          </div>
+
+          {/* Facebook Reviews Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {facebookReviews.map((review, index) => (
+              <div key={index} className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <h4 className="font-bold text-white">{review.name}</h4>
+                </div>
+                <p className="text-slate-300 leading-relaxed">{review.review}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Trustpilot Reviews */}
+        {/* Trustpilot Section - Tandym Style */}
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-            <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
+          {/* Divider with Platform */}
+          <div className="relative mb-12">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-slate-700"></div>
             </div>
-            Trustpilot Reviews
-          </h3>
-          
-          <div className="relative overflow-hidden">
-            <div className="flex gap-4 animate-slide-left-to-right-delayed">
-              {[...trustpilotReviews, ...trustpilotReviews].map((review, index) => (
-                <div 
-                  key={index}
-                  className="card-gradient p-5 flex-shrink-0 hover:shadow-xl transition-shadow duration-300"
-                  style={{ width: '350px' }}
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                        {review.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-white text-sm">{review.name}</h4>
-                        <div className="flex items-center gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <svg key={i} className={`w-4 h-4 ${i < review.rating ? 'text-green-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                            </svg>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-slate-300 text-sm leading-relaxed">{review.review}</p>
+            <div className="relative flex justify-center">
+              <div className="bg-slate-800 px-6 py-2 flex items-center gap-3">
+                <span className="text-slate-400 text-sm">All 5-star reviews on</span>
+                <div className="flex items-center gap-2 bg-green-600 px-3 py-1 rounded">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                  <span className="text-white text-sm font-bold">Trustpilot</span>
                 </div>
-              ))}
+              </div>
             </div>
+          </div>
+
+          {/* Trustpilot Reviews Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {displayedTrustpilot.map((review, index) => (
+              <div key={index} className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-green-500 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <h4 className="font-bold text-white">{review.name}</h4>
+                </div>
+                <p className="text-slate-300 leading-relaxed">{review.review}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* See More Button */}
+          <div className="text-center">
+            <button
+              onClick={() => setShowMore(!showMore)}
+              className="inline-block text-white font-semibold border-b-2 border-white hover:text-teal-400 hover:border-teal-400 transition-colors pb-1"
+            >
+              {showMore ? 'Show less reviews' : 'See more reviews'}
+            </button>
           </div>
         </div>
       </div>
@@ -450,22 +746,13 @@ export const HowToOrderSection = () => {
                     {/* Top accent line */}
                     <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
                     
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-white p-3 flex items-center justify-center shadow-lg">
-                        <img 
-                          src={item.logo}
-                          alt={item.title}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-black text-white mb-3 group-hover:text-teal-400 transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="text-slate-300 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
+                    <div>
+                      <h3 className="text-2xl font-black text-white mb-3 group-hover:text-teal-400 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-300 leading-relaxed">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -474,24 +761,6 @@ export const HowToOrderSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-12 animate-fade-in-up">
-          <div className="inline-flex items-center gap-4 p-6 card-gradient rounded-2xl border border-teal-500/20">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center text-2xl shadow-xl animate-float">
-              🎉
-            </div>
-            <div className="text-left">
-              <p className="text-white font-bold text-lg mb-1">Ready to get started?</p>
-              <p className="text-slate-400 text-sm">Join thousands of satisfied users today</p>
-            </div>
-            <Link 
-              href="/products" 
-              className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg ml-4"
-            >
-              Sign Up Now
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );

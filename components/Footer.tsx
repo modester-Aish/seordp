@@ -81,50 +81,58 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Our Plans */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-              Support
+              Our Plans
             </h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/pages"
+                  href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  All Pages
+                  Small Plan
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pages/about"
+                  href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  About Us
+                  Ahrefs Combo
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pages/contact"
+                  href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  Contact
+                  Mega Plan
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pages/privacy-policy"
+                  href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  Privacy Policy
+                  Lite Plan
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pages/terms"
+                  href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  Terms of Service
+                  Writer Plan
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
+                >
+                  Designer Plan
                 </Link>
               </li>
             </ul>
