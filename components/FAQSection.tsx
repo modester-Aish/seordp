@@ -138,7 +138,7 @@ export default function FAQSection() {
             </div>
             <div className="text-center sm:text-left">
               <h3 className="text-xl font-bold text-white mb-1">Need More Help?</h3>
-              <p className="text-slate-400">We're available around the clock to assist you</p>
+              <p className="text-slate-400">We&apos;re available around the clock to assist you</p>
             </div>
             <a 
               href="#" 

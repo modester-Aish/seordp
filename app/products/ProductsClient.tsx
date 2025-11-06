@@ -55,7 +55,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
             <div className="mt-3 text-center text-sm text-slate-400">
               Found <span className="font-bold text-teal-400">{filteredProducts.length}</span> product{filteredProducts.length !== 1 ? 's' : ''}
               {searchQuery && (
-                <span> for "<span className="text-white">{searchQuery}</span>"</span>
+                <span> for &ldquo;<span className="text-white">{searchQuery}</span>&rdquo;</span>
               )}
             </div>
           )}
@@ -76,7 +76,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-2xl font-bold text-white mb-3">No Products Found</h3>
               <p className="text-slate-400 mb-6">
-                No products match your search "<span className="text-white font-semibold">{searchQuery}</span>"
+                No products match your search &ldquo;<span className="text-white font-semibold">{searchQuery}</span>&rdquo;
               </p>
               <button
                 onClick={() => setSearchQuery('')}

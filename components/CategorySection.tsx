@@ -249,7 +249,7 @@ export default function CategorySection({ categories, products = [] }: CategoryS
                 </span>
               </h3>
               <p className="text-slate-300 mb-6 leading-relaxed">
-                We don't have any products in this category yet. Please check other categories or browse all our available products.
+                We don&apos;t have any products in this category yet. Please check other categories or browse all our available products.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button
