@@ -211,9 +211,16 @@ export function getContent(post: WordPressPost | WordPressPage): string {
 }
 
 // Helper function to get plain text excerpt
-export function getExcerpt(post: WordPressPost): string {
-  const excerpt = post.excerpt.rendered.replace(/<[^>]*>/g, '');
-  return excerpt.length > 160 ? excerpt.substring(0, 160) + '...' : excerpt;
+export function getExcerpt(post: WordPressPost | WordPressPage): string {
+  // For posts, use excerpt field
+  if ('excerpt' in post && post.excerpt) {
+    const excerpt = post.excerpt.rendered.replace(/<[^>]*>/g, '');
+    return excerpt.length > 160 ? excerpt.substring(0, 160) + '...' : excerpt;
+  }
+  
+  // For pages, extract from content
+  const content = post.content.rendered.replace(/<[^>]*>/g, '').trim();
+  return content.length > 160 ? content.substring(0, 160) + '...' : content;
 }
 
 // Helper function to get featured image URL
