@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" fill="#F59E0B"/>
+  
+  <!-- Circular arrow for service guarantee -->
+  <circle cx="40" cy="40" r="25" fill="none" stroke="white" stroke-width="3"/>
+  
+  <!-- Arrow head -->
+  <path d="M25 40L35 30L35 50L25 40Z" fill="white"/>
+  
+  <!-- 24h text -->
+  <text x="40" y="85" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">24h</text>
+</svg>

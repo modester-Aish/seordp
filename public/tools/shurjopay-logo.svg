@@ -1,0 +1,11 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" fill="#1E40AF"/>
+  
+  <!-- ShurjoPay authentic brand logo -->
+  <text x="40" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Shurjo</text>
+  <text x="40" y="52" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Pay</text>
+  
+  <!-- ShurjoPay brand accent line -->
+  <rect x="25" y="45" width="30" height="2" fill="white" rx="1"/>
+</svg>

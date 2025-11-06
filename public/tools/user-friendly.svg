@@ -1,0 +1,14 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#F59E0B"/>
+  
+  <!-- Smile face -->
+  <circle cx="40" cy="40" r="20" fill="white"/>
+  <circle cx="35" cy="35" r="3" fill="#F59E0B"/>
+  <circle cx="45" cy="35" r="3" fill="#F59E0B"/>
+  <path d="M30 45 Q40 55 50 45" stroke="#F59E0B" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Thumbs up -->
+  <path d="M55 25 L55 35 L60 30 L55 25" fill="white"/>
+  <rect x="55" y="35" width="3" height="15" rx="1" fill="white"/>
+</svg>

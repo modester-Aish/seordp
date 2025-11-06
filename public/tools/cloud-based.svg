@@ -1,0 +1,12 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#06B6D4"/>
+  
+  <!-- Cloud -->
+  <path d="M25 45 C25 35 35 25 45 25 C50 25 55 30 57 35 C65 35 70 40 70 45 C70 50 65 55 60 55 L30 55 C25 55 20 50 20 45 C20 40 25 35 30 35 C30 35 30 35 30 35 C30 30 35 25 40 25 C45 25 50 30 50 35" fill="white"/>
+  
+  <!-- Cloud dots -->
+  <circle cx="35" cy="40" r="2" fill="#06B6D4"/>
+  <circle cx="45" cy="40" r="2" fill="#06B6D4"/>
+  <circle cx="55" cy="40" r="2" fill="#06B6D4"/>
+</svg>

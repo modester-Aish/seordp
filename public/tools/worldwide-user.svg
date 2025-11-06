@@ -1,0 +1,16 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#059669"/>
+  
+  <!-- Globe -->
+  <circle cx="40" cy="40" r="25" fill="none" stroke="white" stroke-width="3"/>
+  <path d="M15 40 L65 40" stroke="white" stroke-width="2"/>
+  <path d="M40 15 C50 25 50 55 40 65" stroke="white" stroke-width="2" fill="none"/>
+  <path d="M40 15 C30 25 30 55 40 65" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- People icons -->
+  <circle cx="25" cy="30" r="3" fill="white"/>
+  <circle cx="55" cy="30" r="3" fill="white"/>
+  <circle cx="25" cy="50" r="3" fill="white"/>
+  <circle cx="55" cy="50" r="3" fill="white"/>
+</svg>

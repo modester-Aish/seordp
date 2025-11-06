@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#FF6B1C"/>
+  
+  <!-- Dollar sign -->
+  <text x="40" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">€</text>
+  
+  <!-- Small coins around -->
+  <circle cx="25" cy="25" r="4" fill="white" opacity="0.8"/>
+  <circle cx="55" cy="25" r="4" fill="white" opacity="0.8"/>
+  <circle cx="25" cy="55" r="4" fill="white" opacity="0.8"/>
+  <circle cx="55" cy="55" r="4" fill="white" opacity="0.8"/>
+</svg>

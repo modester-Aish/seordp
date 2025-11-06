@@ -1,0 +1,17 @@
+# ==============================================
+# SEORDP - WordPress Integration Configuration
+# ==============================================
+# 
+# INSTRUCTIONS:
+# 1. Copy ALL content below
+# 2. Create file: .env.local (in my-website folder)
+# 3. Paste this content
+# 4. Save file
+# 5. Restart server: npm run dev
+# ==============================================
+
+WORDPRESS_BASE_URL=https://app.faditools.com
+WC_CONSUMER_KEY=ck_8401b29431e49ef1c365d72220233f896a4362fa
+WC_CONSUMER_SECRET=cs_fa37326a0d94d4900d4ca31e779e9f0107a6b0d0
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+

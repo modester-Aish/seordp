@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#EF4444"/>
+  
+  <!-- Lightning bolt -->
+  <path d="M45 20 L30 40 L40 40 L25 60 L35 45 L25 45 Z" fill="white"/>
+  
+  <!-- Speed lines -->
+  <path d="M50 15 L55 20 L50 25" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60 25 L65 30 L60 35" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M50 55 L55 60 L50 65" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60 45 L65 50 L60 55" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>

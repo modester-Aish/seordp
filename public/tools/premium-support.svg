@@ -1,0 +1,14 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#8B5CF6"/>
+  
+  <!-- Headset -->
+  <path d="M25 35 L35 35 L35 55 L25 55 Z" fill="white"/>
+  <path d="M45 35 L55 35 L55 55 L45 55 Z" fill="white"/>
+  <path d="M35 35 L45 35 L45 45 L35 45 Z" fill="white"/>
+  
+  <!-- Support chat bubble -->
+  <rect x="20" y="25" width="40" height="20" rx="10" fill="white"/>
+  <path d="M35 45 L30 50 L35 55" fill="white"/>
+  <text x="40" y="38" font-family="Arial, sans-serif" font-size="8" fill="#8B5CF6" text-anchor="middle">?</text>
+</svg>

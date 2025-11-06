@@ -1,0 +1,15 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="80" height="80" rx="12" fill="#10B981"/>
+  
+  <!-- Document/Text -->
+  <rect x="25" y="20" width="30" height="40" rx="3" fill="white"/>
+  <rect x="30" y="30" width="20" height="2" fill="#10B981"/>
+  <rect x="30" y="35" width="15" height="2" fill="#10B981"/>
+  <rect x="30" y="40" width="18" height="2" fill="#10B981"/>
+  <rect x="30" y="45" width="12" height="2" fill="#10B981"/>
+  
+  <!-- Pen -->
+  <path d="M45 15 L55 25 L50 30 L40 20 Z" fill="white"/>
+  <circle cx="45" cy="15" r="3" fill="white"/>
+</svg>
