@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { generateCanonicalUrl } from '@/lib/canonical';
-import { loadHomepageProducts, loadHomepageCategories } from '@/lib/homepage-products';
-import CategorySection from '@/components/CategorySection';
 import { WhyChooseSection, PopularToolsSection, TestimonialsSection, HowToOrderSection } from '@/components/AnimatedSections';
 import InteractivePricingCards from '@/components/InteractivePricingCards';
 import Typewriter from '@/components/Typewriter';
@@ -50,53 +48,6 @@ export const metadata: Metadata = {
 export const revalidate = 21600; // 6 hours
 
 export default async function Home() {
-  // Fetch categories and products for the homepage
-  let categories: Array<{ id: number; name: string; slug: string; count: number }> = [];
-  let products: any[] = [];
-  
-  try {
-    const [homepageProducts, homepageCategories] = await Promise.all([
-      loadHomepageProducts(),
-      loadHomepageCategories()
-    ]);
-    
-    // Process categories
-    if (homepageCategories && homepageCategories.length > 0) {
-      categories = homepageCategories.map(cat => ({
-        id: cat.id,
-        name: cat.name === 'Uncategorized' ? 'All Plan' : cat.name,
-        slug: cat.slug,
-        count: cat.count || 0
-      }));
-      
-      // Move "All Plan" to the beginning
-      const allPlanIndex = categories.findIndex(cat => cat.name === 'All Plan');
-      if (allPlanIndex > -1) {
-        const allPlanCategory = categories.splice(allPlanIndex, 1)[0];
-        categories.unshift(allPlanCategory);
-      }
-    }
-    
-    // Products
-    if (homepageProducts && homepageProducts.length > 0) {
-      products = homepageProducts;
-    }
-  } catch (error) {
-    console.error('Error loading homepage data:', error);
-  }
-  
-  // Fallback data
-  if (categories.length === 0) {
-    categories = [
-      { id: 6, name: 'All Plan', slug: 'uncategorized', count: 1200 },
-      { id: 1, name: 'SEO Tools', slug: 'seo-tools', count: 2100 },
-      { id: 2, name: 'Marketing Tools', slug: 'marketing-tools', count: 1560 },
-      { id: 3, name: 'Analytics Tools', slug: 'analytics-tools', count: 890 },
-      { id: 4, name: 'Content Tools', slug: 'content-tools', count: 1200 },
-      { id: 5, name: 'RDP Services', slug: 'rdp-services', count: 450 }
-    ];
-  }
-
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Modern Dribbble-Inspired Hero Section */}
@@ -104,9 +55,6 @@ export default async function Home() {
 
       {/* Why Choose SEORDP Section */}
       <WhyChooseSection />
-
-      {/* Product Categories Section */}
-      {categories.length > 0 && <CategorySection categories={categories} products={products} />}
 
       {/* Popular Tools Section */}
       <PopularToolsSection />
