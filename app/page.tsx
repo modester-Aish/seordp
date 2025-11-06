@@ -7,6 +7,7 @@ import InteractivePricingCards from '@/components/InteractivePricingCards';
 import Typewriter from '@/components/Typewriter';
 import FAQSection from '@/components/FAQSection';
 import ModernHero from '@/components/ModernHero';
+import FeatureSections from '@/components/FeatureSections';
 
 export const metadata: Metadata = {
   title: 'Premium Software & Services at Affordable Prices | SEORDP',
@@ -58,6 +59,9 @@ export default async function Home() {
 
       {/* Popular Tools Section */}
       <PopularToolsSection />
+
+      {/* Feature Sections - Add Your Data Here */}
+      <FeatureSections />
 
       {/* Interactive Pricing Cards Section */}
       <InteractivePricingCards />

@@ -52,11 +52,33 @@ export default function ModernHero() {
               </p>
             </div>
 
-            {/* Right Content - Cards Around Center */}
-            <div className="relative h-[600px] flex items-center justify-center">
+            {/* Right Content - Wide 3 Column Layout */}
+            <div className="relative h-[600px] w-full">
               
-              {/* Main Pricing Card (Center) */}
-              <div className="relative bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-8 shadow-2xl w-80 z-20">
+              {/* LEFT SIDE TOOLS - Close to Pricing Card */}
+              <div className="absolute -left-20 top-1/2 -translate-y-1/2 space-y-5 z-10">
+                {[
+                  { name: 'Ahrefs', logo: '/tools/ahrefs-logo.svg' },
+                  { name: 'SEMrush', logo: '/tools/semrush-logo.svg' },
+                  { name: 'ChatGPT Plus', logo: '/tools/chatgpt-logo.svg' },
+                  { name: 'Claude AI', logo: '/tools/claude-logo.svg' },
+                ].map((tool, idx) => (
+                  <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
+                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-slate-900 text-sm">{tool.name}</div>
+                        <div className="text-xs text-green-600 font-semibold">● Active</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CENTER - Pricing Card */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-8 shadow-2xl w-80 z-30">
                 <div className="text-white/90 text-sm font-semibold mb-2">PREMIUM PLAN</div>
                 <div className="text-white text-4xl font-black mb-2">$4.99<span className="text-xl font-normal">/mo</span></div>
                 <div className="text-white/80 text-sm mb-6">Save 90% on all premium tools</div>
@@ -78,91 +100,31 @@ export default function ModernHero() {
                 </Link>
               </div>
 
-              {/* LEFT SIDE TOOLS */}
-              
-              {/* Tool Card: Ahrefs (Top Left) */}
-              <div className="absolute top-0 -left-16 bg-white rounded-xl p-4 shadow-xl w-56 transform -rotate-6 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/ahrefs-logo.svg" alt="Ahrefs" className="w-full h-full object-contain" />
+              {/* RIGHT SIDE TOOLS - Close to Pricing Card */}
+              <div className="absolute -right-32 top-1/2 -translate-y-1/2 space-y-5 z-10">
+                {[
+                  { name: 'Canva Pro', logo: '/tools/canva-logo.svg' },
+                  { name: 'Moz Pro', logo: '/tools/moz-logo.svg' },
+                  { name: 'RunwayML', logo: '/tools/runwayml-logo.svg' },
+                  { name: 'Netflix', logo: '/tools/netflix-logo.svg' },
+                ].map((tool, idx) => (
+                  <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
+                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                      </div>
+                      <div>
+                        <div className="font-bold text-slate-900 text-sm">{tool.name}</div>
+                        <div className="text-xs text-green-600 font-semibold">● Active</div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">Ahrefs</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tool Card: SEMrush (Middle Left) */}
-              <div className="absolute top-1/3 -left-24 bg-white rounded-xl p-4 shadow-xl w-56 transform rotate-3 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/semrush-logo.svg" alt="SEMrush" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">SEMrush</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tool Card: ChatGPT (Bottom Left) */}
-              <div className="absolute bottom-8 -left-16 bg-white rounded-xl p-4 shadow-xl w-56 transform -rotate-4 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/chatgpt-logo.svg" alt="ChatGPT" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">ChatGPT Plus</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT SIDE TOOLS */}
-              
-              {/* Tool Card: Canva (Top Right) */}
-              <div className="absolute top-0 -right-16 bg-white rounded-xl p-4 shadow-xl w-56 transform rotate-6 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/canva-logo.svg" alt="Canva" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">Canva Pro</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tool Card: Moz (Middle Right) */}
-              <div className="absolute top-1/3 -right-24 bg-white rounded-xl p-4 shadow-xl w-56 transform -rotate-3 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/moz-logo.svg" alt="Moz" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">Moz Pro</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tool Card: Netflix (Bottom Right) */}
-              <div className="absolute bottom-8 -right-16 bg-white rounded-xl p-4 shadow-xl w-56 transform rotate-5 hover:rotate-0 transition-all duration-300 hover:scale-105">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-slate-50 rounded-lg p-2">
-                    <img src="/tools/netflix-logo.svg" alt="Netflix" className="w-full h-full object-contain" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-slate-900 text-sm">Netflix</div>
-                    <div className="text-xs text-green-600 font-semibold">● Active</div>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Sparkle Decorations */}
-              <div className="absolute -top-8 right-1/4 text-teal-400 text-3xl animate-pulse">✦</div>
-              <div className="absolute -bottom-8 left-1/4 text-orange-400 text-2xl animate-pulse" style={{animationDelay: '1s'}}>✦</div>
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 text-teal-400 text-3xl animate-pulse">✦</div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-orange-400 text-2xl animate-pulse" style={{animationDelay: '1s'}}>✦</div>
 
             </div>
 
