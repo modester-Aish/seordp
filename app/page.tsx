@@ -60,11 +60,11 @@ export default async function Home() {
       {/* Popular Tools Section */}
       <PopularToolsSection />
 
-      {/* Feature Sections - Add Your Data Here */}
-      <FeatureSections />
-
       {/* Interactive Pricing Cards Section */}
       <InteractivePricingCards />
+
+      {/* Feature Sections - Content Articles */}
+      <FeatureSections />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
