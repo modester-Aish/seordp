@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   WordPressPost,
   WordPressPage,
@@ -11,15 +10,15 @@ import {
 const WORDPRESS_BASE_URL = process.env.WORDPRESS_BASE_URL || 'https://app.faditools.com';
 const WP_API_URL = `${WORDPRESS_BASE_URL}/wp-json/wp/v2`;
 
+// Cache configuration - data revalidate every 1 hour
+const CACHE_REVALIDATE = 3600; // 1 hour in seconds
+
 // Helper function to handle API errors
 const handleApiError = (error: any): string => {
-  if (error.response) {
-    return `API Error: ${error.response.status} - ${error.response.statusText}`;
-  } else if (error.request) {
-    return 'No response received from WordPress API';
-  } else {
+  if (error instanceof Error) {
     return `Request Error: ${error.message}`;
   }
+  return 'An unknown error occurred';
 };
 
 // Fetch all posts with optional filters
@@ -30,29 +29,40 @@ export async function fetchAllPosts(
   tags?: string
 ): Promise<WordPressApiResponse<WordPressPost>> {
   try {
-    const params: any = {
-      page,
-      per_page: perPage,
-      _embed: true,
-    };
+    const params = new URLSearchParams({
+      page: page.toString(),
+      per_page: perPage.toString(),
+      _embed: 'true',
+    });
 
     if (categories) {
-      params.categories = categories;
+      params.append('categories', categories);
     }
 
     if (tags) {
-      params.tags = tags;
+      params.append('tags', tags);
     }
 
-    const response = await axios.get<WordPressPost[]>(`${WP_API_URL}/posts`, {
-      params,
+    const response = await fetch(`${WP_API_URL}/posts?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['posts'] 
+      }
     });
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressPost[] = await response.json();
+    const total = parseInt(response.headers.get('x-wp-total') || '0');
+    const totalPages = parseInt(response.headers.get('x-wp-totalpages') || '0');
+
     return {
-      data: response.data,
+      data,
       error: null,
-      total: parseInt(response.headers['x-wp-total'] || '0'),
-      totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
+      total,
+      totalPages,
     };
   } catch (error: any) {
     console.error('Error fetching posts:', error);
@@ -68,14 +78,25 @@ export async function fetchPostBySlug(
   slug: string
 ): Promise<WordPressSingleResponse<WordPressPost>> {
   try {
-    const response = await axios.get<WordPressPost[]>(`${WP_API_URL}/posts`, {
-      params: {
-        slug,
-        _embed: true,
-      },
+    const params = new URLSearchParams({
+      slug,
+      _embed: 'true',
     });
 
-    if (response.data.length === 0) {
+    const response = await fetch(`${WP_API_URL}/posts?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['posts', `post-${slug}`] 
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressPost[] = await response.json();
+
+    if (data.length === 0) {
       return {
         data: null,
         error: 'Post not found',
@@ -83,7 +104,7 @@ export async function fetchPostBySlug(
     }
 
     return {
-      data: response.data[0],
+      data: data[0],
       error: null,
     };
   } catch (error: any) {
@@ -101,19 +122,32 @@ export async function fetchAllPages(
   perPage: number = 100
 ): Promise<WordPressApiResponse<WordPressPage>> {
   try {
-    const response = await axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
-      params: {
-        page,
-        per_page: perPage,
-        _embed: true,
-      },
+    const params = new URLSearchParams({
+      page: page.toString(),
+      per_page: perPage.toString(),
+      _embed: 'true',
     });
 
+    const response = await fetch(`${WP_API_URL}/pages?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['pages'] 
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressPage[] = await response.json();
+    const total = parseInt(response.headers.get('x-wp-total') || '0');
+    const totalPages = parseInt(response.headers.get('x-wp-totalpages') || '0');
+
     return {
-      data: response.data,
+      data,
       error: null,
-      total: parseInt(response.headers['x-wp-total'] || '0'),
-      totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
+      total,
+      totalPages,
     };
   } catch (error: any) {
     console.error('Error fetching pages:', error);
@@ -128,21 +162,29 @@ export async function fetchAllPages(
 export async function fetchAllPagesComplete(): Promise<WordPressApiResponse<WordPressPage>> {
   try {
     let allPages: WordPressPage[] = [];
-    let currentPage = 1;
     let totalPages = 1;
 
     // Fetch first page to get total pages
-    const firstResponse = await axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
-      params: {
-        page: 1,
-        per_page: 100,
-        _embed: true,
-      },
+    const params1 = new URLSearchParams({
+      page: '1',
+      per_page: '100',
+      _embed: 'true',
     });
 
-    allPages = firstResponse.data;
-    totalPages = parseInt(firstResponse.headers['x-wp-totalpages'] || '1');
-    const total = parseInt(firstResponse.headers['x-wp-total'] || '0');
+    const firstResponse = await fetch(`${WP_API_URL}/pages?${params1.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['pages', 'all-pages'] 
+      }
+    });
+
+    if (!firstResponse.ok) {
+      throw new Error(`HTTP error! status: ${firstResponse.status}`);
+    }
+
+    allPages = await firstResponse.json();
+    totalPages = parseInt(firstResponse.headers.get('x-wp-totalpages') || '1');
+    const total = parseInt(firstResponse.headers.get('x-wp-total') || '0');
 
     console.log(`📄 Fetching ${total} pages from ${totalPages} pages...`);
 
@@ -150,20 +192,25 @@ export async function fetchAllPagesComplete(): Promise<WordPressApiResponse<Word
     if (totalPages > 1) {
       const pagePromises = [];
       for (let page = 2; page <= totalPages; page++) {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          per_page: '100',
+          _embed: 'true',
+        });
+
         pagePromises.push(
-          axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
-            params: {
-              page,
-              per_page: 100,
-              _embed: true,
-            },
-          })
+          fetch(`${WP_API_URL}/pages?${params.toString()}`, {
+            next: { 
+              revalidate: CACHE_REVALIDATE,
+              tags: ['pages', 'all-pages'] 
+            }
+          }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
         );
       }
 
       const responses = await Promise.all(pagePromises);
-      responses.forEach(response => {
-        allPages = [...allPages, ...response.data];
+      responses.forEach(data => {
+        allPages = [...allPages, ...data];
       });
     }
 
@@ -189,14 +236,25 @@ export async function fetchPageBySlug(
   slug: string
 ): Promise<WordPressSingleResponse<WordPressPage>> {
   try {
-    const response = await axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
-      params: {
-        slug,
-        _embed: true,
-      },
+    const params = new URLSearchParams({
+      slug,
+      _embed: 'true',
     });
 
-    if (response.data.length === 0) {
+    const response = await fetch(`${WP_API_URL}/pages?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['pages', `page-${slug}`] 
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressPage[] = await response.json();
+
+    if (data.length === 0) {
       return {
         data: null,
         error: 'Page not found',
@@ -204,7 +262,7 @@ export async function fetchPageBySlug(
     }
 
     return {
-      data: response.data[0],
+      data: data[0],
       error: null,
     };
   } catch (error: any) {
@@ -219,14 +277,25 @@ export async function fetchPageBySlug(
 // Fetch all categories
 export async function fetchAllCategories(): Promise<WordPressApiResponse<WordPressCategory>> {
   try {
-    const response = await axios.get<WordPressCategory[]>(`${WP_API_URL}/categories`, {
-      params: {
-        per_page: 100,
-      },
+    const params = new URLSearchParams({
+      per_page: '100',
     });
 
+    const response = await fetch(`${WP_API_URL}/categories?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['categories'] 
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressCategory[] = await response.json();
+
     return {
-      data: response.data,
+      data,
       error: null,
     };
   } catch (error: any) {
@@ -241,14 +310,25 @@ export async function fetchAllCategories(): Promise<WordPressApiResponse<WordPre
 // Fetch all tags
 export async function fetchAllTags(): Promise<WordPressApiResponse<WordPressTag>> {
   try {
-    const response = await axios.get<WordPressTag[]>(`${WP_API_URL}/tags`, {
-      params: {
-        per_page: 100,
-      },
+    const params = new URLSearchParams({
+      per_page: '100',
     });
 
+    const response = await fetch(`${WP_API_URL}/tags?${params.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['tags'] 
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data: WordPressTag[] = await response.json();
+
     return {
-      data: response.data,
+      data,
       error: null,
     };
   } catch (error: any) {
