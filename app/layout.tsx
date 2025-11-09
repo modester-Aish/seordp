@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import HeaderServer from '@/components/HeaderServer'
 import Footer from '@/components/Footer'
+import FloatingChat from '@/components/FloatingChat'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -61,6 +62,7 @@ export default function RootLayout({
           <HeaderServer />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingChat />
         </div>
       </body>
     </html>

@@ -196,6 +196,20 @@ body {
     background: linear-gradient(180deg, #0d9488, #065f46);
   }
 
+  /* Slow Spin Animation for Chat Button */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+
   /* Section Padding */
   .section-padding {
     @apply py-16 md:py-24 lg:py-32;

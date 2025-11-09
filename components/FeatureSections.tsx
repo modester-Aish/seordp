@@ -71,7 +71,7 @@ export default function FeatureSections() {
             
             <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
               <p>
-                Here, we'll delve into the world of <strong className="text-white">SEO group buy tools</strong> and understand how they work. SEO group buy tools are excellent SEO tools that are pooled together and shared among users, allowing them to access these tools at a significantly reduced cost compared to individual subscriptions.
+                Here, we&apos;ll delve into the world of <strong className="text-white">SEO group buy tools</strong> and understand how they work. SEO group buy tools are excellent SEO tools that are pooled together and shared among users, allowing them to access these tools at a significantly reduced cost compared to individual subscriptions.
               </p>
 
               <p>
