@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
-import { fetchAllProducts } from '@/lib/woocommerce-api';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 import ProductCard from '@/components/ProductCard';
 
 export const metadata: Metadata = {
@@ -11,7 +11,24 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function ProductsPage() {
-  const { data: products, error } = await fetchAllProducts(1, 12);
+  const { data: productsData, error } = await fetchAllProductsComplete();
+
+  // Move "AI Content Labs Group Buy" to the end
+  let products = productsData;
+  if (products && products.length > 0) {
+    const aiContentLabsIndex = products.findIndex(p => 
+      p.name.toLowerCase().includes('ai content labs')
+    );
+    
+    if (aiContentLabsIndex !== -1) {
+      const aiContentLabs = products[aiContentLabsIndex];
+      products = [
+        ...products.slice(0, aiContentLabsIndex),
+        ...products.slice(aiContentLabsIndex + 1),
+        aiContentLabs
+      ];
+    }
+  }
 
   if (error) {
     return (

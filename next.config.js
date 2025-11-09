@@ -4,6 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'backend.seordp.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'app.faditools.com',
         pathname: '/**',
       },

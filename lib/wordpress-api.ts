@@ -124,6 +124,66 @@ export async function fetchAllPages(
   }
 }
 
+// Fetch ALL pages from WordPress (handles pagination automatically)
+export async function fetchAllPagesComplete(): Promise<WordPressApiResponse<WordPressPage>> {
+  try {
+    let allPages: WordPressPage[] = [];
+    let currentPage = 1;
+    let totalPages = 1;
+
+    // Fetch first page to get total pages
+    const firstResponse = await axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
+      params: {
+        page: 1,
+        per_page: 100,
+        _embed: true,
+      },
+    });
+
+    allPages = firstResponse.data;
+    totalPages = parseInt(firstResponse.headers['x-wp-totalpages'] || '1');
+    const total = parseInt(firstResponse.headers['x-wp-total'] || '0');
+
+    console.log(`📄 Fetching ${total} pages from ${totalPages} pages...`);
+
+    // Fetch remaining pages if there are more
+    if (totalPages > 1) {
+      const pagePromises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          axios.get<WordPressPage[]>(`${WP_API_URL}/pages`, {
+            params: {
+              page,
+              per_page: 100,
+              _embed: true,
+            },
+          })
+        );
+      }
+
+      const responses = await Promise.all(pagePromises);
+      responses.forEach(response => {
+        allPages = [...allPages, ...response.data];
+      });
+    }
+
+    console.log(`✅ Successfully loaded ${allPages.length} pages!`);
+
+    return {
+      data: allPages,
+      error: null,
+      total: allPages.length,
+      totalPages: 1, // All pages in one response now
+    };
+  } catch (error: any) {
+    console.error('Error fetching all pages:', error);
+    return {
+      data: null,
+      error: handleApiError(error),
+    };
+  }
+}
+
 // Fetch a single page by slug
 export async function fetchPageBySlug(
   slug: string

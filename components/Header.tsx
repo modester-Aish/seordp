@@ -10,9 +10,73 @@ interface HeaderProps {
 
 export default function Header({ pages = [] }: HeaderProps) {
   const [isPagesOpen, setIsPagesOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
+  
+  // Timeout refs for smooth closing
+  const [toolsTimeout, setToolsTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [pagesTimeout, setPagesTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [infoTimeout, setInfoTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  // Smooth open/close handlers
+  const handleToolsEnter = () => {
+    if (toolsTimeout) clearTimeout(toolsTimeout);
+    setIsToolsOpen(true);
+  };
+
+  const handleToolsLeave = () => {
+    const timeout = setTimeout(() => setIsToolsOpen(false), 300);
+    setToolsTimeout(timeout);
+  };
+
+  const handlePagesEnter = () => {
+    if (pagesTimeout) clearTimeout(pagesTimeout);
+    setIsPagesOpen(true);
+  };
+
+  const handlePagesLeave = () => {
+    const timeout = setTimeout(() => setIsPagesOpen(false), 300);
+    setPagesTimeout(timeout);
+  };
+
+  const handleInfoEnter = () => {
+    if (infoTimeout) clearTimeout(infoTimeout);
+    setIsInfoOpen(true);
+  };
+
+  const handleInfoLeave = () => {
+    const timeout = setTimeout(() => setIsInfoOpen(false), 300);
+    setInfoTimeout(timeout);
+  };
+
+  // Categorize pages intelligently
+  const infoPages = pages.filter(p => {
+    const title = p.title.rendered.toLowerCase();
+    return title.includes('about') || title.includes('contact') || 
+           title.includes('faq') || title.includes('policy') || 
+           title.includes('terms') || title.includes('privacy') ||
+           title.includes('refund') || title.includes('dmca');
+  });
+
+  const toolsPages = pages.filter(p => {
+    const title = p.title.rendered.toLowerCase();
+    return title.includes('tool') || title.includes('seo') || 
+           title.includes('combo') || title.includes('pack') ||
+           title.includes('single') || title.includes('list');
+  });
+
+  const pricingPages = pages.filter(p => {
+    const title = p.title.rendered.toLowerCase();
+    return title.includes('plan') || title.includes('pricing') || 
+           title.includes('price') || title.includes('package');
+  });
+
+  const otherPages = pages.filter(p => 
+    !infoPages.includes(p) && !toolsPages.includes(p) && !pricingPages.includes(p)
+  );
 
   return (
-    <header className="sticky top-4 z-50 w-full px-4">
+    <header className="sticky top-4 z-[100] w-full px-4">
       <nav className="container mx-auto max-w-7xl">
         {/* Floating Pill Container */}
         <div className="bg-white/10 backdrop-blur-xl rounded-full shadow-xl border border-white/20 px-8 py-4">
@@ -25,19 +89,133 @@ export default function Header({ pages = [] }: HeaderProps) {
             </Link>
 
             {/* Center Navigation - Desktop Only */}
-            <div className="hidden lg:flex items-center gap-8 flex-1 justify-center">
+            <div className="hidden lg:flex items-center gap-6 flex-1 justify-center">
               <Link
                 href="/"
                 className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
               >
                 Home
               </Link>
+              
+              {/* Tools Shop Dropdown */}
+              {toolsPages.length > 0 && (
+                <div className="relative group">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer"
+                    onMouseEnter={handleToolsEnter}
+                    onMouseLeave={handleToolsLeave}
+                  >
+                    <Link
+                      href="/products"
+                      className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
+                    >
+                      Tools Shop
+                    </Link>
+                    <ChevronDown className="h-4 w-4 text-white group-hover:text-teal-400 transition-colors" />
+                  </div>
+                  
+                  {isToolsOpen && (
+                    <div 
+                      className="absolute left-0 top-full mt-3 w-80 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up"
+                      onMouseEnter={handleToolsEnter}
+                      onMouseLeave={handleToolsLeave}
+                      style={{ zIndex: 9999 }}
+                    >
+                      {/* Gradient Border Effect */}
+                      <div className="bg-gradient-to-r from-teal-500 to-cyan-500 p-[2px] rounded-xl">
+                        <div className="bg-slate-900 rounded-xl">
+                          <div className="p-4">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-10 h-10 rounded-lg bg-teal-500/20 flex items-center justify-center">
+                                <span className="text-xl">🛠️</span>
+                              </div>
+                              <div>
+                                <h3 className="text-sm font-bold text-white">SEO Tools</h3>
+                                <p className="text-xs text-teal-400">Premium Combos & Lists</p>
+                              </div>
+                            </div>
+                            <div className="space-y-1 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                              {toolsPages.map((page) => (
+                                <Link
+                                  key={page.id}
+                                  href={`/${page.slug}`}
+                                  className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg hover:pl-5"
+                                >
+                                  {page.title.rendered}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Pricing Plans Dropdown */}
+              {pricingPages.length > 0 && (
+                <div className="relative group">
+                  <div 
+                    className="flex items-center gap-1 cursor-pointer"
+                    onMouseEnter={handlePagesEnter}
+                    onMouseLeave={handlePagesLeave}
+                  >
+                    <Link
+                      href="/pages"
+                      className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
+                    >
+                      Pricing Plans
+                    </Link>
+                    <ChevronDown className="h-4 w-4 text-white group-hover:text-purple-400 transition-colors" />
+                  </div>
+                  
+                  {isPagesOpen && (
+                    <div 
+                      className="absolute left-0 top-full mt-3 w-80 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up"
+                      onMouseEnter={handlePagesEnter}
+                      onMouseLeave={handlePagesLeave}
+                      style={{ zIndex: 9999 }}
+                    >
+                      {/* Gradient Border Effect */}
+                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-[2px] rounded-xl">
+                        <div className="bg-slate-900 rounded-xl">
+                          <div className="p-4">
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                                <span className="text-xl">💰</span>
+                              </div>
+                              <div>
+                                <h3 className="text-sm font-bold text-white">Pricing Plans</h3>
+                                <p className="text-xs text-purple-400">Choose Your Package</p>
+                              </div>
+                            </div>
+                            <div className="space-y-1 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                              {pricingPages.map((page) => (
+                                <Link
+                                  key={page.id}
+                                  href={`/${page.slug}`}
+                                  className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 transition-all rounded-lg hover:pl-5"
+                                >
+                                  {page.title.rendered}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+              
               <Link
                 href="/blog"
                 className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
               >
                 Blog
               </Link>
+              
               <Link
                 href="/products"
                 className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
@@ -45,46 +223,62 @@ export default function Header({ pages = [] }: HeaderProps) {
                 Products
               </Link>
               
-              {/* Pages Dropdown */}
-              <div className="relative">
-                <button
-                  className="flex items-center gap-1 text-sm font-medium text-white hover:text-teal-400 transition-colors"
-                  onMouseEnter={() => setIsPagesOpen(true)}
-                  onMouseLeave={() => setIsPagesOpen(false)}
+              {/* Info/Company Dropdown */}
+              {infoPages.length > 0 && (
+              <div className="relative group">
+                <div 
+                  className="flex items-center gap-1 cursor-pointer"
+                  onMouseEnter={handleInfoEnter}
+                  onMouseLeave={handleInfoLeave}
                 >
-                  <Link href="/pages">
+                  <Link
+                    href="/pages"
+                    className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
+                  >
                     Pages
                   </Link>
-                  <ChevronDown className="h-4 w-4" />
-                </button>
+                  <ChevronDown className="h-4 w-4 text-white group-hover:text-orange-400 transition-colors" />
+                </div>
                 
-                {/* Dropdown Menu */}
-                {isPagesOpen && (
+                {/* Info Dropdown Menu */}
+                {isInfoOpen && (
                   <div 
-                    className="absolute left-0 top-full mt-2 w-48 rounded-2xl bg-slate-800/95 backdrop-blur-xl shadow-2xl border border-white/20 animate-fade-in-up"
-                    onMouseEnter={() => setIsPagesOpen(true)}
-                    onMouseLeave={() => setIsPagesOpen(false)}
+                    className="absolute left-0 top-full mt-3 w-80 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up"
+                    onMouseEnter={handleInfoEnter}
+                    onMouseLeave={handleInfoLeave}
+                    style={{ zIndex: 9999 }}
                   >
-                    <div className="py-2">
-                      {pages && pages.length > 0 ? (
-                        pages.map((page) => (
-                          <Link
-                            key={page.id}
-                            href={`/${page.slug}`}
-                            className="block px-4 py-2 text-sm text-white hover:bg-teal-500/20 hover:text-teal-400 transition-colors rounded-lg mx-2"
-                          >
-                            {page.title.rendered}
-                          </Link>
-                        ))
-                      ) : (
-                        <div className="px-4 py-2 text-sm text-slate-400">
-                          No pages available
+                    {/* Gradient Border Effect */}
+                    <div className="bg-gradient-to-r from-orange-500 to-amber-500 p-[2px] rounded-xl">
+                      <div className="bg-slate-900 rounded-xl">
+                        <div className="p-4">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                              <span className="text-xl">📄</span>
+                            </div>
+                            <div>
+                              <h3 className="text-sm font-bold text-white">Company Info</h3>
+                              <p className="text-xs text-orange-400">About & Support</p>
+                            </div>
+                          </div>
+                          <div className="space-y-1 max-h-96 overflow-y-auto custom-scrollbar pr-2">
+                            {infoPages.map((page) => (
+                              <Link
+                                key={page.id}
+                                href={`/${page.slug}`}
+                                className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-orange-500/10 hover:text-orange-400 transition-all rounded-lg hover:pl-5"
+                              >
+                                {page.title.rendered}
+                              </Link>
+                            ))}
+                          </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
+              )}
             </div>
 
             {/* Right side - Cart & Menu */}

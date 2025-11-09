@@ -16,9 +16,11 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [purchaseCount, setPurchaseCount] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [isClient, setIsClient] = useState(false);
 
-  // Generate random purchase count on client-side
+  // Generate random purchase count on client-side only after hydration
   useEffect(() => {
+    setIsClient(true);
     setPurchaseCount(Math.floor(Math.random() * 70) + 30);
   }, []);
 
@@ -104,68 +106,68 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
               </div>
 
               {/* Right Column - Product Info */}
-              <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                 {/* Instant Access Badge */}
-                <div className="inline-flex items-center px-4 py-2 bg-teal-500/20 border border-teal-500/50 text-teal-400 text-sm font-bold rounded-full">
+                <div className="inline-flex items-center px-3 py-1.5 bg-teal-500/20 border border-teal-500/50 text-teal-400 text-xs font-bold rounded-full">
                   ⚡ Instant Access
                 </div>
 
                 {/* Product Title */}
-                <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                   {product.name}
                 </h1>
 
                 {/* Pricing Section */}
-                <div className="p-6 card-gradient rounded-xl border-2 border-teal-500/20">
+                <div className="p-4 card-gradient rounded-xl border-2 border-teal-500/20">
                   {isOnSale ? (
                     <div>
-                      <div className="flex items-baseline gap-3 mb-2">
-                        <span className="text-5xl font-black text-teal-400">
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span className="text-3xl font-black text-teal-400">
                           ${parseFloat(price).toFixed(2)}
                         </span>
-                        <span className="text-2xl text-slate-500 line-through">
+                        <span className="text-lg text-slate-500 line-through">
                           ${parseFloat(regularPrice || '0').toFixed(2)}
                         </span>
                       </div>
-                      <div className="inline-flex items-center px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm font-bold">
-                        💰 You Save: ${savings} ({savingsPercent}% OFF)
+                      <div className="inline-flex items-center px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-bold">
+                        💰 Save ${savings} ({savingsPercent}% OFF)
                       </div>
                     </div>
                   ) : (
-                    <div className="text-5xl font-black text-teal-400">
+                    <div className="text-3xl font-black text-teal-400">
                       ${parseFloat(price).toFixed(2)}
                     </div>
                   )}
-                  <p className="text-slate-400 mt-2">/month</p>
+                  <p className="text-slate-400 text-sm mt-1">/month</p>
                 </div>
 
-                {/* Key Features */}
-                <div className="space-y-4">
+                {/* Key Features - Compact */}
+                <div className="space-y-2">
                   {[
-                    { icon: '💰', title: '24 Hours Refund Policy', desc: 'Full refund within 24 hours. Check FAQ for details.' },
-                    { icon: '➡️', title: 'Direct Access', desc: 'No software installation required. Browser-based access.' },
-                    { icon: '🔥', title: 'Instant Activation', desc: 'Immediate access after payment. No waiting time.' },
-                    { icon: '🔒', title: 'Data Privacy', desc: 'Your usage data remains completely confidential.' },
+                    { icon: '💰', title: '24 Hours Refund Policy', desc: 'Full refund within 24 hours.' },
+                    { icon: '➡️', title: 'Direct Access', desc: 'Browser-based, no installation.' },
+                    { icon: '🔥', title: 'Instant Activation', desc: 'Immediate access after payment.' },
+                    { icon: '🔒', title: 'Data Privacy', desc: 'Your data remains confidential.' },
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                      <span className="text-2xl flex-shrink-0">{feature.icon}</span>
+                    <div key={index} className="flex items-start gap-2 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                      <span className="text-lg flex-shrink-0">{feature.icon}</span>
                       <div>
-                        <h3 className="font-bold text-white mb-1">{feature.title}</h3>
-                        <p className="text-slate-400 text-sm">{feature.desc}</p>
+                        <h3 className="font-semibold text-white text-sm mb-0.5">{feature.title}</h3>
+                        <p className="text-slate-400 text-xs">{feature.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
                 {/* Quantity & Add to Cart */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Quantity Selector */}
-                  <div className="flex items-center gap-4">
-                    <label className="font-semibold text-white">Quantity:</label>
+                  <div className="flex items-center gap-3">
+                    <label className="font-semibold text-white text-sm">Quantity:</label>
                     <div className="flex items-center border-2 border-slate-700 rounded-lg overflow-hidden">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="px-4 py-2 bg-slate-800 text-teal-400 hover:bg-slate-700 font-bold"
+                        className="px-3 py-1.5 bg-slate-800 text-teal-400 hover:bg-slate-700 font-bold text-sm"
                       >
                         -
                       </button>
@@ -174,11 +176,11 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                         min="1"
                         value={quantity}
                         onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                        className="w-16 text-center bg-slate-800 text-white border-0 focus:ring-0"
+                        className="w-14 text-center bg-slate-800 text-white border-0 focus:ring-0 text-sm"
                       />
                       <button
                         onClick={() => setQuantity(quantity + 1)}
-                        className="px-4 py-2 bg-slate-800 text-teal-400 hover:bg-slate-700 font-bold"
+                        className="px-3 py-1.5 bg-slate-800 text-teal-400 hover:bg-slate-700 font-bold text-sm"
                       >
                         +
                       </button>
@@ -188,7 +190,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   {/* Buy Now Button */}
                   <button
                     disabled={!inStock}
-                    className={`w-full py-4 rounded-xl font-black text-lg transition-all duration-300 ${
+                    className={`w-full py-3 rounded-xl font-bold text-base transition-all duration-300 ${
                       inStock
                         ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl'
                         : 'bg-slate-700 text-slate-400 cursor-not-allowed'
@@ -198,7 +200,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   </button>
 
                   {/* Stock Status */}
-                  <div className={`text-center text-sm font-semibold ${
+                  <div className={`text-center text-xs font-semibold ${
                     inStock ? 'text-green-400' : 'text-red-400'
                   }`}>
                     {inStock ? '✅ In Stock - Instant Access' : '❌ Currently Unavailable'}
@@ -207,10 +209,12 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
               </div>
             </div>
 
-            {/* Recent Purchases Banner */}
-            <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-3 px-6 rounded-xl mb-8 shadow-lg animate-fade-in-up">
-              <span className="font-bold">🔥 {purchaseCount} people purchased this in last 24 hours</span>
-            </div>
+            {/* Recent Purchases Banner - Only show after client hydration */}
+            {isClient && (
+              <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-3 px-6 rounded-xl mb-8 shadow-lg animate-fade-in-up">
+                <span className="font-bold">🔥 {purchaseCount} people purchased this in last 24 hours</span>
+              </div>
+            )}
 
             {/* Product Description */}
             {product.description && (
@@ -220,7 +224,16 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   Product Details
                 </h2>
                 <div 
-                  className="prose prose-lg prose-invert max-w-none"
+                  className="prose prose-lg prose-invert max-w-none
+                    prose-headings:text-white prose-headings:font-bold
+                    prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-4
+                    prose-li:text-slate-300 prose-li:mb-2
+                    prose-strong:text-white prose-strong:font-bold
+                    prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300
+                    prose-ul:my-4 prose-ol:my-4
+                    prose-code:text-teal-400 prose-code:bg-slate-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
+                    prose-pre:bg-slate-800 prose-pre:text-slate-300
+                    prose-img:rounded-lg prose-img:shadow-lg"
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               </div>

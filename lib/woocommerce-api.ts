@@ -237,6 +237,64 @@ export function getPlainShortDescription(product: WooCommerceProduct): string {
   return product.short_description.replace(/<[^>]*>/g, '');
 }
 
+// Fetch ALL products from WooCommerce (handles pagination automatically)
+export async function fetchAllProductsComplete(): Promise<WordPressApiResponse<WooCommerceProduct>> {
+  try {
+    let allProducts: WooCommerceProduct[] = [];
+    let currentPage = 1;
+    let totalPages = 1;
+
+    // Fetch first page to get total pages
+    const firstResponse = await wcAxios.get<WooCommerceProduct[]>('/products', {
+      params: {
+        page: 1,
+        per_page: 100, // WooCommerce max per page
+      },
+    });
+
+    allProducts = firstResponse.data;
+    totalPages = parseInt(firstResponse.headers['x-wp-totalpages'] || '1');
+    const total = parseInt(firstResponse.headers['x-wp-total'] || '0');
+
+    console.log(`📦 Fetching ${total} products from ${totalPages} pages...`);
+
+    // Fetch remaining pages if there are more
+    if (totalPages > 1) {
+      const pagePromises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          wcAxios.get<WooCommerceProduct[]>('/products', {
+            params: {
+              page,
+              per_page: 100,
+            },
+          })
+        );
+      }
+
+      const responses = await Promise.all(pagePromises);
+      responses.forEach(response => {
+        allProducts = [...allProducts, ...response.data];
+      });
+    }
+
+    console.log(`✅ Successfully loaded ${allProducts.length} products!`);
+
+    return {
+      data: allProducts,
+      error: null,
+      total: allProducts.length,
+      totalPages: 1, // All products in one response now
+    };
+  } catch (error: any) {
+    console.error('Error fetching all products:', error);
+    return {
+      data: null,
+      error: handleApiError(error),
+    };
+  }
+}
+
 // Search products
 export async function searchProducts(
   query: string,
