@@ -8,6 +8,10 @@ import { cleanWordPressContent } from '@/lib/content-parser';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import ProductDetailClient from '@/components/ProductDetailClient';
 
+// Force dynamic rendering to avoid build timeouts
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
+
 interface PageProps {
   params: {
     slug: string;
