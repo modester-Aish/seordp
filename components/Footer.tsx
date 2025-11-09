@@ -18,7 +18,9 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F108606453898810%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink%26source_id%3D1441792%26recurring_notification%3D0"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-400 hover:text-teal-400 transition-colors"
                 aria-label="Facebook"
               >
@@ -160,9 +162,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-slate-800 pt-8 text-center text-sm text-slate-400">
-          <p>
-            © {new Date().getFullYear()} SEORDP. All rights reserved. Built with{' '}
-            <span className="text-teal-400">♥</span> using Next.js & WordPress.
+          <p suppressHydrationWarning>
+            © {new Date().getFullYear()} SEORDP. All rights reserved.
           </p>
         </div>
       </div>

@@ -96,17 +96,25 @@ export default function ProductCard({ product }: ProductCardProps) {
             </span>
           </div>
 
-          <button
-            className={`w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 ${
-              inStock
-                ? 'btn-primary'
-                : 'bg-slate-700 text-slate-400 cursor-not-allowed'
-            }`}
-            disabled={!inStock}
-          >
-            <ShoppingCart className="h-4 w-4" />
-            {inStock ? 'Buy Now' : 'Sold Out'}
-          </button>
+          {inStock ? (
+            <a
+              href="https://members.seotoolsgroupbuy.us/signup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Buy Now
+            </a>
+          ) : (
+            <button
+              className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 bg-slate-700 text-slate-400 cursor-not-allowed"
+              disabled
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Sold Out
+            </button>
+          )}
         </div>
       </div>
     </article>

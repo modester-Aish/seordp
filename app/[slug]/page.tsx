@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { fetchProductBySlug, fetchAllProducts } from '@/lib/woocommerce-api';
 import { fetchPostBySlug, fetchPageBySlug, getTitle, getExcerpt, getFeaturedImage } from '@/lib/wordpress-api';
 import { cleanWordPressContent } from '@/lib/content-parser';
+import { generateCanonicalUrl } from '@/lib/canonical';
 import ProductDetailClient from '@/components/ProductDetailClient';
 
 interface PageProps {
@@ -19,9 +20,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // Try product first
   const { data: product } = await fetchProductBySlug(slug);
   if (product) {
+    const cleanDescription = (product.short_description || product.description || '')
+      .replace(/<[^>]*>/g, '')
+      .substring(0, 160);
+    
     return {
-      title: product.name,
-      description: product.short_description || product.description || `Buy ${product.name} at ${product.price}`,
+      title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
+      description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. 24/7 support, 99% uptime guarantee. Group buy SEO tools at 90% discount.`,
+      keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
+      openGraph: {
+        title: `${product.name} - Premium Group Buy Access`,
+        description: cleanDescription || `Get instant access to ${product.name} at 90% discount. Only ${product.price}`,
+        type: 'website',
+        url: `https://seordp.net/${slug}`,
+      },
+      alternates: {
+        canonical: generateCanonicalUrl(`/${slug}`),
+      },
     };
   }
   
@@ -31,6 +46,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: getTitle(post),
       description: getExcerpt(post),
+      alternates: {
+        canonical: generateCanonicalUrl(`/${slug}`),
+      },
     };
   }
   
@@ -40,6 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: getTitle(page),
       description: getExcerpt(page),
+      alternates: {
+        canonical: generateCanonicalUrl(`/${slug}`),
+      },
     };
   }
   

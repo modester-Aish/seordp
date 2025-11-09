@@ -17,27 +17,29 @@ export default function ModernHero() {
             <div className="space-y-8">
               {/* Small Label */}
               <div className="text-teal-400 text-sm font-semibold tracking-wide uppercase">
-                SEORDP PREMIUM PLATFORM
+                🚀 BEST GROUP BUY SEO TOOLS 2025
               </div>
 
               {/* Main Headline */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-                Grow better with SEORDP
+                Premium SEO Tools at <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">90% OFF</span>
               </h1>
 
               {/* Description */}
               <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
-                Software that&apos;s powerful, not overpowering. Seamlessly connect your tools, team, and workflow on one AI-powered platform that grows with your business.
+                Access 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro, and more. Join 45,000+ marketers, agencies, and businesses growing their online presence with affordable group buy tools.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap items-center gap-4">
-                <Link 
-                  href="/products" 
+                <a 
+                  href="https://members.seotoolsgroupbuy.us/signup" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-lg transition-all duration-200 shadow-lg"
                 >
                   Get started
-                </Link>
+                </a>
                 <Link 
                   href="#pricing" 
                   className="px-8 py-4 bg-transparent hover:bg-white/5 text-white font-semibold rounded-lg border-2 border-white/30 hover:border-white/50 transition-all duration-200"
@@ -48,7 +50,7 @@ export default function ModernHero() {
 
               {/* Footer Text */}
               <p className="text-sm text-slate-400">
-                Start with free tools, or get premium access to 50+ tools instantly.
+                ⚡ Instant activation • 🔒 Secure access • 💯 99% uptime guarantee • 💳 Money-back guarantee
               </p>
             </div>
 
@@ -66,7 +68,7 @@ export default function ModernHero() {
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>
@@ -79,25 +81,24 @@ export default function ModernHero() {
 
               {/* CENTER - Pricing Card */}
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-br from-teal-500 to-teal-600 rounded-3xl p-8 shadow-2xl w-80 z-30">
-                <div className="text-white/90 text-sm font-semibold mb-2">PREMIUM PLAN</div>
+                <div className="text-white/90 text-sm font-semibold mb-2">🔥 MOST POPULAR</div>
                 <div className="text-white text-4xl font-black mb-2">$4.99<span className="text-xl font-normal">/mo</span></div>
-                <div className="text-white/80 text-sm mb-6">Save 90% on all premium tools</div>
+                <div className="text-white/80 text-sm mb-6">Save $495/month compared to individual subscriptions</div>
                 <div className="space-y-2 mb-6">
-                  {['50+ Premium Tools', 'Instant Access', '24/7 Support', 'Cancel Anytime'].map((feature, idx) => (
+                  {['✓ Ahrefs, SEMrush, Moz Pro', '✓ ChatGPT Plus & Claude AI', '✓ Canva Pro & Design Tools', '✓ 24/7 Customer Support'].map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-white text-sm">
-                      <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
                       <span>{feature}</span>
                     </div>
                   ))}
                 </div>
-                <Link 
-                  href="/products"
+                <a 
+                  href="https://members.seotoolsgroupbuy.us/signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full py-3 bg-white text-teal-600 font-bold rounded-xl hover:bg-slate-100 transition-colors text-center"
                 >
                   Get Started Now
-                </Link>
+                </a>
               </div>
 
               {/* RIGHT SIDE TOOLS - Close to Pricing Card */}
@@ -111,7 +112,7 @@ export default function ModernHero() {
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={tool.name} className="w-full h-full object-contain" />
+                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>

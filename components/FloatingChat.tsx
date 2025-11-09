@@ -7,8 +7,8 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Replace with your actual contact details
-  const whatsappNumber = '+923001234567'; // Your WhatsApp number
-  const facebookPageUrl = 'https://facebook.com/seordp'; // Your Facebook page
+  const whatsappNumber = '15205636362'; // Your WhatsApp number
+  const facebookPageUrl = 'https://www.messenger.com/login.php?next=https%3A%2F%2Fwww.messenger.com%2Ft%2F108606453898810%2F%3Fmessaging_source%3Dsource%253Apages%253Amessage_shortlink%26source_id%3D1441792%26recurring_notification%3D0'; // Your Facebook Messenger
   
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=Hi! I'm interested in your SEO tools.`;
 

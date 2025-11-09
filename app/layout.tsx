@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL('https://seordp.net'),
   openGraph: {
     title: 'SEORDP - Modern SEO & Web Development Tools',
     description: 'Discover powerful SEO tools, web development resources, and premium products.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    url: 'https://seordp.net',
     siteName: 'SEORDP',
     locale: 'en_US',
     type: 'website',

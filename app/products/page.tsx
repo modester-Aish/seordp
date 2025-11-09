@@ -2,10 +2,21 @@ import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 import ProductCard from '@/components/ProductCard';
+import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {
-  title: 'Products',
-  description: 'Explore our collection of premium web development tools and resources.',
+  title: 'Group Buy SEO Tools - Ahrefs, SEMrush, Moz Pro, ChatGPT Plus | SEORDP',
+  description: 'Buy premium SEO tools at 90% discount. Get Ahrefs Group Buy, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools from $4.99/month. Instant access, 24/7 support.',
+  keywords: 'group buy seo tools, ahrefs group buy, semrush group buy, moz pro group buy, chatgpt plus group buy, cheap seo tools, premium seo tools discount, seo tools subscription, shared seo tools access, bulk seo tools, affordable seo software',
+  openGraph: {
+    title: 'Buy Premium Group Buy SEO Tools at 90% OFF - Ahrefs, SEMrush, Moz Pro',
+    description: 'Get instant access to 50+ premium SEO tools. Group buy Ahrefs, SEMrush, ChatGPT Plus & more at 90% discount. Starting $4.99/month.',
+    url: 'https://seordp.net/products',
+    type: 'website',
+  },
+  alternates: {
+    canonical: generateCanonicalUrl('/products'),
+  },
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -72,10 +83,10 @@ export default async function ProductsPage() {
               <span className="text-teal-400 font-bold text-sm">🛍️ SHOP</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-4">
-              Browse Our <span className="text-teal-400">Products</span>
+              Premium <span className="text-teal-400">Group Buy SEO Tools</span>
             </h1>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Discover premium software and services at competitive prices
+              Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus & 50+ premium tools at 90% discount. Instant activation, 24/7 support, 99% uptime guarantee.
             </p>
           </div>
         </div>

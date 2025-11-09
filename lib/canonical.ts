@@ -1,5 +1,5 @@
 export function generateCanonicalUrl(path: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = 'https://seordp.net';
   
   // Remove trailing slash from base URL if present
   const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;

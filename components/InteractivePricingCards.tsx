@@ -258,8 +258,10 @@ export default function InteractivePricingCards() {
                   </button>
 
                   {/* Get Access Button */}
-                  <Link
-                    href="/products"
+                  <a
+                    href="https://members.seotoolsgroupbuy.us/signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full py-3 rounded-lg font-semibold text-center block transition-all duration-300 transform hover:scale-105 shadow-lg ${
                       card.isPopular
                         ? 'hero-btn-primary'
@@ -267,7 +269,7 @@ export default function InteractivePricingCards() {
                     }`}
                   >
                     Get Instant Access
-                  </Link>
+                  </a>
                 </div>
 
                 {/* Back Side - Dark Theme */}

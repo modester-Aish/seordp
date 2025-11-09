@@ -74,10 +74,10 @@ export const WhyChooseSection = () => {
             <span className="text-teal-400 font-semibold text-sm tracking-wide">WHY CHOOSE SEORDP</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Built for Professionals
+            Why Choose SEORDP Group Buy SEO Tools?
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Enterprise-grade solutions with the reliability and support your business demands
+            Get instant access to 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro with 99.9% uptime, 24/7 support, and enterprise-grade security
           </p>
         </div>
 
@@ -443,14 +443,14 @@ export const PopularToolsSection = () => {
         <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-responsive-4xl font-bold text-white mb-4">
             <ModernReveal 
-              text="Featured Services" 
+              text="50+ Premium SEO Tools & Services" 
               delay={500}
               repeatDelay={8000}
               className="text-teal-400"
             />
           </h2>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-            Discover our handpicked selection of professional-grade software and premium services
+            Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount. Best group buy SEO tools 2025.
           </p>
         </div>
 
@@ -469,7 +469,7 @@ export const PopularToolsSection = () => {
                 >
                   <img
                     src={tool.image}
-                    alt={tool.name}
+                    alt={`${tool.name} - ${tool.description} - Group Buy SEO Tool`}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -479,12 +479,14 @@ export const PopularToolsSection = () => {
                   <span className="text-3xl font-bold text-teal-400">{tool.price}</span>
                   <div className="text-sm text-slate-500">vs {tool.originalPrice}</div>
                 </div>
-                <Link 
-                  href="/products"
+                <a 
+                  href="https://members.seotoolsgroupbuy.us/signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full btn-primary py-3 text-center"
                 >
                   Buy Now
-                </Link>
+                </a>
               </div>
             </div>
           ))}

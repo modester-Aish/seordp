@@ -2,10 +2,20 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchAllPagesComplete, getFeaturedImage } from '@/lib/wordpress-api';
+import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {
-  title: 'Pages',
-  description: 'Browse all pages and information about SEORDP.',
+  title: 'SEO Tools Pricing, Plans & Information | SEORDP Group Buy',
+  description: 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahrefs, SEMrush, Moz Pro plans. Find the best SEO tools subscription for your needs.',
+  keywords: 'seo tools pricing, group buy plans, ahrefs pricing, semrush pricing, seo tools packages, seo subscription plans, affordable seo tools',
+  openGraph: {
+    title: 'SEO Tools Pricing Plans & Packages - SEORDP Group Buy',
+    description: 'Compare pricing plans for 50+ premium SEO tools. Find the perfect group buy package for your business.',
+    url: 'https://seordp.net/pages',
+  },
+  alternates: {
+    canonical: generateCanonicalUrl('/pages'),
+  },
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -66,68 +76,49 @@ export default async function PagesListingPage() {
 
       <div className="pb-16 relative z-10">
         <div className="container mx-auto px-4">
-          {/* Pages Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
+          {/* Pages Grid - Split Card Design */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
             {pages.map((page, index) => {
-              const featuredImage = getFeaturedImage(page);
-              
-              // Color scheme for each card
-              const colors = [
-                { border: 'border-purple-500/30', hover: 'hover:border-purple-500', text: 'group-hover:text-purple-400', bg: 'from-purple-500/5 to-pink-500/5' },
-                { border: 'border-teal-500/30', hover: 'hover:border-teal-500', text: 'group-hover:text-teal-400', bg: 'from-teal-500/5 to-cyan-500/5' },
-                { border: 'border-orange-500/30', hover: 'hover:border-orange-500', text: 'group-hover:text-orange-400', bg: 'from-orange-500/5 to-amber-500/5' },
-                { border: 'border-blue-500/30', hover: 'hover:border-blue-500', text: 'group-hover:text-blue-400', bg: 'from-blue-500/5 to-indigo-500/5' },
-              ];
-              
-              const color = colors[index % colors.length];
+              const excerpt = page.excerpt?.rendered?.replace(/<[^>]*>/g, '').substring(0, 120) || 'Explore this resource to learn more about our services and offerings.';
               
               return (
                 <Link
                   key={page.id}
                   href={`/${page.slug}`}
-                  className={`group relative bg-slate-800/50 border-2 ${color.border} ${color.hover} rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl animate-fade-in-up flex flex-col h-full`}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 animate-fade-in-up flex h-[200px]"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
-                  {/* Featured Image - Only if exists */}
-                  {featuredImage && (
-                    <div className="relative w-full h-48 overflow-hidden bg-slate-800">
-                      <Image
-                        src={featuredImage}
-                        alt={page.title.rendered.replace(/<[^>]*>/g, '')}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                    </div>
-                  )}
-
-                  {/* Content */}
-                  <div className={`p-6 flex-1 flex flex-col ${!featuredImage ? `bg-gradient-to-br ${color.bg}` : ''}`}>
-                    <h2 className={`text-lg font-bold text-white mb-3 ${color.text} transition-colors line-clamp-2`}>
+                  {/* Left Section - Title */}
+                  <div className="w-2/5 p-6 flex flex-col justify-center bg-slate-50">
+                    <h2 className="text-base font-bold text-slate-900 line-clamp-3 group-hover:text-teal-600 transition-colors">
                       {page.title.rendered.replace(/<[^>]*>/g, '')}
                     </h2>
-                    
-                    {page.excerpt?.rendered && (
-                      <p 
-                        className="text-slate-400 text-sm line-clamp-3 mb-4 flex-1"
-                        dangerouslySetInnerHTML={{ 
-                          __html: page.excerpt.rendered 
-                        }}
-                      />
-                    )}
+                  </div>
 
-                    {/* Read More Button */}
-                    <div className={`mt-auto inline-flex items-center gap-2 text-sm font-semibold ${color.text} transition-all`}>
-                      <span>Read More</span>
-                      <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  {/* Right Section - Colored with Description */}
+                  <div className="w-3/5 bg-teal-500 p-6 flex flex-col justify-center relative">
+                    {/* Bookmark Icon */}
+                    <div className="absolute top-4 right-4">
+                      <svg className="w-5 h-5 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/>
                       </svg>
                     </div>
+
+                    {/* Excerpt/Description */}
+                    <p className="text-white text-sm leading-relaxed line-clamp-4 pr-8">
+                      {excerpt}
+                    </p>
                   </div>
                 </Link>
               );
             })}
+          </div>
+
+          {/* See All Button */}
+          <div className="text-center mt-12">
+            <button className="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-all duration-300">
+              See all pages
+            </button>
           </div>
         </div>
       </div>

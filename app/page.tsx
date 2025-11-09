@@ -10,9 +10,9 @@ import ModernHero from '@/components/ModernHero';
 import FeatureSections from '@/components/FeatureSections';
 
 export const metadata: Metadata = {
-  title: 'Premium Software & Services at Affordable Prices | SEORDP',
-  description: 'Access professional-grade software and premium services from $4.99/month. Reliable platform with instant activation and 24/7 support.',
-  keywords: 'affordable software, premium services subscription, professional tools, digital solutions, software marketplace, business tools 2025, cost-effective software, professional subscriptions, online services platform, software deals, subscription services, budget-friendly tools, premium access, digital services subscription, business software 2025, affordable professional tools, shared software access, premium platform subscription, professional services discount',
+  title: 'Best Group Buy SEO Tools 2025 - Ahrefs, SEMrush, Moz Pro at 90% OFF | SEORDP',
+  description: 'Access 50+ premium SEO tools at 90% discount. Get Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support from $4.99/month.',
+  keywords: 'group buy seo tools, cheap seo tools, ahrefs group buy, semrush group buy, moz pro group buy, best seo tools 2025, affordable seo tools, premium seo tools, seo tools discount, chatgpt plus group buy, canva pro group buy, seo group buy service, shared seo tools, bulk seo tools, seo tools subscription, digital marketing tools, keyword research tools, backlink analysis tools, competitor analysis tools, seo software group buy',
   authors: [{ name: 'SEORDP Team' }],
   creator: 'SEORDP',
   publisher: 'SEORDP',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Best Group Buy SEO Tools 2025 - 50+ Premium Tools at 90% OFF | SEORDP',
     description: 'Get shared access to 50+ premium SEO tools at 90% discount. Join 45,000+ users. Instant setup, 99% uptime. Starting $4.99/month.',
-    url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    url: 'https://seordp.net',
     siteName: 'SEORDP',
     locale: 'en_US',
     type: 'website',
@@ -83,7 +83,7 @@ export default async function Home() {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "SEORDP",
-            "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+            "url": "https://seordp.net",
             "description": "Premium SEO tools and RDP services provider offering access to 50+ tools including Ahrefs, SEMrush at discounted rates.",
             "foundingDate": "2024",
             "sameAs": [
@@ -100,11 +100,11 @@ export default async function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "SEORDP",
-            "url": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+            "url": "https://seordp.net",
             "description": "Access premium SEO tools and RDP services at affordable prices",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/products?search={search_term_string}`,
+              "target": "https://seordp.net/products?search={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           })

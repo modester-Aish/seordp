@@ -188,16 +188,23 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   </div>
 
                   {/* Buy Now Button */}
-                  <button
-                    disabled={!inStock}
-                    className={`w-full py-3 rounded-xl font-bold text-base transition-all duration-300 ${
-                      inStock
-                        ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl'
-                        : 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                    }`}
-                  >
-                    {inStock ? '🛒 Buy Now' : '❌ Out of Stock'}
-                  </button>
+                  {inStock ? (
+                    <a
+                      href="https://members.seotoolsgroupbuy.us/signup"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 rounded-xl font-bold text-base transition-all duration-300 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl block text-center"
+                    >
+                      🛒 Buy Now
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-full py-3 rounded-xl font-bold text-base transition-all duration-300 bg-slate-700 text-slate-400 cursor-not-allowed"
+                    >
+                      ❌ Out of Stock
+                    </button>
+                  )}
 
                   {/* Stock Status */}
                   <div className={`text-center text-xs font-semibold ${
@@ -354,6 +361,69 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
           </div>
         </div>
       )}
+
+      {/* Product Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "description": (product.short_description || product.description || '').replace(/<[^>]*>/g, ''),
+            "image": mainImage,
+            "sku": product.sku || product.id.toString(),
+            "offers": {
+              "@type": "Offer",
+              "url": `https://seordp.net/${product.slug}`,
+              "priceCurrency": "USD",
+              "price": price,
+              "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+            },
+            "aggregateRating": product.average_rating ? {
+              "@type": "AggregateRating",
+              "ratingValue": product.average_rating,
+              "reviewCount": product.rating_count || 1
+            } : undefined,
+            "brand": {
+              "@type": "Brand",
+              "name": "SEORDP"
+            }
+          })
+        }}
+      />
+
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://seordp.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Products",
+                "item": "https://seordp.net/products"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": product.name,
+                "item": `https://seordp.net/${product.slug}`
+              }
+            ]
+          })
+        }}
+      />
     </div>
   );
 }
