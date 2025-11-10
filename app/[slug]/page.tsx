@@ -203,22 +203,10 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
               {/* Main Content */}
               <article id="content" className="overflow-x-hidden">
                 <div
-                  className="card-gradient p-8 md:p-12 rounded-2xl prose prose-lg prose-invert max-w-none overflow-x-hidden
-                    prose-headings:text-white prose-headings:font-bold
-                    prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
-                    prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
-                    prose-li:text-slate-300 prose-li:mb-2
-                    prose-strong:text-white prose-strong:font-bold
-                    prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300 hover:prose-a:underline
-                    prose-ul:my-6 prose-ol:my-6 prose-ul:list-disc prose-ol:list-decimal
-                    prose-code:text-teal-400 prose-code:bg-slate-800/50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
-                    prose-pre:bg-slate-800 prose-pre:text-slate-300 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
-                    prose-blockquote:border-l-4 prose-blockquote:border-teal-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-400
-                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto
-                    prose-table:border-collapse prose-table:w-full prose-table:overflow-x-auto prose-table:block
-                    prose-th:bg-slate-800 prose-th:text-white prose-th:font-bold prose-th:p-3
-                    prose-td:border prose-td:border-slate-700 prose-td:p-3 prose-td:text-slate-300
-                    [&_div]:max-w-full [&_div]:overflow-x-auto"
+                  className="overflow-x-hidden max-w-none
+                    [&_div]:max-w-full [&_div]:overflow-x-auto
+                    [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg
+                    [&_table]:w-full [&_table]:overflow-x-auto"
                   dangerouslySetInnerHTML={{ __html: cleanWordPressContent(post.content?.rendered || '') }}
                 />
               </article>
