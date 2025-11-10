@@ -306,27 +306,10 @@ function PageView({ page }: { page: any }) {
               {/* Main Content */}
               <article id="content" className="overflow-x-hidden">
                 <div
-                  className="bg-white p-8 md:p-12 rounded-2xl prose prose-lg max-w-none overflow-x-hidden
-                    prose-headings:text-slate-900 prose-headings:font-bold
-                    prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
-                    prose-p:text-slate-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-lg
-                    prose-li:text-slate-700 prose-li:mb-2
-                    prose-strong:text-slate-900 prose-strong:font-bold
-                    prose-a:text-teal-600 prose-a:no-underline hover:prose-a:text-teal-500 hover:prose-a:underline
-                    prose-ul:my-6 prose-ol:my-6 prose-ul:list-disc prose-ol:list-decimal
-                    prose-code:text-purple-600 prose-code:bg-purple-50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
-                    prose-pre:bg-slate-100 prose-pre:text-slate-800 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
-                    prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-600
-                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto
-                    prose-table:border-collapse prose-table:w-full prose-table:overflow-x-auto prose-table:block
-                    prose-th:bg-slate-100 prose-th:text-slate-900 prose-th:font-bold prose-th:p-3
-                    prose-td:border prose-td:border-slate-200 prose-td:p-3 prose-td:text-slate-700
+                  className="overflow-x-hidden max-w-none
                     [&_div]:max-w-full [&_div]:overflow-x-auto
-                    [&_div[style*='background:_linear-gradient']]:text-white
-                    [&_div[style*='background:#0f172a']]:text-white
-                    [&_div[style*='background:#14b8a6']]:text-white
-                    [&_div[style*='background:#25D366']]:text-white
-                    [&_div[style*='background:#1877F2']]:text-white"
+                    [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg
+                    [&_table]:w-full [&_table]:overflow-x-auto"
                   dangerouslySetInnerHTML={{ __html: cleanContent }}
                 />
               </article>
