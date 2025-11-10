@@ -23,6 +23,17 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL('https://seordp.net'),
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+    ],
+    shortcut: '/icon.svg',
+  },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'SEORDP - Modern SEO & Web Development Tools',
     description: 'Discover powerful SEO tools, web development resources, and premium products.',
