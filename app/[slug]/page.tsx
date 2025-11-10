@@ -11,7 +11,7 @@ import ProductDetailClient from '@/components/ProductDetailClient';
 
 // Force dynamic rendering to avoid build timeouts
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60; // Revalidate every 60 seconds (1 minute)
 
 interface PageProps {
   params: {

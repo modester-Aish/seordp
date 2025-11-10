@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60; // Revalidate every 60 seconds (1 minute)
 
 export default async function PagesListingPage() {
   const { data: pages, error } = await fetchAllPagesComplete();
