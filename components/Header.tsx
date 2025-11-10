@@ -93,7 +93,7 @@ export default function Header({ pages = [] }: HeaderProps) {
     <header className="sticky top-4 z-[100] w-full px-4">
       <nav className="container mx-auto max-w-7xl">
         {/* Floating Pill Container */}
-        <div className="bg-white/10 backdrop-blur-xl rounded-full shadow-xl border border-white/20 px-8 py-4">
+        <div className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 backdrop-blur-xl rounded-full shadow-2xl border border-teal-400/30 px-8 py-4">
           <div className="flex items-center justify-between gap-8">
             {/* Logo - Left */}
             <Link href="/" className="flex items-center flex-shrink-0">
