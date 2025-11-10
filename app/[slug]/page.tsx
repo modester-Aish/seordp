@@ -226,9 +226,9 @@ function PageView({ page }: { page: any }) {
   const cleanContent = cleanWordPressContent(page.content?.rendered || '');
 
   return (
-    <div className="min-h-screen bg-slate-900 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-x-hidden">
       {/* Hero Section with Featured Image */}
-      <section className="relative h-[400px] md:h-[500px] overflow-hidden">
+      <section className="relative h-[350px] md:h-[450px] overflow-hidden">
         {/* Background Image */}
         {featuredImage ? (
           <div className="absolute inset-0">
@@ -239,13 +239,15 @@ function PageView({ page }: { page: any }) {
               className="object-cover"
               priority
             />
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/80 to-slate-900"></div>
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-teal-900/70 via-teal-800/80 to-teal-900/90"></div>
           </div>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
-            <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-600 via-cyan-600 to-blue-600">
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute bottom-10 right-10 w-72 h-72 bg-blue-300 rounded-full blur-3xl"></div>
+            </div>
           </div>
         )}
 
@@ -253,10 +255,10 @@ function PageView({ page }: { page: any }) {
         <div className="absolute inset-0 flex items-end">
           <div className="container mx-auto px-4 pb-12">
             <div className="max-w-4xl mx-auto">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 backdrop-blur-md border border-purple-500/30 mb-4">
-                <span className="text-purple-400 font-bold text-sm">📄 INFO</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 mb-4">
+                <span className="text-white font-bold text-sm">📄 Page Details</span>
               </div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight drop-shadow-lg">
                 {cleanTitle}
               </h1>
             </div>
@@ -265,27 +267,27 @@ function PageView({ page }: { page: any }) {
       </section>
 
       {/* Content Section */}
-      <div className="py-12 relative">
+      <div className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-[300px,1fr] gap-8">
+            <div className="grid lg:grid-cols-[280px,1fr] gap-8">
               {/* Table of Contents - Sticky */}
               <aside className="lg:sticky lg:top-24 h-fit">
-                <div className="card-gradient p-6 rounded-xl">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 hover:shadow-xl transition-shadow">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center shadow-md">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                       </svg>
                     </div>
-                    <h3 className="font-bold text-white">Contents</h3>
+                    <h3 className="font-bold text-slate-900 text-lg">Contents</h3>
                   </div>
                   <nav className="space-y-2 text-sm">
-                    <a href="#content" className="block text-slate-400 hover:text-purple-400 transition-colors py-1">
-                      → Page Content
+                    <a href="#content" className="flex items-center gap-2 text-slate-600 hover:text-teal-600 hover:bg-teal-50 transition-all py-2 px-3 rounded-lg font-medium">
+                      <span className="text-teal-500">→</span> Page Content
                     </a>
-                    <a href="#" className="block text-slate-400 hover:text-purple-400 transition-colors py-1">
-                      → Learn More
+                    <a href="#" className="flex items-center gap-2 text-slate-600 hover:text-teal-600 hover:bg-teal-50 transition-all py-2 px-3 rounded-lg font-medium">
+                      <span className="text-teal-500">→</span> Learn More
                     </a>
                   </nav>
                 </div>
@@ -293,13 +295,15 @@ function PageView({ page }: { page: any }) {
 
               {/* Main Content */}
               <article id="content" className="overflow-x-hidden">
-                <div
-                  className="overflow-x-hidden max-w-none
-                    [&_div]:max-w-full [&_div]:overflow-x-auto
-                    [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg
-                    [&_table]:w-full [&_table]:overflow-x-auto"
-                  dangerouslySetInnerHTML={{ __html: cleanContent }}
-                />
+                <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-slate-200">
+                  <div
+                    className="overflow-x-hidden max-w-none
+                      [&_div]:max-w-full [&_div]:overflow-x-auto
+                      [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg
+                      [&_table]:w-full [&_table]:overflow-x-auto"
+                    dangerouslySetInnerHTML={{ __html: cleanContent }}
+                  />
+                </div>
               </article>
             </div>
           </div>
