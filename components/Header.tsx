@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart, Menu, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { ShoppingCart, Menu, ChevronDown, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   pages?: Array<{ id: number; slug: string; title: { rendered: string } }>;
@@ -12,6 +12,7 @@ export default function Header({ pages = [] }: HeaderProps) {
   const [isPagesOpen, setIsPagesOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Timeout refs for smooth closing
   const [toolsTimeout, setToolsTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -74,6 +75,18 @@ export default function Header({ pages = [] }: HeaderProps) {
   const otherPages = pages.filter(p => 
     !infoPages.includes(p) && !toolsPages.includes(p) && !pricingPages.includes(p)
   );
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="sticky top-4 z-[100] w-full px-4">
@@ -291,16 +304,138 @@ export default function Header({ pages = [] }: HeaderProps) {
                 <ShoppingCart className="h-5 w-5" />
               </button>
 
-              {/* Mobile Menu */}
+              {/* Mobile Menu Button */}
               <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="inline-flex lg:hidden items-center justify-center text-white hover:text-teal-400 transition-colors"
                 aria-label="Menu"
               >
-                <Menu className="h-5 w-5" />
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
           </div>
         </div>
+
+        {/* Mobile Menu Drawer */}
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] lg:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Menu Panel */}
+            <div className="fixed top-20 right-4 left-4 bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 z-[95] lg:hidden animate-fade-in-up overflow-hidden">
+              <div className="max-h-[calc(100vh-120px)] overflow-y-auto p-6 space-y-4">
+                
+                {/* Home */}
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                >
+                  🏠 Home
+                </Link>
+
+                {/* Tools Shop Section */}
+                {toolsPages.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-bold text-teal-400 uppercase tracking-wide">
+                      🛠️ Tools Shop
+                    </div>
+                    <div className="space-y-1 pl-2">
+                      {toolsPages.map((page) => (
+                        <Link
+                          key={page.id}
+                          href={`/${page.slug}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                        >
+                          {page.title.rendered}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Pricing Plans Section */}
+                {pricingPages.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-bold text-purple-400 uppercase tracking-wide">
+                      💰 Pricing Plans
+                    </div>
+                    <div className="space-y-1 pl-2">
+                      {pricingPages.map((page) => (
+                        <Link
+                          key={page.id}
+                          href={`/${page.slug}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 rounded-lg transition-all"
+                        >
+                          {page.title.rendered}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Blog */}
+                <Link
+                  href="/blog"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                >
+                  📝 Blog
+                </Link>
+
+                {/* Products */}
+                <Link
+                  href="/products"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                >
+                  🛒 Products
+                </Link>
+
+                {/* Info/Company Pages Section */}
+                {infoPages.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="px-4 py-2 text-sm font-bold text-orange-400 uppercase tracking-wide">
+                      📄 Company Info
+                    </div>
+                    <div className="space-y-1 pl-2">
+                      {infoPages.map((page) => (
+                        <Link
+                          key={page.id}
+                          href={`/${page.slug}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block px-4 py-2 text-sm text-slate-300 hover:bg-orange-500/10 hover:text-orange-400 rounded-lg transition-all"
+                        >
+                          {page.title.rendered}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* CTA Button */}
+                <div className="pt-4 border-t border-white/10">
+                  <a
+                    href="https://members.seotoolsgroupbuy.us/signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full px-6 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-center font-bold rounded-xl hover:scale-105 transition-transform shadow-lg"
+                  >
+                    🚀 Get Started Now
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </>
+        )}
       </nav>
     </header>
   );
