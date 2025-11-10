@@ -18,11 +18,19 @@
 }
 
 body {
-    @apply bg-slate-900 text-white antialiased;
+    @apply bg-slate-900 text-white antialiased overflow-x-hidden;
   }
 
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
+  }
+  
+  /* Prevent horizontal scroll from WordPress content */
+  #content div,
+  #content section,
+  .prose div {
+    max-width: 100% !important;
+    overflow-x: auto !important;
   }
 }
 

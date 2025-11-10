@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { fetchAllPagesComplete, getFeaturedImage } from '@/lib/wordpress-api';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { cleanPageTitle } from '@/lib/html-utils';
 
 export const metadata: Metadata = {
   title: 'SEO Tools Pricing, Plans & Information | SEORDP Group Buy',
@@ -91,7 +92,7 @@ export default async function PagesListingPage() {
                   {/* Left Section - Title */}
                   <div className="w-2/5 p-6 flex flex-col justify-center bg-slate-50">
                     <h2 className="text-base font-bold text-slate-900 line-clamp-3 group-hover:text-teal-600 transition-colors">
-                      {page.title.rendered.replace(/<[^>]*>/g, '')}
+                      {cleanPageTitle(page.title.rendered)}
                     </h2>
                   </div>
 

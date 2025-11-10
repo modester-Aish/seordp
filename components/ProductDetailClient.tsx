@@ -198,12 +198,12 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                       🛒 Buy Now
                     </a>
                   ) : (
-                    <button
+                  <button
                       disabled
                       className="w-full py-3 rounded-xl font-bold text-base transition-all duration-300 bg-slate-700 text-slate-400 cursor-not-allowed"
-                    >
+                  >
                       ❌ Out of Stock
-                    </button>
+                  </button>
                   )}
 
                   {/* Stock Status */}
@@ -218,9 +218,9 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
 
             {/* Recent Purchases Banner - Only show after client hydration */}
             {isClient && (
-              <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-3 px-6 rounded-xl mb-8 shadow-lg animate-fade-in-up">
-                <span className="font-bold">🔥 {purchaseCount} people purchased this in last 24 hours</span>
-              </div>
+            <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white text-center py-3 px-6 rounded-xl mb-8 shadow-lg animate-fade-in-up">
+              <span className="font-bold">🔥 {purchaseCount} people purchased this in last 24 hours</span>
+            </div>
             )}
 
             {/* Product Description */}

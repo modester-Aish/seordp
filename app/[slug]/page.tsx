@@ -6,6 +6,7 @@ import { fetchProductBySlug, fetchAllProducts } from '@/lib/woocommerce-api';
 import { fetchPostBySlug, fetchPageBySlug, getTitle, getExcerpt, getFeaturedImage } from '@/lib/wordpress-api';
 import { cleanWordPressContent } from '@/lib/content-parser';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { cleanPageTitle } from '@/lib/html-utils';
 import ProductDetailClient from '@/components/ProductDetailClient';
 
 // Force dynamic rendering to avoid build timeouts
@@ -117,8 +118,10 @@ function BlogPostView({ post }: { post: any }) {
 
 // Blog Detail Client Component (imported below)
 function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredImage: string | null; title: string }) {
+  const cleanTitle = cleanPageTitle(title);
+  
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-900 overflow-x-hidden">
       {/* Hero Section with Featured Image */}
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
         {/* Background Image */}
@@ -126,7 +129,7 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
           <div className="absolute inset-0">
             <Image
               src={featuredImage}
-              alt={title}
+              alt={cleanTitle}
               fill
               className="object-cover"
               priority
@@ -149,7 +152,7 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
                 <span className="text-teal-400 font-bold text-sm">📰 BLOG POST</span>
               </div>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-                {title}
+                {cleanTitle}
               </h1>
               <div className="flex items-center gap-4 text-slate-300">
                 <div className="flex items-center gap-2">
@@ -198,9 +201,9 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
               </aside>
 
               {/* Main Content */}
-              <article id="content">
+              <article id="content" className="overflow-x-hidden">
                 <div
-                  className="card-gradient p-8 md:p-12 rounded-2xl prose prose-lg prose-invert max-w-none
+                  className="card-gradient p-8 md:p-12 rounded-2xl prose prose-lg prose-invert max-w-none overflow-x-hidden
                     prose-headings:text-white prose-headings:font-bold
                     prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
                     prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
@@ -211,10 +214,11 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
                     prose-code:text-teal-400 prose-code:bg-slate-800/50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
                     prose-pre:bg-slate-800 prose-pre:text-slate-300 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
                     prose-blockquote:border-l-4 prose-blockquote:border-teal-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-400
-                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8
-                    prose-table:border-collapse prose-table:w-full
+                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto
+                    prose-table:border-collapse prose-table:w-full prose-table:overflow-x-auto prose-table:block
                     prose-th:bg-slate-800 prose-th:text-white prose-th:font-bold prose-th:p-3
-                    prose-td:border prose-td:border-slate-700 prose-td:p-3 prose-td:text-slate-300"
+                    prose-td:border prose-td:border-slate-700 prose-td:p-3 prose-td:text-slate-300
+                    [&_div]:max-w-full [&_div]:overflow-x-auto"
                   dangerouslySetInnerHTML={{ __html: cleanWordPressContent(post.content?.rendered || '') }}
                 />
               </article>
@@ -229,11 +233,12 @@ function BlogDetailClient({ post, featuredImage, title }: { post: any; featuredI
 // Page View Component
 function PageView({ page }: { page: any }) {
   const title = getTitle(page);
+  const cleanTitle = cleanPageTitle(title);
   const featuredImage = getFeaturedImage(page);
   const cleanContent = cleanWordPressContent(page.content?.rendered || '');
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-900 overflow-x-hidden">
       {/* Hero Section with Featured Image */}
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
         {/* Background Image */}
@@ -241,7 +246,7 @@ function PageView({ page }: { page: any }) {
           <div className="absolute inset-0">
             <Image
               src={featuredImage}
-              alt={title}
+              alt={cleanTitle}
               fill
               className="object-cover"
               priority
@@ -264,7 +269,7 @@ function PageView({ page }: { page: any }) {
                 <span className="text-purple-400 font-bold text-sm">📄 INFO</span>
               </div>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
-                {title}
+                {cleanTitle}
               </h1>
             </div>
           </div>
@@ -299,9 +304,9 @@ function PageView({ page }: { page: any }) {
               </aside>
 
               {/* Main Content */}
-              <article id="content">
+              <article id="content" className="overflow-x-hidden">
                 <div
-                  className="card-gradient p-8 md:p-12 rounded-2xl prose prose-lg prose-invert max-w-none
+                  className="card-gradient p-8 md:p-12 rounded-2xl prose prose-lg prose-invert max-w-none overflow-x-hidden
                     prose-headings:text-white prose-headings:font-bold
                     prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
                     prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
@@ -312,10 +317,11 @@ function PageView({ page }: { page: any }) {
                     prose-code:text-purple-400 prose-code:bg-slate-800/50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
                     prose-pre:bg-slate-800 prose-pre:text-slate-300 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
                     prose-blockquote:border-l-4 prose-blockquote:border-purple-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-slate-400
-                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8
-                    prose-table:border-collapse prose-table:w-full
+                    prose-img:rounded-lg prose-img:shadow-lg prose-img:my-8 prose-img:max-w-full prose-img:h-auto
+                    prose-table:border-collapse prose-table:w-full prose-table:overflow-x-auto prose-table:block
                     prose-th:bg-slate-800 prose-th:text-white prose-th:font-bold prose-th:p-3
-                    prose-td:border prose-td:border-slate-700 prose-td:p-3 prose-td:text-slate-300"
+                    prose-td:border prose-td:border-slate-700 prose-td:p-3 prose-td:text-slate-300
+                    [&_div]:max-w-full [&_div]:overflow-x-auto"
                   dangerouslySetInnerHTML={{ __html: cleanContent }}
                 />
               </article>

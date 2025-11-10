@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ShoppingCart, Menu, ChevronDown, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { cleanPageTitle } from '@/lib/html-utils';
 
 interface HeaderProps {
   pages?: Array<{ id: number; slug: string; title: { rendered: string } }>;
@@ -154,7 +155,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                                   href={`/${page.slug}`}
                                   className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg hover:pl-5"
                                 >
-                                  {page.title.rendered}
+                                  {cleanPageTitle(page.title.rendered)}
                                 </Link>
                               ))}
                             </div>
@@ -210,7 +211,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                                   href={`/${page.slug}`}
                                   className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 transition-all rounded-lg hover:pl-5"
                                 >
-                                  {page.title.rendered}
+                                  {cleanPageTitle(page.title.rendered)}
                                 </Link>
                               ))}
                             </div>
