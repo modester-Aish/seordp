@@ -25,13 +25,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://seordp.net'),
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', type: 'image/png', sizes: '64x64' },
+      { url: '/icon', type: 'image/png', sizes: '192x192' },
     ],
     apple: [
-      { url: '/icon.svg', sizes: '180x180', type: 'image/svg+xml' },
+      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/icon.svg',
+    shortcut: '/icon',
   },
   manifest: '/manifest.json',
   openGraph: {
