@@ -1,7 +1,7 @@
 // app/icon.tsx
 
 import type { CSSProperties } from 'react'
-import { ImageResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
 
 export const size = {
   width: 192,
