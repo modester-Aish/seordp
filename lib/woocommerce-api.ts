@@ -237,6 +237,22 @@ export function getPlainShortDescription(product: WooCommerceProduct): string {
   return product.short_description.replace(/<[^>]*>/g, '');
 }
 
+// Helper function to get product checkout/signup URL
+// Uses external_url from WordPress if set, otherwise defaults to signup page
+export function getProductCheckoutUrl(product: WooCommerceProduct): string {
+  return product.external_url && product.external_url.trim() 
+    ? product.external_url 
+    : 'https://members.seotoolsgroupbuy.us/signup';
+}
+
+// Helper function to get product button text
+// Uses button_text from WordPress if set, otherwise defaults
+export function getProductButtonText(product: WooCommerceProduct, defaultText: string = 'Buy Now'): string {
+  return product.button_text && product.button_text.trim() 
+    ? product.button_text 
+    : defaultText;
+}
+
 // Fetch ALL products from WooCommerce (handles pagination automatically)
 export async function fetchAllProductsComplete(): Promise<WordPressApiResponse<WooCommerceProduct>> {
   try {

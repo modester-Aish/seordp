@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { WooCommerceProduct } from '@/types/wordpress';
 import ProductCard from './ProductCard';
+import { getProductCheckoutUrl, getProductButtonText } from '@/lib/woocommerce-api';
 
 interface ProductDetailClientProps {
   product: WooCommerceProduct;
@@ -190,12 +191,12 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   {/* Buy Now Button */}
                   {inStock ? (
                     <a
-                      href="https://members.seotoolsgroupbuy.us/signup"
+                      href={getProductCheckoutUrl(product)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-3 rounded-xl font-bold text-base transition-all duration-300 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl block text-center"
                     >
-                      🛒 Buy Now
+                      🛒 {getProductButtonText(product, 'Buy Now')}
                     </a>
                   ) : (
                   <button

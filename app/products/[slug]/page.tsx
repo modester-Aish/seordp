@@ -12,6 +12,8 @@ import {
   getDiscountPercentage,
   isInStock,
   getStockStatusText,
+  getProductCheckoutUrl,
+  getProductButtonText,
 } from '@/lib/woocommerce-api';
 
 interface PageProps {
@@ -209,17 +211,25 @@ export default async function ProductPage({ params }: PageProps) {
             )}
 
             {/* Add to Cart Button */}
-            <button
-              className={`mb-8 flex w-full items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 ${
-                inStock
-                  ? 'hero-btn-primary'
-                  : 'cursor-not-allowed bg-slate-700 text-slate-400'
-              }`}
-              disabled={!inStock}
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {inStock ? 'Add to Cart' : 'Out of Stock'}
-            </button>
+            {inStock ? (
+              <a
+                href={getProductCheckoutUrl(product)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-8 flex w-full items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 hero-btn-primary"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {getProductButtonText(product, 'Add to Cart')}
+              </a>
+            ) : (
+              <button
+                className="mb-8 flex w-full items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 cursor-not-allowed bg-slate-700 text-slate-400"
+                disabled
+              >
+                <ShoppingCart className="h-5 w-5" />
+                Out of Stock
+              </button>
+            )}
 
             {/* Categories */}
             {product.categories && product.categories.length > 0 && (

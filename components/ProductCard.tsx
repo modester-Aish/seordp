@@ -8,6 +8,8 @@ import {
   getProductMainImage,
   getDiscountPercentage,
   isInStock,
+  getProductCheckoutUrl,
+  getProductButtonText,
 } from '@/lib/woocommerce-api';
 
 interface ProductCardProps {
@@ -98,13 +100,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {inStock ? (
             <a
-              href="https://members.seotoolsgroupbuy.us/signup"
+              href={getProductCheckoutUrl(product)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"
             >
               <ShoppingCart className="h-4 w-4" />
-              Buy Now
+              {getProductButtonText(product, 'Buy Now')}
             </a>
           ) : (
             <button
