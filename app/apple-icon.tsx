@@ -23,11 +23,13 @@ const baseStyle: CSSProperties = {
   color: '#f8fafc',
   fontSize: 104,
   fontWeight: 800,
-  fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontFamily: 'system-ui, sans-serif',
   letterSpacing: '-6px',
   textShadow: '0 20px 36px rgba(14, 165, 233, 0.35)',
   boxShadow: '0 40px 68px rgba(14, 165, 233, 0.32)',
 }
+
+export const runtime = 'edge'
 
 export default function AppleIcon() {
   return new ImageResponse(

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { WooCommerceProduct } from '@/types/wordpress';
 import ProductCard from './ProductCard';
 import { getProductCheckoutUrl, getProductButtonText } from '@/lib/woocommerce-api';
+import { getBuyNowUrl } from '@/lib/product-ids';
 
 interface ProductDetailClientProps {
   product: WooCommerceProduct;
@@ -108,9 +109,9 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
 
               {/* Right Column - Product Info */}
               <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                {/* Instant Access Badge */}
+                {/* Buy Now Badge */}
                 <div className="inline-flex items-center px-3 py-1.5 bg-teal-500/20 border border-teal-500/50 text-teal-400 text-xs font-bold rounded-full">
-                  ⚡ Instant Access
+                  🛒 Buy Now
                 </div>
 
                 {/* Product Title */}
@@ -191,7 +192,9 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   {/* Buy Now Button */}
                   {inStock ? (
                     <a
-                      href={getProductCheckoutUrl(product)}
+                      href={product.external_url && product.external_url.trim() 
+                        ? product.external_url 
+                        : getBuyNowUrl(product.name, product.id)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full py-3 rounded-xl font-bold text-base transition-all duration-300 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl block text-center"
@@ -211,7 +214,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   <div className={`text-center text-xs font-semibold ${
                     inStock ? 'text-green-400' : 'text-red-400'
                   }`}>
-                    {inStock ? '✅ In Stock - Instant Access' : '❌ Currently Unavailable'}
+                    {inStock ? '✅ In Stock' : '❌ Currently Unavailable'}
                   </div>
                 </div>
               </div>

@@ -11,6 +11,7 @@ import {
   getProductCheckoutUrl,
   getProductButtonText,
 } from '@/lib/woocommerce-api';
+import { getBuyNowUrl } from '@/lib/product-ids';
 
 interface ProductCardProps {
   product: WooCommerceProduct;
@@ -100,7 +101,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {inStock ? (
             <a
-              href={getProductCheckoutUrl(product)}
+              href={product.external_url && product.external_url.trim() 
+                ? product.external_url 
+                : getBuyNowUrl(product.name, product.id)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"

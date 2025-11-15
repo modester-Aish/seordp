@@ -29,6 +29,10 @@ const wcAxios = axios.create({
     username: WC_CONSUMER_KEY,
     password: WC_CONSUMER_SECRET,
   },
+  timeout: 30000, // 30 seconds timeout
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // Fetch all products with optional filters

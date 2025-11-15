@@ -8,6 +8,8 @@ import { cleanWordPressContent } from '@/lib/content-parser';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
 import ProductDetailClient from '@/components/ProductDetailClient';
+import { getToolBySlug } from '@/lib/tools-data';
+import ToolDetailClient from '@/components/ToolDetailClient';
 
 // Force dynamic rendering to avoid build timeouts
 export const dynamic = 'force-dynamic';
@@ -22,7 +24,27 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = params;
   
-  // Try product first
+  // Try static tool first
+  const tool = getToolBySlug(slug);
+  if (tool) {
+    const discountPercent = Math.round(((parseFloat(tool.originalPrice.replace('$', '')) - parseFloat(tool.price.replace('$', ''))) / parseFloat(tool.originalPrice.replace('$', ''))) * 100);
+    return {
+      title: `${tool.name} - Group Buy at ${tool.price} | SEORDP`,
+      description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price} (${tool.originalPrice} original price). Save ${discountPercent}% with group buy access.`,
+      keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
+      openGraph: {
+        title: `${tool.name} - Premium Group Buy Access`,
+        description: tool.description,
+        type: 'website',
+        url: `https://seordp.net/${slug}`,
+      },
+      alternates: {
+        canonical: generateCanonicalUrl(`/${slug}`),
+      },
+    };
+  }
+  
+  // Try product second
   const { data: product } = await fetchProductBySlug(slug);
   if (product) {
     const cleanDescription = (product.short_description || product.description || '')
@@ -77,7 +99,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function UnifiedPage({ params }: PageProps) {
   const { slug } = params;
   
-  // Try to fetch as product first
+  // Try static tool first
+  const tool = getToolBySlug(slug);
+  if (tool) {
+    return <ToolDetailClient tool={tool} />;
+  }
+  
+  // Try to fetch as product second
   const { data: product, error: productError } = await fetchProductBySlug(slug);
   if (product) {
     // Fetch related products from same category

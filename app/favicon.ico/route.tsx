@@ -18,7 +18,7 @@ const baseStyle: CSSProperties = {
   color: '#ecfeff',
   fontSize: 40,
   fontWeight: 800,
-  fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontFamily: 'system-ui, sans-serif',
   letterSpacing: '-4px',
   textShadow: '0 6px 16px rgba(14, 165, 233, 0.4)',
   boxShadow: '0 18px 32px rgba(14, 165, 233, 0.35)',

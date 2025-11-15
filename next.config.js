@@ -22,6 +22,11 @@ const nextConfig = {
         hostname: '**.wp.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.icons8.com',
+        pathname: '/**',
+      },
     ],
   },
   output: 'standalone',

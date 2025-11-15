@@ -23,11 +23,13 @@ const baseStyle: CSSProperties = {
   color: '#ecfeff',
   fontSize: 112,
   fontWeight: 800,
-  fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontFamily: 'system-ui, sans-serif',
   letterSpacing: '-6px',
   textShadow: '0 18px 36px rgba(14, 165, 233, 0.35)',
   boxShadow: '0 36px 64px rgba(14, 165, 233, 0.35)',
 }
+
+export const runtime = 'edge'
 
 export default function Icon() {
   return new ImageResponse(

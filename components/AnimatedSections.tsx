@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Typewriter from './Typewriter';
 import ModernReveal from './ModernReveal';
+import { getAllTools, getToolById } from '@/lib/tools-data';
 
 // Why Choose SEORDP Section - Professional Corporate Design
 export const WhyChooseSection = () => {
@@ -112,6 +113,10 @@ export const WhyChooseSection = () => {
 export const PopularToolsSection = () => {
   const [showAll, setShowAll] = useState(false);
   
+  // Get tools from lib
+  const allToolsData = getAllTools();
+  
+  // Map to component format
   const tools = [
     {
       name: 'AHREF$',
@@ -455,41 +460,45 @@ export const PopularToolsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {displayedTools.map((tool, index) => (
-            <div 
-              key={index} 
-              className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-6 group animate-fade-in-up hover:bg-white/15 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="relative z-10">
-                <div 
-                  className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 ${
-                    index % 3 === 0 ? 'animate-float' : index % 3 === 1 ? 'animate-float-delay-1' : 'animate-float-delay-2'
-                  }`}
-                >
-                  <img
-                    src={tool.image}
-                    alt={`${tool.name} - ${tool.description} - Group Buy SEO Tool`}
-                    className="w-full h-full object-contain"
-                  />
+          {displayedTools.map((tool, index) => {
+            // Get tool from lib to get proper slug
+            const toolData = getToolById(tool.id);
+            const toolSlug = toolData ? toolData.slug : tool.id;
+            
+            return (
+              <Link
+                key={index}
+                href={`/${toolSlug}`}
+                className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-6 group animate-fade-in-up hover:bg-white/15 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2 block cursor-pointer h-full"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="relative z-10 flex flex-col h-full">
+                  <div 
+                    className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 ${
+                      index % 3 === 0 ? 'animate-float' : index % 3 === 1 ? 'animate-float-delay-1' : 'animate-float-delay-2'
+                    }`}
+                  >
+                    <img
+                      src={tool.image}
+                      alt={`${tool.name} - ${tool.description} - Group Buy SEO Tool`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 text-center group-hover:text-teal-400 transition-colors duration-300">{tool.name}</h3>
+                  <p className="text-slate-400 text-sm text-center mb-6">{tool.description}</p>
+                  <div className="text-center mb-6">
+                    <span className="text-3xl font-bold text-teal-400">{tool.price}</span>
+                    <div className="text-sm text-slate-500">vs {tool.originalPrice}</div>
+                  </div>
+                  <div className="mt-auto">
+                    <div className="block w-full btn-primary py-3 text-center pointer-events-none">
+                      View Details
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2 text-center group-hover:text-teal-400 transition-colors duration-300">{tool.name}</h3>
-                <p className="text-slate-400 text-sm text-center mb-6">{tool.description}</p>
-                <div className="text-center mb-6">
-                  <span className="text-3xl font-bold text-teal-400">{tool.price}</span>
-                  <div className="text-sm text-slate-500">vs {tool.originalPrice}</div>
-                </div>
-                <a 
-                  href="https://members.seotoolsgroupbuy.us/signup"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full btn-primary py-3 text-center"
-                >
-                  Buy Now
-                </a>
-              </div>
-            </div>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* View More Button */}

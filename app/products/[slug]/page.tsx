@@ -15,6 +15,7 @@ import {
   getProductCheckoutUrl,
   getProductButtonText,
 } from '@/lib/woocommerce-api';
+import { getBuyNowUrl } from '@/lib/product-ids';
 
 interface PageProps {
   params: {
@@ -213,13 +214,15 @@ export default async function ProductPage({ params }: PageProps) {
             {/* Add to Cart Button */}
             {inStock ? (
               <a
-                href={getProductCheckoutUrl(product)}
+                href={product.external_url && product.external_url.trim() 
+                  ? product.external_url 
+                  : getBuyNowUrl(product.name, product.id)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mb-8 flex w-full items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 hero-btn-primary"
               >
                 <ShoppingCart className="h-5 w-5" />
-                {getProductButtonText(product, 'Add to Cart')}
+                {getProductButtonText(product, 'Buy Now')}
               </a>
             ) : (
               <button
