@@ -27,7 +27,7 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
   const discountPercent = Math.round(((originalPrice - price) / originalPrice) * 100);
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-slate-900" suppressHydrationWarning>
       {/* Background */}
       <div className="absolute inset-0 matrix-container opacity-5">
         <div className="matrix-grid"></div>

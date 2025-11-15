@@ -43,22 +43,24 @@ export default function CategorySection({ categories, products = [] }: CategoryS
     return product.categories?.some((cat: any) => cat.slug === selectedCategory);
   }).slice(0, 8); // Show maximum 8 products
 
-  // Debug - Detailed
-  console.log('📊 Category Debug:');
-  console.log('  Categories:', categories.map(c => ({ name: c.name, slug: c.slug })));
-  console.log('  Selected:', selectedCategory);
-  console.log('  Total Products:', products.length);
-  console.log('  Filtered Products:', displayProducts.length);
-  
-  // Show which products have which categories
-  if (displayProducts.length === 0 && products.length > 0) {
-    console.log('  ⚠️ No products in this category!');
-    console.log('  Available products categories:', 
-      products.slice(0, 3).map(p => ({
-        name: p.name,
-        categories: p.categories?.map(c => c.slug)
-      }))
-    );
+  // Debug - Only in development client-side
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    console.log('📊 Category Debug:');
+    console.log('  Categories:', categories.map(c => ({ name: c.name, slug: c.slug })));
+    console.log('  Selected:', selectedCategory);
+    console.log('  Total Products:', products.length);
+    console.log('  Filtered Products:', displayProducts.length);
+    
+    // Show which products have which categories
+    if (displayProducts.length === 0 && products.length > 0) {
+      console.log('  ⚠️ No products in this category!');
+      console.log('  Available products categories:', 
+        products.slice(0, 3).map(p => ({
+          name: p.name,
+          categories: p.categories?.map(c => c.slug)
+        }))
+      );
+    }
   }
 
   // Category icons
