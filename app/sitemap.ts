@@ -4,6 +4,9 @@ import { fetchAllProductsComplete } from '@/lib/woocommerce-api'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seordp.net'
 
+// Revalidate sitemap every minute - automatically updates when WordPress content changes
+export const revalidate = 60 // 1 minute in seconds - matches content pages
+
 // Fetch all posts with pagination
 async function fetchAllPostsComplete() {
   const WORDPRESS_BASE_URL = process.env.WORDPRESS_BASE_URL || 'https://app.faditools.com'
@@ -16,7 +19,7 @@ async function fetchAllPostsComplete() {
 
     // Fetch first page to get total pages
     const firstResponse = await fetch(`${WP_API_URL}/posts?page=1&per_page=100`, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 60 } // Check WordPress every minute for new posts
     })
 
     if (!firstResponse.ok) {
@@ -32,7 +35,7 @@ async function fetchAllPostsComplete() {
       for (let page = 2; page <= totalPages; page++) {
         pagePromises.push(
           fetch(`${WP_API_URL}/posts?page=${page}&per_page=100`, {
-            next: { revalidate: 3600 }
+            next: { revalidate: 60 } // Check WordPress every minute for new posts
           }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
         )
       }
