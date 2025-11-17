@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { fetchAllPagesComplete } from '@/lib/wordpress-api'
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api'
+import { getAllTools } from '@/lib/tools-data'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seordp.net'
 
@@ -109,7 +110,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
+  // Fetch static tools
+  const tools = getAllTools()
+  const toolEntries: MetadataRoute.Sitemap = (tools || []).map((tool) => ({
+    url: `${SITE_URL}/${tool.slug}`,
+    lastModified: new Date(), // Static tools, use current date
+    changeFrequency: 'monthly' as const,
+    priority: 0.8, // Same priority as products
+  }))
+
   // Combine all entries
-  return [...staticPages, ...pageEntries, ...postEntries, ...productEntries]
+  return [...staticPages, ...pageEntries, ...postEntries, ...productEntries, ...toolEntries]
 }
 
