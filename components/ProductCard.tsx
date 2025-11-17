@@ -101,9 +101,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {inStock ? (
             <a
-              href={product.external_url && product.external_url.trim() 
-                ? product.external_url 
-                : getBuyNowUrl(product.name, product.id)}
+              href={getBuyNowUrl(product.name, product.id, product.slug, product.external_url)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"

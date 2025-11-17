@@ -214,9 +214,7 @@ export default async function ProductPage({ params }: PageProps) {
             {/* Add to Cart Button */}
             {inStock ? (
               <a
-                href={product.external_url && product.external_url.trim() 
-                  ? product.external_url 
-                  : getBuyNowUrl(product.name, product.id)}
+                href={getBuyNowUrl(product.name, product.id, product.slug, product.external_url)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mb-8 flex w-full items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold transition-all duration-300 hero-btn-primary"
