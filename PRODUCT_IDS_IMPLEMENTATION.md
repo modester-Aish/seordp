@@ -1,11 +1,4 @@
-# Product IDs Implementation - Complete Guide
 
-## Overview
-WooCommerce products ke liye dynamic Buy Now links implement kiye gaye hain jo priority order follow karte hain. System automatically product slug ya name se correct cart product ID find karta hai.
-
-## Priority Order
-
-Jab bhi user "Buy Now" button click karta hai, system yeh priority order follow karta hai:
 
 ### 1. **Slug Matching** (Highest Priority - Exact Match)
 - Product ka slug check hota hai `slugToProductId` mapping file mein
