@@ -37,7 +37,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Try static tool first
     const tool = getToolBySlug(slug);
     if (tool) {
+      // Check if tool has matching product - but still use tool slug for canonical
+      let matchedProduct = null;
+      try {
+        const { data: allProducts } = await fetchAllProductsComplete();
+        if (allProducts && allProducts.length > 0) {
+          matchedProduct = matchToolToProduct(tool, allProducts);
+        }
+      } catch (error) {
+        // Continue with tool metadata if product fetch fails
+      }
+      
       const discountPercent = Math.round(((parseFloat(tool.originalPrice.replace('$', '')) - parseFloat(tool.price.replace('$', ''))) / parseFloat(tool.originalPrice.replace('$', ''))) * 100);
+      
+      // Always use tool slug for canonical URL (even if product matches)
       return {
         title: `${tool.name} - Group Buy at ${tool.price} | SEORDP`,
         description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price} (${tool.originalPrice} original price). Save ${discountPercent}% with group buy access.`,
@@ -46,10 +59,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           title: `${tool.name} - Premium Group Buy Access`,
           description: tool.description,
           type: 'website',
-          url: `https://seordp.net/${slug}`,
+          url: `https://seordp.net/${slug}`, // Keep tool slug in URL
         },
         alternates: {
-          canonical: generateCanonicalUrl(`/${slug}`),
+          canonical: generateCanonicalUrl(`/${slug}`), // Always use tool slug for canonical
         },
       };
     }
