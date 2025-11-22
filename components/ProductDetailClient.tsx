@@ -347,7 +347,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
       </div>
 
       {/* Image Zoom Modal */}
-      {isImageZoomed && (
+      {isImageZoomed && mainImage && (
         <div 
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 backdrop-blur-sm animate-fade-in" 
           onClick={() => setIsImageZoomed(false)}
@@ -381,7 +381,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
             "@type": "Product",
             "name": product.name,
             "description": (product.short_description || product.description || '').replace(/<[^>]*>/g, ''),
-            "image": mainImage,
+            "image": mainImage || undefined,
             "sku": product.sku || product.id.toString(),
             "offers": {
               "@type": "Offer",
