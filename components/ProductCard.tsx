@@ -43,13 +43,19 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <Link href={`/${product.slug}`}>
         <div className="relative w-full h-48 overflow-hidden bg-slate-700">
-          <Image
-            src={imageUrl}
-            alt={product.name}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          />
+          {imageUrl ? (
+            <Image
+              src={imageUrl}
+              alt={product.name}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center border-2 border-dashed border-teal-500/30">
+              <span className="text-5xl">📦</span>
+            </div>
+          )}
         </div>
       </Link>
 

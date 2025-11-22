@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ShoppingCart, Menu, ChevronDown, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cleanPageTitle } from '@/lib/html-utils';
+import { getAllTools, Tool } from '@/lib/tools-data';
 
 interface HeaderProps {
   pages?: Array<{ id: number; slug: string; title: { rendered: string } }>;
@@ -60,6 +61,37 @@ export default function Header({ pages = [] }: HeaderProps) {
            title.includes('refund') || title.includes('dmca');
   });
 
+  // Get all static tools for Tools Shop dropdown
+  const [allTools, setAllTools] = useState<Tool[]>([]);
+  const [toolsByCategory, setToolsByCategory] = useState<Record<string, Tool[]>>({});
+
+  // Load tools on client-side only to avoid SSR issues
+  useEffect(() => {
+    const tools = getAllTools();
+    setAllTools(tools);
+    
+    // Group tools by category for better organization
+    const grouped = tools.reduce((acc, tool) => {
+      const category = tool.category || 'Other Tools';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(tool);
+      return acc;
+    }, {} as Record<string, Tool[]>);
+    setToolsByCategory(grouped);
+  }, []);
+
+  // Pricing Plans data (static plans)
+  const pricingPlans = [
+    { name: 'SMALL PLAN', slug: 'small-plan', price: '$15' },
+    { name: 'AHREF$ COMBO', slug: 'ahrefs-combo', price: '$25' },
+    { name: 'MEGA PLAN', slug: 'mega-plan', price: '$50' },
+    { name: 'LITE PLAN', slug: 'lite-plan', price: '$10' },
+    { name: 'WRITER PLAN', slug: 'writer-plan', price: '$15' },
+    { name: 'DESIGNER PLAN', slug: 'designer-plan', price: '$10' },
+  ];
+
   const toolsPages = pages.filter(p => {
     const title = p.title.rendered.toLowerCase();
     return title.includes('tool') || title.includes('seo') || 
@@ -111,8 +143,8 @@ export default function Header({ pages = [] }: HeaderProps) {
                 Home
               </Link>
               
-              {/* Tools Shop Dropdown */}
-              {toolsPages.length > 0 && (
+              {/* Single Tools Dropdown */}
+              {allTools.length > 0 && (
                 <div className="relative group">
                   <div 
                     className="flex items-center gap-1 cursor-pointer"
@@ -120,7 +152,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                     onMouseLeave={handleToolsLeave}
                   >
                     <Link
-                      href="/products"
+                      href="/single-tools-list"
                       className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
                     >
                       Tools Shop
@@ -130,7 +162,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                   
                   {isToolsOpen && (
                     <div 
-                      className="absolute left-0 top-full mt-3 w-80 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up"
+                      className="absolute left-0 top-full mt-3 w-96 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up"
                       onMouseEnter={handleToolsEnter}
                       onMouseLeave={handleToolsLeave}
                       style={{ zIndex: 9999 }}
@@ -144,19 +176,29 @@ export default function Header({ pages = [] }: HeaderProps) {
                                 <span className="text-xl">🛠️</span>
                               </div>
                               <div>
-                                <h3 className="text-sm font-bold text-white">SEO Tools</h3>
-                                <p className="text-xs text-teal-400">Premium Combos & Lists</p>
+                                <h3 className="text-sm font-bold text-white">Single Tools</h3>
+                                <p className="text-xs text-teal-400">{allTools.length}+ Premium Tools</p>
                               </div>
                             </div>
-                            <div className="space-y-1 max-h-96 overflow-y-auto custom-scrollbar pr-2">
-                              {toolsPages.map((page) => (
-                                <Link
-                                  key={page.id}
-                                  href={`/${page.slug}`}
-                                  className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg hover:pl-5"
-                                >
-                                  {cleanPageTitle(page.title.rendered)}
-                                </Link>
+                            <div className="max-h-[500px] overflow-y-auto custom-scrollbar pr-2">
+                              {Object.entries(toolsByCategory).map(([category, tools]) => (
+                                <div key={category} className="mb-4 last:mb-0">
+                                  <h4 className="text-xs font-semibold text-teal-400 uppercase mb-2 px-2">
+                                    {category}
+                                  </h4>
+                                  <div className="space-y-1">
+                                    {tools.map((tool) => (
+                                      <Link
+                                        key={tool.id}
+                                        href={`/${tool.slug}`}
+                                        className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg group/item"
+                                      >
+                                        <span className="group-hover/item:pl-1 transition-all">{tool.name}</span>
+                                        <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
                               ))}
                             </div>
                           </div>
@@ -168,7 +210,7 @@ export default function Header({ pages = [] }: HeaderProps) {
               )}
 
               {/* Pricing Plans Dropdown */}
-              {pricingPages.length > 0 && (
+              {pricingPlans.length > 0 && (
                 <div className="relative group">
                   <div 
                     className="flex items-center gap-1 cursor-pointer"
@@ -205,13 +247,14 @@ export default function Header({ pages = [] }: HeaderProps) {
                               </div>
                             </div>
                             <div className="space-y-1 max-h-96 overflow-y-auto custom-scrollbar pr-2">
-                              {pricingPages.map((page) => (
+                              {pricingPlans.map((plan) => (
                                 <Link
-                                  key={page.id}
-                                  href={`/${page.slug}`}
-                                  className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 transition-all rounded-lg hover:pl-5"
+                                  key={plan.slug}
+                                  href={`/${plan.slug}`}
+                                  className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 transition-all rounded-lg group/item"
                                 >
-                                  {cleanPageTitle(page.title.rendered)}
+                                  <span className="group-hover/item:pl-1 transition-all">{plan.name}</span>
+                                  <span className="text-xs text-purple-500 font-semibold">{plan.price}</span>
                                 </Link>
                               ))}
                             </div>
@@ -222,13 +265,6 @@ export default function Header({ pages = [] }: HeaderProps) {
                   )}
                 </div>
               )}
-              
-              <Link
-                href="/blog"
-                className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
-              >
-                Blog
-              </Link>
               
               <Link
                 href="/products"
@@ -282,7 +318,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                                 href={`/${page.slug}`}
                                 className="block px-4 py-2.5 text-sm text-slate-300 hover:bg-orange-500/10 hover:text-orange-400 transition-all rounded-lg hover:pl-5"
                               >
-                                {page.title.rendered}
+                                {cleanPageTitle(page.title.rendered)}
                               </Link>
                             ))}
                           </div>
@@ -339,56 +375,56 @@ export default function Header({ pages = [] }: HeaderProps) {
                   🏠 Home
                 </Link>
 
-                {/* Tools Shop Section */}
-                {toolsPages.length > 0 && (
+                {/* Single Tools Section */}
+                {allTools.length > 0 && (
                   <div className="space-y-2">
                     <div className="px-4 py-2 text-sm font-bold text-teal-400 uppercase tracking-wide">
-                      🛠️ Tools Shop
+                      🛠️ Single Tools
                     </div>
-                    <div className="space-y-1 pl-2">
-                      {toolsPages.map((page) => (
-                        <Link
-                          key={page.id}
-                          href={`/${page.slug}`}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="block px-4 py-2 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
-                        >
-                          {page.title.rendered}
-                        </Link>
+                    <div className="space-y-1 pl-2 max-h-96 overflow-y-auto">
+                      {Object.entries(toolsByCategory).map(([category, tools]) => (
+                        <div key={category} className="mb-3">
+                          <div className="px-4 py-1 text-xs font-semibold text-slate-500 uppercase">
+                            {category}
+                          </div>
+                          {tools.map((tool) => (
+                            <Link
+                              key={tool.id}
+                              href={`/${tool.slug}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="flex items-center justify-between px-4 py-2 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                            >
+                              <span>{tool.name}</span>
+                              <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </div>
                 )}
 
                 {/* Pricing Plans Section */}
-                {pricingPages.length > 0 && (
+                {pricingPlans.length > 0 && (
                   <div className="space-y-2">
                     <div className="px-4 py-2 text-sm font-bold text-purple-400 uppercase tracking-wide">
                       💰 Pricing Plans
                     </div>
                     <div className="space-y-1 pl-2">
-                      {pricingPages.map((page) => (
+                      {pricingPlans.map((plan) => (
                         <Link
-                          key={page.id}
-                          href={`/${page.slug}`}
+                          key={plan.slug}
+                          href={`/${plan.slug}`}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block px-4 py-2 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 rounded-lg transition-all"
+                          className="flex items-center justify-between px-4 py-2 text-sm text-slate-300 hover:bg-purple-500/10 hover:text-purple-400 rounded-lg transition-all"
                         >
-                          {page.title.rendered}
+                          <span>{plan.name}</span>
+                          <span className="text-xs text-purple-500 font-semibold">{plan.price}</span>
                         </Link>
                       ))}
                     </div>
                   </div>
                 )}
-
-                {/* Blog */}
-                <Link
-                  href="/blog"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
-                >
-                  📝 Blog
-                </Link>
 
                 {/* Products */}
                 <Link
@@ -413,7 +449,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className="block px-4 py-2 text-sm text-slate-300 hover:bg-orange-500/10 hover:text-orange-400 rounded-lg transition-all"
                         >
-                          {page.title.rendered}
+                          {cleanPageTitle(page.title.rendered)}
                         </Link>
                       ))}
                     </div>

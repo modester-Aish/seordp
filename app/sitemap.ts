@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { fetchAllPagesComplete } from '@/lib/wordpress-api'
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api'
+import { fetchAllProductsComplete, isExcludedDuplicate } from '@/lib/woocommerce-api'
 import { getAllTools } from '@/lib/tools-data'
 
 const SITE_URL = 'https://seordp.net'
@@ -116,7 +116,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch WooCommerce products with validation
   const { data: products } = await fetchAllProductsComplete()
   const productEntries: MetadataRoute.Sitemap = (products || [])
-    .filter((product) => product?.slug && product.slug.trim() !== '' && product.status === 'publish') // Filter invalid or unpublished products
+    .filter((product) => 
+      product?.slug && 
+      product.slug.trim() !== '' && 
+      product.status === 'publish' &&
+      !isExcludedDuplicate(product.slug) // Exclude duplicate products
+    )
     .map((product) => ({
       url: `${SITE_URL}/${product.slug}`,
       lastModified: new Date(product.date_modified || product.date_created || Date.now()),

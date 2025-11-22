@@ -54,13 +54,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: product.short_description.replace(/<[^>]*>/g, ''),
       type: 'website',
       url: `https://seordp.net/${params.slug}`,
-      images: imageUrl ? [{ url: imageUrl }] : [],
+      images: imageUrl ? [{ url: imageUrl }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: product.name,
       description: product.short_description.replace(/<[^>]*>/g, ''),
-      images: imageUrl ? [imageUrl] : [],
+      images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {
       canonical: generateCanonicalUrl(`/${params.slug}`),
@@ -105,20 +105,28 @@ export default async function ProductPage({ params }: PageProps) {
             <div className="animate-fade-in-up">
               <div className="sticky top-24">
                 <div className="relative aspect-square overflow-hidden rounded-xl bg-slate-800 border border-slate-700">
-                  <Image
-                    src={imageUrl}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                  {onSale && discountPercentage && (
-                    <div className="absolute left-4 top-4 rounded-full px-4 py-2 text-sm font-bold text-white animate-bounce-gentle"
-                         style={{
-                           background: 'linear-gradient(135deg, #ef4444, #f87171)',
-                         }}>
-                      -{discountPercentage}% OFF
+                  {imageUrl ? (
+                    <>
+                      <Image
+                        src={imageUrl}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                      {onSale && discountPercentage && (
+                        <div className="absolute left-4 top-4 rounded-full px-4 py-2 text-sm font-bold text-white animate-bounce-gentle"
+                             style={{
+                               background: 'linear-gradient(135deg, #ef4444, #f87171)',
+                             }}>
+                          -{discountPercentage}% OFF
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center border-2 border-dashed border-teal-500/30">
+                      <span className="text-6xl">📦</span>
                     </div>
                   )}
                 </div>

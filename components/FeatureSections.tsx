@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 export default function FeatureSections() {
   return (
@@ -20,7 +21,7 @@ export default function FeatureSections() {
           
           <div className="space-y-10">
             <p className="text-lg text-slate-700 leading-relaxed text-center max-w-3xl mx-auto">
-              Using <strong className="text-slate-900">SEO group buy tools</strong> can offer several advantages, including:
+              Using <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEO group buy tools</strong></a> can offer several advantages, including:
             </p>
 
             {/* Cost-Effective */}
@@ -30,7 +31,7 @@ export default function FeatureSections() {
                 Cost-Effective
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                One of the biggest advantages of using <strong className="text-slate-900">SEO group buy tools</strong> is the cost savings. By sharing the cost of premium SEO tools among multiple users, the individual cost for each user is significantly reduced compared to purchasing individual subscriptions. This makes these tools more affordable, especially for small businesses or individual website owners with limited budgets.
+                One of the biggest advantages of using <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEO group buy tools</strong></a> is the cost savings. By sharing the cost of premium SEO tools among multiple users, the individual cost for each user is significantly reduced compared to purchasing individual subscriptions. This makes these tools more affordable, especially for small businesses or individual website owners with limited budgets.
               </p>
             </div>
 
@@ -41,7 +42,7 @@ export default function FeatureSections() {
                 Access to Premium SEO Tools
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                SEO group buy tools provide access to premium SEO tools that offer advanced features and functionalities. These tools are typically expensive when purchased individually, but with group buy access, users can leverage the power of these premium tools like <strong className="text-teal-600">Ahrefs</strong>, <strong className="text-teal-600">SEMrush</strong>, <strong className="text-teal-600">Moz Pro</strong>, and more without breaking the bank.
+                <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO group buy tools</a> provide access to premium SEO tools that offer advanced features and functionalities. These tools are typically expensive when purchased individually, but with <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">group buy access</a>, users can leverage the power of these premium tools like <Link href="/ahrefs" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Ahrefs</strong></Link>, <Link href="/semrush" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEMrush</strong></Link>, <Link href="/moz" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Moz Pro</strong></Link>, and more without breaking the bank.
               </p>
             </div>
 
@@ -52,7 +53,7 @@ export default function FeatureSections() {
                 Increased Productivity
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                SEO group buy tools can help improve productivity by providing efficient and effective solutions for various SEO tasks such as <strong className="text-slate-900">keyword research</strong>, <strong className="text-slate-900">competitor analysis</strong>, <strong className="text-slate-900">backlink analysis</strong>, <strong className="text-slate-900">rank tracking</strong>, and more. These tools can save time and effort, allowing users to focus on other important aspects of their SEO strategy.
+                <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO group buy tools</a> can help improve productivity by providing efficient and effective solutions for various SEO tasks such as <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>keyword research</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>competitor analysis</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>backlink analysis</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>rank tracking</strong></Link>, and more. These tools can save time and effort, allowing users to focus on other important aspects of their SEO strategy.
               </p>
             </div>
 
@@ -63,7 +64,7 @@ export default function FeatureSections() {
                 Opportunity to Test Multiple Tools
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                Group buy access allows users to test and experiment with multiple SEO tools without committing to a long-term subscription. This allows users to try different tools and find the ones that best suit their SEO needs and preferences before making major investments.
+                <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">Group buy access</a> allows users to test and experiment with multiple <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO tools</Link> without committing to a long-term subscription. This allows users to try different tools and find the ones that best suit their SEO needs and preferences before making major investments.
               </p>
             </div>
           </div>
@@ -86,11 +87,11 @@ export default function FeatureSections() {
           <div className="space-y-8">
             <div className="bg-white rounded-xl p-10 shadow-sm">
               <p className="text-lg text-slate-600 leading-relaxed mb-6">
-                Here, we&apos;ll delve into the world of <strong className="text-slate-900">SEO group buy tools</strong> and understand how they work. SEO group buy tools are excellent SEO tools that are pooled together and shared among users, allowing them to access these tools at a significantly reduced cost compared to individual subscriptions.
+                Here, we&apos;ll delve into the world of <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEO group buy tools</strong></a> and understand how they work. These are excellent SEO tools that are pooled together and shared among users, allowing them to access these tools at a significantly reduced cost compared to individual subscriptions.
               </p>
 
               <p className="text-lg text-slate-600 leading-relaxed">
-                These tools provide valuable insights and data related to various aspects of SEO, such as <strong className="text-slate-900">keyword research</strong>, <strong className="text-slate-900">competitor analysis</strong>, <strong className="text-slate-900">backlink analysis</strong>, <strong className="text-slate-900">rank tracking</strong>, <strong className="text-slate-900">content optimization</strong>, and more.
+                These tools provide valuable insights and data related to various aspects of SEO, such as <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>keyword research</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>competitor analysis</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>backlink analysis</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>rank tracking</strong></Link>, <Link href="/products" className="text-slate-900 hover:text-teal-600 underline font-semibold"><strong>content optimization</strong></Link>, and more.
               </p>
             </div>
 
@@ -106,7 +107,7 @@ export default function FeatureSections() {
                 They are typically <strong className="text-slate-900">web-based tools</strong> accessed through a shared account or login credentials, and they offer a wide range of functionalities to help users optimize their websites for search engines.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                Plus, our <strong className="text-purple-600">Group buy SEO options</strong> make it easy to get the SEO services you need without purchasing them all individually. So get to know us better about our group buy SEO options and how we can support you to save money on your SEO tools needs.
+                Plus, our <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 underline font-semibold"><strong>Group buy SEO options</strong></a> make it easy to get the <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO services</Link> you need without purchasing them all individually. So get to know us better about our group buy services and how we can support you to save money on your <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO tools</Link> needs.
               </p>
             </div>
 
@@ -122,7 +123,7 @@ export default function FeatureSections() {
                 We aim to provide our clients worldwide with <strong className="text-slate-900">100% uptime</strong> of our SEO and marketing tools services. Whether you operate for a company or as a freelancer, our tools will assist you in building a strong space in competitive markets.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                To increase sales, you will rank your business on the first page of Google. We will take care of all tools, and if one breaks, we fix it immediately to ensure you have a great experience. We provide complete tool plans for many fields such as <strong className="text-teal-600">Amazon tools</strong>, <strong className="text-teal-600">SEO tools</strong>, <strong className="text-teal-600">AI tools</strong>, and <strong className="text-teal-600">digital marketing tools</strong>.
+                To increase sales, you will rank your business on the first page of Google. We will take care of all tools, and if one breaks, we fix it immediately to ensure you have a great experience. We provide complete tool plans for many fields such as <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Amazon tools</strong></Link>, <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEO tools</strong></Link>, <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>AI tools</strong></Link>, and <Link href="/products" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>digital marketing tools</strong></Link>.
               </p>
             </div>
           </div>

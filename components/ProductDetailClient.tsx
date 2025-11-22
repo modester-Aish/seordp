@@ -27,7 +27,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
   }, []);
 
   const images = product.images || [];
-  const mainImage = images[selectedImage]?.src || '/images/placeholder.jpg';
+  const mainImage = images[selectedImage]?.src || null;
   const price = product.on_sale && product.sale_price ? product.sale_price : product.price;
   const regularPrice = product.regular_price;
   const isOnSale = product.on_sale && product.sale_price;
@@ -63,21 +63,29 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
 
                   {/* Main Image - Clickable for Zoom */}
                   <div 
-                    className="relative aspect-square bg-slate-800 rounded-xl overflow-hidden mb-6 cursor-pointer hover:opacity-90 transition-opacity group"
-                    onClick={() => setIsImageZoomed(true)}
+                    className={`relative aspect-square bg-slate-800 rounded-xl overflow-hidden mb-6 ${mainImage ? 'cursor-pointer hover:opacity-90 transition-opacity group' : ''}`}
+                    onClick={() => mainImage && setIsImageZoomed(true)}
                   >
-                    <Image
-                      src={mainImage}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      priority
-                    />
-                    {/* Zoom Hint */}
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="text-white font-bold">🔍 Click to Zoom</span>
-                    </div>
+                    {mainImage ? (
+                      <>
+                        <Image
+                          src={mainImage}
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          priority
+                        />
+                        {/* Zoom Hint */}
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="text-white font-bold">🔍 Click to Zoom</span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center border-2 border-dashed border-teal-500/30">
+                        <span className="text-6xl">📦</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Thumbnail Gallery */}

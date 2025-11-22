@@ -11,6 +11,18 @@ const WC_CONSUMER_KEY = process.env.WC_CONSUMER_KEY || '';
 const WC_CONSUMER_SECRET = process.env.WC_CONSUMER_SECRET || '';
 const WC_API_URL = `${WORDPRESS_BASE_URL}/wp-json/wc/v3`;
 
+// List of duplicate product slugs to exclude (these are duplicates of original pages)
+const EXCLUDED_DUPLICATE_SLUGS = [
+  'combo-mega-pack-tools', // Duplicate of mega-plan
+  'combo-seo-tools-ecom-plan', // Duplicate (original pages exist)
+  // Add more duplicate slugs here as needed
+];
+
+// Helper function to check if a slug should be excluded
+export function isExcludedDuplicate(slug: string): boolean {
+  return EXCLUDED_DUPLICATE_SLUGS.includes(slug);
+}
+
 // Helper function to handle API errors
 const handleApiError = (error: any): string => {
   if (error.response) {
@@ -65,10 +77,15 @@ export async function fetchAllProducts(
       params,
     });
 
+    // Filter out excluded duplicate products
+    const filteredData = response.data?.filter(
+      (product) => !isExcludedDuplicate(product.slug)
+    ) || [];
+
     return {
-      data: response.data,
+      data: filteredData,
       error: null,
-      total: parseInt(response.headers['x-wp-total'] || '0'),
+      total: filteredData.length, // Update total to reflect filtered count
       totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
     };
   } catch (error: any) {
@@ -85,6 +102,14 @@ export async function fetchProductBySlug(
   slug: string
 ): Promise<WordPressSingleResponse<WooCommerceProduct>> {
   try {
+    // Check if this slug is excluded (duplicate)
+    if (isExcludedDuplicate(slug)) {
+      return {
+        data: null,
+        error: 'Product not found (duplicate excluded)',
+      };
+    }
+
     const response = await wcAxios.get<WooCommerceProduct[]>('/products', {
       params: {
         slug,
@@ -98,8 +123,17 @@ export async function fetchProductBySlug(
       };
     }
 
+    // Double check - exclude if somehow a duplicate got through
+    const product = response.data[0];
+    if (isExcludedDuplicate(product.slug)) {
+      return {
+        data: null,
+        error: 'Product not found (duplicate excluded)',
+      };
+    }
+
     return {
-      data: response.data[0],
+      data: product,
       error: null,
     };
   } catch (error: any) {
@@ -198,8 +232,8 @@ export function getProductImageUrl(
 }
 
 // Helper function to get product main image
-export function getProductMainImage(product: WooCommerceProduct): string {
-  return getProductImageUrl(product, 0) || '/placeholder-product.jpg';
+export function getProductMainImage(product: WooCommerceProduct): string | null {
+  return getProductImageUrl(product, 0);
 }
 
 // Helper function to check if product is in stock
@@ -298,10 +332,15 @@ export async function fetchAllProductsComplete(): Promise<WordPressApiResponse<W
       });
     }
 
-    console.log(`✅ Successfully loaded ${allProducts.length} products!`);
+    // Filter out excluded duplicate products
+    const filteredProducts = allProducts.filter(
+      (product) => !isExcludedDuplicate(product.slug)
+    );
+
+    console.log(`✅ Successfully loaded ${filteredProducts.length} products! (${allProducts.length - filteredProducts.length} duplicates excluded)`);
 
     return {
-      data: allProducts,
+      data: filteredProducts,
       error: null,
       total: allProducts.length,
       totalPages: 1, // All products in one response now

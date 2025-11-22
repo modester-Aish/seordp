@@ -1,5 +1,9 @@
 export function generateCanonicalUrl(path: string): string {
-  const baseUrl = 'https://seordp.net';
+  // Always use non-www domain for canonical URLs
+  let baseUrl = 'https://seordp.net';
+  
+  // Remove www if present
+  baseUrl = baseUrl.replace(/^https?:\/\/(www\.)?/, 'https://');
   
   // Remove trailing slash from base URL if present
   const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;

@@ -10,6 +10,8 @@ import { cleanPageTitle } from '@/lib/html-utils';
 import ProductDetailClient from '@/components/ProductDetailClient';
 import { getToolBySlug } from '@/lib/tools-data';
 import ToolDetailClient from '@/components/ToolDetailClient';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { matchToolToProduct, getToolProductSlug } from '@/lib/tool-product-matcher';
 
 // Force dynamic rendering to avoid build timeouts
 export const dynamic = 'force-dynamic';
@@ -129,11 +131,39 @@ export default async function UnifiedPage({ params }: PageProps) {
   
   // Try static tool first
   const tool = getToolBySlug(slug);
+  
+  // If tool exists, check if it has a matching product - if yes, show product page instead
   if (tool) {
+    // Only check for matching product if we need to - otherwise show tool page directly
+    try {
+      const { data: allProducts } = await fetchAllProductsComplete();
+      if (allProducts && allProducts.length > 0) {
+        const matchedProduct = matchToolToProduct(tool, allProducts);
+        if (matchedProduct && matchedProduct.status === 'publish') {
+          // Tool has a matching product - show product page instead
+          try {
+            const { data: allProductsForRelated } = await fetchAllProducts(1, 8);
+            const relatedProducts = allProductsForRelated?.filter(p => 
+              p.id !== matchedProduct.id && 
+              p.categories?.some(cat => matchedProduct.categories?.some(pCat => pCat.id === cat.id))
+            ) || [];
+            
+            return <ProductDetailClient product={matchedProduct} relatedProducts={relatedProducts} />;
+          } catch (error) {
+            return <ProductDetailClient product={matchedProduct} relatedProducts={[]} />;
+          }
+        }
+      }
+    } catch (error) {
+      // If product fetch fails, continue with tool page - don't break for existing tools
+    }
+    
+    // No matching product found OR product fetch failed - show original tool detail page
     return <ToolDetailClient tool={tool} />;
   }
   
   // Try to fetch as product second (with error handling)
+  // First try exact slug match
   try {
     const { data: product, error: productError } = await fetchProductBySlug(slug);
     if (product && product.status === 'publish') {
@@ -153,6 +183,51 @@ export default async function UnifiedPage({ params }: PageProps) {
     }
   } catch (error) {
     // Continue to next check if product fetch fails
+  }
+  
+  // If exact slug match failed, try keyword matching with all products
+  try {
+    const { data: allProducts } = await fetchAllProductsComplete();
+    if (allProducts && allProducts.length > 0) {
+      // Normalize slug for matching
+      const slugNormalized = slug.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/\$/g, 's');
+      
+      // Try to find a product that matches the slug by keywords
+      for (const product of allProducts) {
+        if (product.status !== 'publish') continue;
+        
+        const productNameNormalized = product.name.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/\$/g, 's');
+        const productSlugNormalized = product.slug.toLowerCase().replace(/[^a-z0-9]/g, '');
+        
+        // Check if slug matches product slug or name
+        if (
+          slugNormalized === productSlugNormalized ||
+          slugNormalized === productNameNormalized ||
+          slugNormalized.includes(productSlugNormalized) ||
+          productSlugNormalized.includes(slugNormalized) ||
+          slugNormalized.includes(productNameNormalized) ||
+          productNameNormalized.includes(slugNormalized)
+        ) {
+          // Found a matching product - show it
+          const minLength = Math.min(slugNormalized.length, productNameNormalized.length);
+          if (minLength >= 3) {
+            try {
+              const { data: allProductsForRelated } = await fetchAllProducts(1, 8);
+              const relatedProducts = allProductsForRelated?.filter(p => 
+                p.id !== product.id && 
+                p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id))
+              ) || [];
+              
+              return <ProductDetailClient product={product} relatedProducts={relatedProducts} />;
+            } catch (error) {
+              return <ProductDetailClient product={product} relatedProducts={[]} />;
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    // Continue if keyword matching fails
   }
   
   // Try as blog post (with error handling)

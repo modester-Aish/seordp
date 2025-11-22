@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Typewriter from './Typewriter';
 import ModernReveal from './ModernReveal';
-import { getAllTools, getToolById } from '@/lib/tools-data';
+import { getAllTools, getToolById, Tool } from '@/lib/tools-data';
+import { WooCommerceProduct } from '@/types/wordpress';
+import { getToolProductSlug } from '@/lib/tool-product-matcher';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 
 // Why Choose SEORDP Section - Professional Corporate Design
 export const WhyChooseSection = () => {
@@ -112,16 +115,18 @@ export const WhyChooseSection = () => {
 // Popular Tools Section - Using Local SVG Logos
 export const PopularToolsSection = () => {
   const [showAll, setShowAll] = useState(false);
+  const [products, setProducts] = useState<WooCommerceProduct[]>([]);
+  const [toolProductMap, setToolProductMap] = useState<Map<string, string>>(new Map());
   
   // Get tools from lib
   const allToolsData = getAllTools();
   
-  // Map to component format
+  // Map to component format - define tools array first
   const tools = [
     {
       name: 'AHREF$',
       id: 'ahrefs',
-      price: '$30.00',
+      price: '$25.00',
       originalPrice: '$99.00',
       image: '/tools/ahrefs-logo.svg',
       description: 'Advanced analysis and optimization toolkit for websites'
@@ -440,6 +445,105 @@ export const PopularToolsSection = () => {
     }
   ];
 
+  // Fetch products and match with tools
+  useEffect(() => {
+    const loadProductsAndMatch = async () => {
+      try {
+        const { data: fetchedProducts } = await fetchAllProductsComplete();
+        if (fetchedProducts) {
+          setProducts(fetchedProducts);
+          
+          // Create map of tool id -> product slug
+          const map = new Map<string, string>();
+          
+          // Match tools from lib
+          for (const tool of allToolsData) {
+            const productSlug = getToolProductSlug(tool, fetchedProducts);
+            if (productSlug) {
+              map.set(tool.id, productSlug);
+            }
+          }
+          
+          // Also match hardcoded tools array items with products using keyword matching
+          const commonWords = ['pro', 'premium', 'plus', 'group', 'buy', 'access', 'tool', 'tools', 'service', 'services', 'plan'];
+          
+          for (const toolItem of tools) {
+            // Skip if already matched from lib tools
+            if (map.has(toolItem.id)) continue;
+            
+            // Try to find matching product by name, slug, or keywords
+            const toolNameNormalized = toolItem.name.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/\$/g, 's');
+            const toolIdNormalized = toolItem.id.toLowerCase().replace(/[^a-z0-9]/g, '');
+            
+            // Extract keywords from tool name/id
+            const toolKeywords = [
+              ...toolNameNormalized.split(/[\s\-_]+/).filter(w => w.length >= 2 && !commonWords.includes(w)),
+              ...toolIdNormalized.split(/[\s\-_]+/).filter(w => w.length >= 2 && !commonWords.includes(w))
+            ].filter((v, i, a) => a.indexOf(v) === i); // Remove duplicates
+            
+            for (const product of fetchedProducts) {
+              const productNameNormalized = product.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+              const productSlugNormalized = product.slug.toLowerCase().replace(/[^a-z0-9]/g, '');
+              
+              // Extract keywords from product name/slug
+              const productKeywords = [
+                ...productNameNormalized.split(/[\s\-_]+/).filter(w => w.length >= 2 && !commonWords.includes(w)),
+                ...productSlugNormalized.split(/[\s\-_]+/).filter(w => w.length >= 2 && !commonWords.includes(w))
+              ].filter((v, i, a) => a.indexOf(v) === i); // Remove duplicates
+              
+              // Check exact matches first
+              if (
+                toolNameNormalized === productNameNormalized ||
+                toolIdNormalized === productSlugNormalized ||
+                toolNameNormalized === productSlugNormalized ||
+                toolIdNormalized === productNameNormalized
+              ) {
+                map.set(toolItem.id, product.slug);
+                break;
+              }
+              
+              // Check partial matches
+              if (
+                toolNameNormalized.includes(productNameNormalized) ||
+                productNameNormalized.includes(toolNameNormalized) ||
+                toolIdNormalized.includes(productSlugNormalized) ||
+                productSlugNormalized.includes(toolIdNormalized)
+              ) {
+                const minLength = Math.min(toolNameNormalized.length, productNameNormalized.length);
+                if (minLength >= 3) {
+                  map.set(toolItem.id, product.slug);
+                  break;
+                }
+              }
+              
+              // Check keyword matches
+              const matchingKeywords = toolKeywords.filter(kw => 
+                productKeywords.some(pkw => 
+                  kw === pkw || 
+                  (kw.length >= 3 && pkw.length >= 3 && (kw.includes(pkw) || pkw.includes(kw)))
+                )
+              );
+              
+              // If we have at least one meaningful keyword match (at least 3 chars)
+              if (matchingKeywords.length > 0 && matchingKeywords.some(kw => kw.length >= 3)) {
+                map.set(toolItem.id, product.slug);
+                break;
+              }
+            }
+          }
+          
+          setToolProductMap(map);
+        }
+        } catch (error) {
+          if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+            console.error('Error loading products for tool matching:', error);
+          }
+        }
+    };
+    
+    loadProductsAndMatch();
+  }, [allToolsData, tools]);
+
   const displayedTools = showAll ? tools : tools.slice(0, 20);
 
   return (
@@ -463,12 +567,15 @@ export const PopularToolsSection = () => {
           {displayedTools.map((tool, index) => {
             // Get tool from lib to get proper slug
             const toolData = getToolById(tool.id);
-            const toolSlug = toolData ? toolData.slug : tool.id;
+            
+            // Check if this tool has a matching product - use product slug if found
+            const productSlug = toolProductMap.get(tool.id);
+            const linkSlug = productSlug || (toolData ? toolData.slug : tool.id);
             
             return (
               <Link
                 key={index}
-                href={`/${toolSlug}`}
+                href={`/${linkSlug}`}
                 className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-6 group animate-fade-in-up hover:bg-white/15 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2 block cursor-pointer h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >

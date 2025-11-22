@@ -12,6 +12,7 @@ interface PricingCard {
   iconBgColor: string;
   benefits: string[];
   tools: string[];
+  slug: string; // Plan detail page slug
   isPopular?: boolean;
 }
 
@@ -23,6 +24,7 @@ const pricingData: PricingCard[] = [
     description: 'Perfect for starters',
     icon: '⭐',
     iconBgColor: 'from-blue-500 to-blue-600',
+    slug: 'small-plan',
     benefits: [
       'Complete SEO Suite',
       'AI Writing Tools',
@@ -48,6 +50,7 @@ const pricingData: PricingCard[] = [
     description: 'Best value package',
     icon: '⚡',
     iconBgColor: 'from-orange-500 to-orange-600',
+    slug: 'ahrefs-combo',
     benefits: [
       'Premium SEO Tools',
       'Advanced Analytics',
@@ -74,6 +77,7 @@ const pricingData: PricingCard[] = [
     description: 'Everything you need',
     icon: '👑',
     iconBgColor: 'from-purple-500 to-purple-600',
+    slug: 'mega-plan',
     benefits: [
       'All Premium Tools',
       'E-commerce Suite',
@@ -100,6 +104,7 @@ const pricingData: PricingCard[] = [
     description: 'Essential tools',
     icon: '⭐',
     iconBgColor: 'from-blue-500 to-blue-600',
+    slug: 'lite-plan',
     benefits: [
       'Essential SEO',
       'Basic Design',
@@ -118,6 +123,7 @@ const pricingData: PricingCard[] = [
     description: 'For content creators',
     icon: '✍️',
     iconBgColor: 'from-orange-500 to-orange-600',
+    slug: 'writer-plan',
     benefits: [
       'AI Writing Suite',
       'Content Tools',
@@ -137,6 +143,7 @@ const pricingData: PricingCard[] = [
     description: 'For designers',
     icon: '🎨',
     iconBgColor: 'from-purple-500 to-purple-600',
+    slug: 'designer-plan',
     benefits: [
       'Design Software',
       'Stock Assets',
@@ -257,11 +264,9 @@ export default function InteractivePricingCards() {
                     View included tools →
                   </button>
 
-                  {/* Get Access Button */}
-                  <a
-                    href="https://members.seotoolsgroupbuy.us/signup"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {/* Get Access Button - Link to plan detail page */}
+                  <Link
+                    href={`/${card.slug}`}
                     className={`w-full py-3 rounded-lg font-semibold text-center block transition-all duration-300 transform hover:scale-105 shadow-lg ${
                       card.isPopular
                         ? 'hero-btn-primary'
@@ -269,7 +274,7 @@ export default function InteractivePricingCards() {
                     }`}
                   >
                     Get Instant Access
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Back Side - Dark Theme */}
