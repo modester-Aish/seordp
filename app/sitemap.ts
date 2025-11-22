@@ -83,43 +83,66 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Fetch WordPress pages
+  // Fetch WordPress pages with validation
   const { data: pages } = await fetchAllPagesComplete()
-  const pageEntries: MetadataRoute.Sitemap = (pages || []).map((page) => ({
-    url: `${SITE_URL}/${page.slug}`,
-    lastModified: new Date(page.modified),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  const pageEntries: MetadataRoute.Sitemap = (pages || [])
+    .filter((page) => 
+      page?.slug && 
+      page.slug.trim() !== '' && 
+      page.status === 'publish' // Only published pages
+    )
+    .map((page) => ({
+      url: `${SITE_URL}/${page.slug}`,
+      lastModified: new Date(page.modified || page.date || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
 
-  // Fetch WordPress posts
+  // Fetch WordPress posts with validation
   const posts = await fetchAllPostsComplete()
-  const postEntries: MetadataRoute.Sitemap = (posts || []).map((post) => ({
-    url: `${SITE_URL}/${post.slug}`,
-    lastModified: new Date(post.modified),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }))
+  const postEntries: MetadataRoute.Sitemap = (posts || [])
+    .filter((post) => 
+      post?.slug && 
+      post.slug.trim() !== '' && 
+      post.status === 'publish' // Only published posts
+    )
+    .map((post) => ({
+      url: `${SITE_URL}/${post.slug}`,
+      lastModified: new Date(post.modified || post.date || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
 
-  // Fetch WooCommerce products
+  // Fetch WooCommerce products with validation
   const { data: products } = await fetchAllProductsComplete()
-  const productEntries: MetadataRoute.Sitemap = (products || []).map((product) => ({
-    url: `${SITE_URL}/${product.slug}`,
-    lastModified: new Date(product.date_modified || product.date_created),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  const productEntries: MetadataRoute.Sitemap = (products || [])
+    .filter((product) => product?.slug && product.slug.trim() !== '' && product.status === 'publish') // Filter invalid or unpublished products
+    .map((product) => ({
+      url: `${SITE_URL}/${product.slug}`,
+      lastModified: new Date(product.date_modified || product.date_created || Date.now()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
 
-  // Fetch static tools
+  // Fetch static tools with validation
   const tools = getAllTools()
-  const toolEntries: MetadataRoute.Sitemap = (tools || []).map((tool) => ({
-    url: `${SITE_URL}/${tool.slug}`,
-    lastModified: new Date(), // Static tools, use current date
-    changeFrequency: 'monthly' as const,
-    priority: 0.8, // Same priority as products
-  }))
+  const toolEntries: MetadataRoute.Sitemap = (tools || [])
+    .filter((tool) => tool?.slug && tool.slug.trim() !== '') // Filter invalid slugs
+    .map((tool) => ({
+      url: `${SITE_URL}/${tool.slug}`,
+      lastModified: new Date(), // Static tools, use current date
+      changeFrequency: 'monthly' as const,
+      priority: 0.8, // Same priority as products
+    }))
 
-  // Combine all entries
-  return [...staticPages, ...pageEntries, ...postEntries, ...productEntries, ...toolEntries]
+  // Combine all entries and remove duplicates
+  const allEntries = [...staticPages, ...pageEntries, ...postEntries, ...productEntries, ...toolEntries]
+  
+  // Remove duplicate URLs (same slug can exist in multiple content types)
+  const uniqueEntries = allEntries.filter((entry, index, self) =>
+    index === self.findIndex((e) => e.url === entry.url)
+  )
+
+  return uniqueEntries
 }
 

@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Best Group Buy SEO Tools 2025 - 50+ Premium Tools at 90% OFF | SEORDP',
-    description: 'Get shared access to 50+ premium SEO tools at 90% discount. Join 45,000+ users. Instant setup, 99% uptime. Starting $4.99/month.',
+    title: 'Best Group Buy SEO Tools 2025 - Ahrefs, SEMrush, Moz Pro at 90% OFF | SEORDP',
+    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support.',
     url: 'https://seordp.net',
     siteName: 'SEORDP',
     locale: 'en_US',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Group Buy SEO Tools 2025 - 50+ Premium Tools at 90% OFF | SEORDP',
-    description: 'Get shared access to 50+ premium SEO tools at 90% discount. Join 45,000+ users. Instant setup, 99% uptime. Starting $4.99/month.',
+    title: 'Best Group Buy SEO Tools 2025 - Ahrefs, SEMrush, Moz Pro at 90% OFF | SEORDP',
+    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support.',
     creator: '@seordp',
     site: '@seordp',
   },

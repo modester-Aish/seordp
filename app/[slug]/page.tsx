@@ -24,80 +24,108 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = params;
   
-  // Try static tool first
-  const tool = getToolBySlug(slug);
-  if (tool) {
-    const discountPercent = Math.round(((parseFloat(tool.originalPrice.replace('$', '')) - parseFloat(tool.price.replace('$', ''))) / parseFloat(tool.originalPrice.replace('$', ''))) * 100);
+  // Validate slug first
+  if (!slug || slug.trim() === '') {
     return {
-      title: `${tool.name} - Group Buy at ${tool.price} | SEORDP`,
-      description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price} (${tool.originalPrice} original price). Save ${discountPercent}% with group buy access.`,
-      keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
-      openGraph: {
-        title: `${tool.name} - Premium Group Buy Access`,
-        description: tool.description,
-        type: 'website',
-        url: `https://seordp.net/${slug}`,
-      },
-      alternates: {
-        canonical: generateCanonicalUrl(`/${slug}`),
-      },
+      title: 'Page Not Found | SEORDP',
     };
   }
   
-  // Try product second
-  const { data: product } = await fetchProductBySlug(slug);
-  if (product) {
-    const cleanDescription = (product.short_description || product.description || '')
-      .replace(/<[^>]*>/g, '')
-      .substring(0, 160);
+  try {
+    // Try static tool first
+    const tool = getToolBySlug(slug);
+    if (tool) {
+      const discountPercent = Math.round(((parseFloat(tool.originalPrice.replace('$', '')) - parseFloat(tool.price.replace('$', ''))) / parseFloat(tool.originalPrice.replace('$', ''))) * 100);
+      return {
+        title: `${tool.name} - Group Buy at ${tool.price} | SEORDP`,
+        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price} (${tool.originalPrice} original price). Save ${discountPercent}% with group buy access.`,
+        keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
+        openGraph: {
+          title: `${tool.name} - Premium Group Buy Access`,
+          description: tool.description,
+          type: 'website',
+          url: `https://seordp.net/${slug}`,
+        },
+        alternates: {
+          canonical: generateCanonicalUrl(`/${slug}`),
+        },
+      };
+    }
     
-    return {
-      title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
-      description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. 24/7 support, 99% uptime guarantee. Group buy SEO tools at 90% discount.`,
-      keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
-      openGraph: {
-        title: `${product.name} - Premium Group Buy Access`,
-        description: cleanDescription || `Get instant access to ${product.name} at 90% discount. Only ${product.price}`,
-        type: 'website',
-        url: `https://seordp.net/${slug}`,
-      },
-      alternates: {
-        canonical: generateCanonicalUrl(`/${slug}`),
-      },
-    };
-  }
-  
-  // Try blog post
-  const { data: post } = await fetchPostBySlug(slug);
-  if (post) {
-    return {
-      title: getTitle(post),
-      description: getExcerpt(post),
-      alternates: {
-        canonical: generateCanonicalUrl(`/${slug}`),
-      },
-    };
-  }
-  
-  // Try page
-  const { data: page } = await fetchPageBySlug(slug);
-  if (page) {
-    return {
-      title: getTitle(page),
-      description: getExcerpt(page),
-      alternates: {
-        canonical: generateCanonicalUrl(`/${slug}`),
-      },
-    };
+    // Try product second (with timeout protection)
+    try {
+      const { data: product } = await fetchProductBySlug(slug);
+      if (product && product.status === 'publish') {
+        const cleanDescription = (product.short_description || product.description || '')
+          .replace(/<[^>]*>/g, '')
+          .substring(0, 160);
+        
+        return {
+          title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
+          description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. 24/7 support, 99% uptime guarantee. Group buy SEO tools at 90% discount.`,
+          keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
+          openGraph: {
+            title: `${product.name} - Premium Group Buy Access`,
+            description: cleanDescription || `Get instant access to ${product.name} at 90% discount. Only ${product.price}`,
+            type: 'website',
+            url: `https://seordp.net/${slug}`,
+          },
+          alternates: {
+            canonical: generateCanonicalUrl(`/${slug}`),
+          },
+        };
+      }
+    } catch (error) {
+      // Silently continue if product fetch fails
+    }
+    
+    // Try blog post (with timeout protection)
+    try {
+      const { data: post } = await fetchPostBySlug(slug);
+      if (post && post.status === 'publish') {
+        return {
+          title: `${getTitle(post)} | SEORDP`,
+          description: getExcerpt(post),
+          alternates: {
+            canonical: generateCanonicalUrl(`/${slug}`),
+          },
+        };
+      }
+    } catch (error) {
+      // Silently continue if post fetch fails
+    }
+    
+    // Try page (with timeout protection)
+    try {
+      const { data: page } = await fetchPageBySlug(slug);
+      if (page && page.status === 'publish') {
+        return {
+          title: `${getTitle(page)} | SEORDP`,
+          description: getExcerpt(page),
+          alternates: {
+            canonical: generateCanonicalUrl(`/${slug}`),
+          },
+        };
+      }
+    } catch (error) {
+      // Silently continue if page fetch fails
+    }
+  } catch (error) {
+    // Fallback metadata if all checks fail
   }
   
   return {
-    title: 'Not Found',
+    title: 'Page Not Found | SEORDP',
   };
 }
 
 export default async function UnifiedPage({ params }: PageProps) {
   const { slug } = params;
+  
+  // Validate slug first
+  if (!slug || slug.trim() === '') {
+    notFound();
+  }
   
   // Try static tool first
   const tool = getToolBySlug(slug);
@@ -105,29 +133,46 @@ export default async function UnifiedPage({ params }: PageProps) {
     return <ToolDetailClient tool={tool} />;
   }
   
-  // Try to fetch as product second
-  const { data: product, error: productError } = await fetchProductBySlug(slug);
-  if (product) {
-    // Fetch related products from same category
-    const { data: allProducts } = await fetchAllProducts(1, 8);
-    const relatedProducts = allProducts?.filter(p => 
-      p.id !== product.id && 
-      p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id))
-    ) || [];
-    
-    return <ProductDetailClient product={product} relatedProducts={relatedProducts} />;
+  // Try to fetch as product second (with error handling)
+  try {
+    const { data: product, error: productError } = await fetchProductBySlug(slug);
+    if (product && product.status === 'publish') {
+      // Fetch related products from same category
+      try {
+        const { data: allProducts } = await fetchAllProducts(1, 8);
+        const relatedProducts = allProducts?.filter(p => 
+          p.id !== product.id && 
+          p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id))
+        ) || [];
+        
+        return <ProductDetailClient product={product} relatedProducts={relatedProducts} />;
+      } catch (error) {
+        // If related products fetch fails, still render the product
+        return <ProductDetailClient product={product} relatedProducts={[]} />;
+      }
+    }
+  } catch (error) {
+    // Continue to next check if product fetch fails
   }
   
-  // Try as blog post
-  const { data: post, error: postError } = await fetchPostBySlug(slug);
-  if (post) {
-    return <BlogPostView post={post} />;
+  // Try as blog post (with error handling)
+  try {
+    const { data: post, error: postError } = await fetchPostBySlug(slug);
+    if (post && post.status === 'publish') {
+      return <BlogPostView post={post} />;
+    }
+  } catch (error) {
+    // Continue to next check if post fetch fails
   }
   
-  // Try as page
-  const { data: page, error: pageError } = await fetchPageBySlug(slug);
-  if (page) {
-    return <PageView page={page} />;
+  // Try as page (with error handling)
+  try {
+    const { data: page, error: pageError } = await fetchPageBySlug(slug);
+    if (page && page.status === 'publish') {
+      return <PageView page={page} />;
+    }
+  } catch (error) {
+    // Continue to notFound if all checks fail
   }
   
   // Nothing found
