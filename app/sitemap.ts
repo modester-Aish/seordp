@@ -3,7 +3,7 @@ import { fetchAllPagesComplete } from '@/lib/wordpress-api'
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api'
 import { getAllTools } from '@/lib/tools-data'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seordp.net'
+const SITE_URL = 'https://seordp.net'
 
 // Revalidate sitemap every minute - automatically updates when WordPress content changes
 export const revalidate = 60 // 1 minute in seconds - matches content pages

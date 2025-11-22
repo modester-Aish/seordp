@@ -8,6 +8,7 @@ import {
   getTitle,
   getContent,
 } from '@/lib/wordpress-api';
+import { generateCanonicalUrl } from '@/lib/canonical';
 
 interface PageProps {
   params: {
@@ -42,10 +43,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title,
       type: 'website',
+      url: `https://seordp.net/${params.slug}`,
     },
     twitter: {
       card: 'summary',
       title,
+    },
+    alternates: {
+      canonical: generateCanonicalUrl(`/${params.slug}`),
     },
   };
 }

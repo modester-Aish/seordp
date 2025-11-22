@@ -1,0 +1,30 @@
+[1mdiff --git a/app/sitemap.ts b/app/sitemap.ts[m
+[1mindex f61e158..3d20e29 100644[m
+[1m--- a/app/sitemap.ts[m
+[1m+++ b/app/sitemap.ts[m
+[36m@@ -1,6 +1,7 @@[m
+ import { MetadataRoute } from 'next'[m
+ import { fetchAllPagesComplete } from '@/lib/wordpress-api'[m
+ import { fetchAllProductsComplete } from '@/lib/woocommerce-api'[m
+[32m+[m[32mimport { getAllTools } from '@/lib/tools-data'[m
+ [m
+ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://seordp.net'[m
+ [m
+[36m@@ -109,7 +110,16 @@[m [mexport default async function sitemap(): Promise<MetadataRoute.Sitemap> {[m
+     priority: 0.8,[m
+   }))[m
+ [m
+[32m+[m[32m  // Fetch static tools[m
+[32m+[m[32m  const tools = getAllTools()[m
+[32m+[m[32m  const toolEntries: MetadataRoute.Sitemap = (tools || []).map((tool) => ({[m
+[32m+[m[32m    url: `${SITE_URL}/${tool.slug}`,[m
+[32m+[m[32m    lastModified: new Date(), // Static tools, use current date[m
+[32m+[m[32m    changeFrequency: 'monthly' as const,[m
+[32m+[m[32m    priority: 0.8, // Same priority as products[m
+[32m+[m[32m  }))[m
+[32m+[m
+   // Combine all entries[m
+[31m-  return [...staticPages, ...pageEntries, ...postEntries, ...productEntries][m
+[32m+[m[32m  return [...staticPages, ...pageEntries, ...postEntries, ...productEntries, ...toolEntries][m
+ }[m
+ [m

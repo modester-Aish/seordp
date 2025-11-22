@@ -16,6 +16,7 @@ import {
   getProductButtonText,
 } from '@/lib/woocommerce-api';
 import { getBuyNowUrl } from '@/lib/product-ids';
+import { generateCanonicalUrl } from '@/lib/canonical';
 
 interface PageProps {
   params: {
@@ -52,6 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: product.name,
       description: product.short_description.replace(/<[^>]*>/g, ''),
       type: 'website',
+      url: `https://seordp.net/${params.slug}`,
       images: imageUrl ? [{ url: imageUrl }] : [],
     },
     twitter: {
@@ -59,6 +61,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: product.name,
       description: product.short_description.replace(/<[^>]*>/g, ''),
       images: imageUrl ? [imageUrl] : [],
+    },
+    alternates: {
+      canonical: generateCanonicalUrl(`/${params.slug}`),
     },
   };
 }

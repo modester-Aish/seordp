@@ -14,6 +14,7 @@ import {
   getReadingTime,
   getExcerpt,
 } from '@/lib/wordpress-api';
+import { generateCanonicalUrl } from '@/lib/canonical';
 
 interface PageProps {
   params: {
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description: excerpt,
       type: 'article',
+      url: `https://seordp.net/${params.slug}`,
       publishedTime: post.date,
       modifiedTime: post.modified,
       images: imageUrl ? [{ url: imageUrl }] : [],
@@ -60,6 +62,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description: excerpt,
       images: imageUrl ? [imageUrl] : [],
+    },
+    alternates: {
+      canonical: generateCanonicalUrl(`/${params.slug}`),
     },
   };
 }

@@ -57,7 +57,7 @@ export async function loadHomepageProducts(): Promise<HomepageProduct[]> {
           return data.products;
         }
       } catch (error) {
-        console.log('Static file not found, using WordPress API');
+        // Static file not found, using API fallback
       }
     }
     
@@ -101,7 +101,7 @@ export async function loadHomepageCategories(): Promise<HomepageCategory[]> {
           return data.categories;
         }
       } catch (error) {
-        console.log('Static file not found, using WordPress API');
+        // Static file not found, using API fallback
       }
     }
     

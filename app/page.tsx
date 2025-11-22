@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'SEORDP Team' }],
   creator: 'SEORDP',
   publisher: 'SEORDP',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL('https://seordp.net'),
   alternates: { canonical: generateCanonicalUrl('/') },
   robots: {
     index: true,
