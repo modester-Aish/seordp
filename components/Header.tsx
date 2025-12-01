@@ -5,6 +5,7 @@ import { ShoppingCart, Menu, ChevronDown, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cleanPageTitle } from '@/lib/html-utils';
 import { getAllTools, Tool } from '@/lib/tools-data';
+import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 
 interface HeaderProps {
   pages?: Array<{ id: number; slug: string; title: { rendered: string } }>;
@@ -65,7 +66,7 @@ export default function Header({ pages = [] }: HeaderProps) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [toolsByCategory, setToolsByCategory] = useState<Record<string, Tool[]>>({});
 
-  // Load tools on client-side only to avoid SSR issues
+  // Load tools and group by category
   useEffect(() => {
     const tools = getAllTools();
     setAllTools(tools);
@@ -81,6 +82,23 @@ export default function Header({ pages = [] }: HeaderProps) {
     }, {} as Record<string, Tool[]>);
     setToolsByCategory(grouped);
   }, []);
+
+  // Get tool link - use static redirect mapping from tool-product-redirects.ts
+  const getToolLink = (toolId: string, toolSlug?: string): string => {
+    if (toolSlug) {
+      // Check static redirect mapping first (instant, no API call)
+      const productSlug = getToolProductRedirect(toolSlug);
+      if (productSlug) {
+        // Static redirect exists - use product slug directly (actual product link)
+        return `/${productSlug}`;
+      }
+      // No redirect - use tool slug
+      return `/${toolSlug}`;
+    }
+    
+    // Final fallback: use tool id
+    return `/${toolId}`;
+  };
 
   // Pricing Plans data (static plans)
   const pricingPlans = [
@@ -187,16 +205,19 @@ export default function Header({ pages = [] }: HeaderProps) {
                                     {category}
                                   </h4>
                                   <div className="space-y-1">
-                                    {tools.map((tool) => (
-                                      <Link
-                                        key={tool.id}
-                                        href={`/${tool.slug}`}
-                                        className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg group/item"
-                                      >
-                                        <span className="group-hover/item:pl-1 transition-all">{tool.name}</span>
-                                        <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
-                                      </Link>
-                                    ))}
+                                    {tools.map((tool) => {
+                                      const linkHref = getToolLink(tool.id, tool.slug);
+                                      return (
+                                        <Link
+                                          key={tool.id}
+                                          href={linkHref}
+                                          className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 transition-all rounded-lg group/item"
+                                        >
+                                          <span className="group-hover/item:pl-1 transition-all">{tool.name}</span>
+                                          <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
+                                        </Link>
+                                      );
+                                    })}
                                   </div>
                                 </div>
                               ))}
@@ -387,17 +408,20 @@ export default function Header({ pages = [] }: HeaderProps) {
                           <div className="px-4 py-1 text-xs font-semibold text-slate-500 uppercase">
                             {category}
                           </div>
-                          {tools.map((tool) => (
-                            <Link
-                              key={tool.id}
-                              href={`/${tool.slug}`}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                              className="flex items-center justify-between px-4 py-2 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
-                            >
-                              <span>{tool.name}</span>
-                              <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
-                            </Link>
-                          ))}
+                          {tools.map((tool) => {
+                            const linkHref = getToolLink(tool.id, tool.slug);
+                            return (
+                              <Link
+                                key={tool.id}
+                                href={linkHref}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="flex items-center justify-between px-4 py-2 text-sm text-slate-300 hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                              >
+                                <span>{tool.name}</span>
+                                <span className="text-xs text-teal-500 font-semibold">{tool.price}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       ))}
                     </div>

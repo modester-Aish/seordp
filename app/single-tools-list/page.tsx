@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllTools } from '@/lib/tools-data';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 import { ShoppingCart } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -21,6 +22,22 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600; // Revalidate every hour
+
+// Get tool link - use static redirect mapping from tool-product-redirects.ts
+function getToolLink(toolId: string, toolSlug?: string): string {
+  if (toolSlug) {
+    // Check static redirect mapping first (instant, no API call)
+    const productSlug = getToolProductRedirect(toolSlug);
+    if (productSlug) {
+      // Static redirect exists - use product slug directly (actual product link)
+      return `/${productSlug}`;
+    }
+    // No redirect - use tool slug
+    return `/${toolSlug}`;
+  }
+  // Final fallback: use tool id
+  return `/${toolId}`;
+}
 
 export default async function SingleToolsListPage() {
   const tools = getAllTools();
@@ -78,7 +95,7 @@ export default async function SingleToolsListPage() {
                       className="card-gradient group relative overflow-hidden h-full flex flex-col rounded-xl border border-slate-700 hover:border-teal-500 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/20"
                     >
                       {/* Tool Image */}
-                      <Link href={`/${tool.slug}`} className="relative w-full h-40 overflow-hidden bg-slate-800">
+                      <Link href={getToolLink(tool.id, tool.slug)} className="relative w-full h-40 overflow-hidden bg-slate-800">
                         {tool.image ? (
                           <Image
                             src={tool.image}
@@ -96,7 +113,7 @@ export default async function SingleToolsListPage() {
 
                       {/* Tool Info */}
                       <div className="p-5 flex flex-col flex-1">
-                        <Link href={`/${tool.slug}`}>
+                        <Link href={getToolLink(tool.id, tool.slug)}>
                           <h3 className="text-lg font-bold text-white mb-2 transition-colors group-hover:text-teal-400 line-clamp-2 min-h-[3rem]">
                             {tool.name}
                           </h3>

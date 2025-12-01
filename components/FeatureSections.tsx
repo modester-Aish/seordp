@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 
 export default function FeatureSections() {
   return (
@@ -42,7 +43,7 @@ export default function FeatureSections() {
                 Access to Premium SEO Tools
               </h3>
               <p className="text-lg text-slate-600 leading-relaxed">
-                <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO group buy tools</a> provide access to premium SEO tools that offer advanced features and functionalities. These tools are typically expensive when purchased individually, but with <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">group buy access</a>, users can leverage the power of these premium tools like <Link href="/ahrefs" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Ahrefs</strong></Link>, <Link href="/semrush" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEMrush</strong></Link>, <Link href="/moz" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Moz Pro</strong></Link>, and more without breaking the bank.
+                <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">SEO group buy tools</a> provide access to premium SEO tools that offer advanced features and functionalities. These tools are typically expensive when purchased individually, but with <a href="https://seotoolsgroupbuy.us" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 underline font-semibold">group buy access</a>, users can leverage the power of these premium tools like <Link href="/ahrefs-group-buy" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Ahrefs</strong></Link>, <Link href="/semrush-group-buy" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>SEMrush</strong></Link>, <Link href="/moz-group-buy" className="text-teal-600 hover:text-teal-700 underline font-semibold"><strong>Moz Pro</strong></Link>, and more without breaking the bank.
               </p>
             </div>
 

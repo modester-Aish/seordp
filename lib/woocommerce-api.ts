@@ -85,7 +85,7 @@ export async function fetchAllProducts(
     return {
       data: filteredData,
       error: null,
-      total: filteredData.length, // Update total to reflect filtered count
+      total: parseInt(response.headers['x-wp-total'] || filteredData.length.toString()), // Use API total from headers
       totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
     };
   } catch (error: any) {

@@ -3,8 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ShoppingCart, Star, Check, ArrowLeft } from 'lucide-react';
+import { ShoppingCart, Star, Check, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Tool } from '@/lib/tools-data';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { matchToolToProduct } from '@/lib/tool-product-matcher';
+import { WooCommerceProduct } from '@/types/wordpress';
+import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 
 interface ToolDetailClientProps {
   tool: Tool;
@@ -15,11 +19,37 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
   const [purchaseCount, setPurchaseCount] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isClient, setIsClient] = useState(false);
+  const [matchedProductSlug, setMatchedProductSlug] = useState<string | null>(null);
 
   useEffect(() => {
     setIsClient(true);
     setPurchaseCount(Math.floor(Math.random() * 70) + 30);
-  }, []);
+    
+    // Fetch products and match with tool
+    const loadProductMatch = async () => {
+      try {
+        // First check static redirect mapping
+        const staticRedirect = getToolProductRedirect(tool.slug);
+        if (staticRedirect) {
+          setMatchedProductSlug(staticRedirect);
+          return;
+        }
+        
+        // Fallback: Dynamic matching via API
+        const { data: products } = await fetchAllProductsComplete();
+        if (products && products.length > 0) {
+          const matchedProduct = matchToolToProduct(tool, products);
+          if (matchedProduct && matchedProduct.status === 'publish') {
+            setMatchedProductSlug(matchedProduct.slug);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading product match for tool:', error);
+      }
+    };
+    
+    loadProductMatch();
+  }, [tool]);
 
   const price = parseFloat(tool.price.replace('$', ''));
   const originalPrice = parseFloat(tool.originalPrice.replace('$', ''));
@@ -100,6 +130,17 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
 
                 {/* Tool Name */}
                 <h1 className="text-5xl font-bold text-white mb-4">{tool.name}</h1>
+
+                {/* View Product Details Page Button - Prominent placement */}
+                {matchedProductSlug && (
+                  <Link
+                    href={`/${matchedProductSlug}`}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-base transition-all duration-300 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-teal-600 text-white hover:scale-105 shadow-lg mb-4"
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                    View Product Details Page
+                  </Link>
+                )}
 
                 {/* Rating */}
                 <div className="mb-6 flex items-center gap-2">

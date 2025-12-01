@@ -1,21 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
 import { WooCommerceProduct } from '@/types/wordpress';
 
 interface ProductsClientProps {
-  products: WooCommerceProduct[];
+  initialProducts: WooCommerceProduct[]; // Saari products server-side se load ho chuki hain
+  totalProducts: number; // Total count for pagination info
 }
 
 const PRODUCTS_PER_PAGE = 20; // 4 per row x 5 rows
 
-export default function ProductsClient({ products }: ProductsClientProps) {
+export default function ProductsClient({ initialProducts, totalProducts }: ProductsClientProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  
+  // Saari products already server-side se load ho chuki hain
+  const products = initialProducts;
 
-  // Filter products based on search query
+  // Filter products based on search query (client-side, saari products available)
   const filteredProducts = products.filter(product => {
     if (!searchQuery) return true;
     
@@ -27,11 +31,18 @@ export default function ProductsClient({ products }: ProductsClientProps) {
     return name.includes(query) || description.includes(query) || categories.includes(query);
   });
 
-  // Calculate pagination
+  // Calculate pagination - saari products already loaded hain
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = startIndex + PRODUCTS_PER_PAGE;
   const currentProducts = filteredProducts.slice(startIndex, endIndex);
+  
+  // Reset to page 1 if current page is out of bounds
+  useEffect(() => {
+    if (totalPages > 0 && currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
 
   // Reset to page 1 when search changes
   const handleSearchChange = (value: string) => {
@@ -109,7 +120,7 @@ export default function ProductsClient({ products }: ProductsClientProps) {
               ))}
             </div>
 
-            {/* Pagination Controls */}
+            {/* Pagination Controls - Show if we have more than one page */}
             {totalPages > 1 && (
               <div className="mt-12 flex items-center justify-center gap-2">
                 {/* Previous Button */}

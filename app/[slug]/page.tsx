@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchProductBySlug, fetchAllProducts } from '@/lib/woocommerce-api';
@@ -8,14 +8,15 @@ import { cleanWordPressContent } from '@/lib/content-parser';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
 import ProductDetailClient from '@/components/ProductDetailClient';
-import { getToolBySlug } from '@/lib/tools-data';
 import ToolDetailClient from '@/components/ToolDetailClient';
+import { getToolBySlug, getAllTools } from '@/lib/tools-data';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 import { matchToolToProduct, getToolProductSlug } from '@/lib/tool-product-matcher';
+import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 
 // Force dynamic rendering to avoid build timeouts
 export const dynamic = 'force-dynamic';
-export const revalidate = 60; // Revalidate every 60 seconds (1 minute)
+export const revalidate = 300; // Revalidate every 5 minutes (better caching for faster loads)
 
 interface PageProps {
   params: {
@@ -37,32 +38,82 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Try static tool first
     const tool = getToolBySlug(slug);
     if (tool) {
-      // Check if tool has matching product - but still use tool slug for canonical
+      // FIRST: Check static redirect map (instant, accurate for known tools)
+      const staticRedirect = getToolProductRedirect(tool.slug);
+      if (staticRedirect) {
+        try {
+          const { data: product } = await fetchProductBySlug(staticRedirect);
+          if (product && product.status === 'publish') {
+            // Use static redirect product (accurate)
+            const cleanDescription = (product.short_description || product.description || tool.description || '')
+              .replace(/<[^>]*>/g, '')
+              .substring(0, 160);
+            
+            return {
+              title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
+              description: cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`,
+              keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy tools`,
+              openGraph: {
+                title: `${product.name} - Premium Group Buy Access`,
+                description: cleanDescription || tool.description,
+                type: 'website',
+                url: `https://seordp.net/${staticRedirect}`,
+              },
+              alternates: {
+                canonical: generateCanonicalUrl(`/${staticRedirect}`),
+              },
+            };
+          }
+        } catch (error) {
+          // Product doesn't exist - fall through to dynamic matching
+        }
+      }
+      
+      // SECOND: Use DYNAMIC matching as fallback (for tools not in static map)
       let matchedProduct = null;
       try {
         const { data: allProducts } = await fetchAllProductsComplete();
         if (allProducts && allProducts.length > 0) {
           matchedProduct = matchToolToProduct(tool, allProducts);
+          if (matchedProduct && matchedProduct.status === 'publish') {
+            // Tool matches a product - use product slug for canonical
+            const cleanDescription = (matchedProduct.short_description || matchedProduct.description || tool.description || '')
+              .replace(/<[^>]*>/g, '')
+              .substring(0, 160);
+            
+            return {
+              title: `${matchedProduct.name} - Group Buy SEO Tool at ${matchedProduct.price} | SEORDP`,
+              description: cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`,
+              keywords: `${matchedProduct.name} group buy, ${matchedProduct.name} cheap, ${matchedProduct.name} discount, buy ${matchedProduct.name}, seo tools, group buy tools`,
+              openGraph: {
+                title: `${matchedProduct.name} - Premium Group Buy Access`,
+                description: cleanDescription || tool.description,
+                type: 'website',
+                url: `https://seordp.net/${matchedProduct.slug}`,
+              },
+              alternates: {
+                canonical: generateCanonicalUrl(`/${matchedProduct.slug}`),
+              },
+            };
+          }
         }
       } catch (error) {
         // Continue with tool metadata if product fetch fails
       }
       
-      const discountPercent = Math.round(((parseFloat(tool.originalPrice.replace('$', '')) - parseFloat(tool.price.replace('$', ''))) / parseFloat(tool.originalPrice.replace('$', ''))) * 100);
-      
-      // Always use tool slug for canonical URL (even if product matches)
+      // No matching product - return tool metadata (TOOL DETAIL PAGE)
       return {
-        title: `${tool.name} - Group Buy at ${tool.price} | SEORDP`,
-        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price} (${tool.originalPrice} original price). Save ${discountPercent}% with group buy access.`,
+        title: `${tool.name} - Group Buy SEO Tool at ${tool.price} | SEORDP`,
+        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price}. 24/7 support, 99% uptime guarantee.`,
         keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
         openGraph: {
           title: `${tool.name} - Premium Group Buy Access`,
           description: tool.description,
           type: 'website',
-          url: `https://seordp.net/${slug}`, // Keep tool slug in URL
+          url: `https://seordp.net/${tool.slug}`,
         },
         alternates: {
-          canonical: generateCanonicalUrl(`/${slug}`), // Always use tool slug for canonical
+          canonical: generateCanonicalUrl(`/${tool.slug}`),
         },
       };
     }
@@ -142,37 +193,56 @@ export default async function UnifiedPage({ params }: PageProps) {
     notFound();
   }
   
-  // Try static tool first
+  // Try static tool first - if tool exists, redirect to product OR show 404
   const tool = getToolBySlug(slug);
   
-  // If tool exists, check if it has a matching product - if yes, show product page instead
+  // If tool exists, check if it has a matching product - if yes, REDIRECT to product slug
+  // If no match found, show 404 (NO TOOL DETAIL PAGES)
   if (tool) {
-    // Only check for matching product if we need to - otherwise show tool page directly
+    // FIRST: Check static redirect map (instant, accurate for known tools)
+    const staticRedirect = getToolProductRedirect(tool.slug);
+    if (staticRedirect) {
+      // Verify product exists before redirecting
+      try {
+        const { data: product } = await fetchProductBySlug(staticRedirect);
+        if (product && product.status === 'publish') {
+          redirect(`/${staticRedirect}`); // Use static redirect (accurate)
+          return; // Exit early
+        }
+      } catch (error) {
+        // Product doesn't exist - fall through to dynamic matching
+      }
+    }
+    
+    // SECOND: Use DYNAMIC matching as fallback (for tools not in static map)
     try {
       const { data: allProducts } = await fetchAllProductsComplete();
       if (allProducts && allProducts.length > 0) {
         const matchedProduct = matchToolToProduct(tool, allProducts);
         if (matchedProduct && matchedProduct.status === 'publish') {
-          // Tool has a matching product - show product page instead
-          try {
-            const { data: allProductsForRelated } = await fetchAllProducts(1, 8);
-            const relatedProducts = allProductsForRelated?.filter(p => 
-              p.id !== matchedProduct.id && 
-              p.categories?.some(cat => matchedProduct.categories?.some(pCat => pCat.id === cat.id))
-            ) || [];
-            
-            return <ProductDetailClient product={matchedProduct} relatedProducts={relatedProducts} />;
-          } catch (error) {
-            return <ProductDetailClient product={matchedProduct} relatedProducts={[]} />;
-          }
+          // Tool has a matching product - REDIRECT to product slug (URL bar will show product slug)
+          redirect(`/${matchedProduct.slug}`);
+          return; // Exit early
         }
       }
     } catch (error) {
-      // If product fetch fails, continue with tool page - don't break for existing tools
+      // If product fetch fails, show 404
     }
     
-    // No matching product found OR product fetch failed - show original tool detail page
-    return <ToolDetailClient tool={tool} />;
+      // No matching product found - show TOOL DETAIL PAGE for unmatched tools
+      // Get related tools from same category
+      try {
+        const allTools = getAllTools();
+        const relatedTools = allTools.filter(t => 
+          t.id !== tool.id && 
+          t.category === tool.category
+        ).slice(0, 8);
+        
+        return <ToolDetailClient tool={tool} relatedTools={relatedTools} />;
+      } catch (error) {
+        // If related tools fetch fails, still render the tool
+        return <ToolDetailClient tool={tool} relatedTools={[]} />;
+      }
   }
   
   // Try to fetch as product second (with error handling)
@@ -180,6 +250,9 @@ export default async function UnifiedPage({ params }: PageProps) {
   try {
     const { data: product, error: productError } = await fetchProductBySlug(slug);
     if (product && product.status === 'publish') {
+      // Product found - render product page directly (no redirect)
+      // Tool links already redirect to product slugs, so product page is the canonical URL
+      
       // Fetch related products from same category
       try {
         const { data: allProducts } = await fetchAllProducts(1, 8);
@@ -221,9 +294,11 @@ export default async function UnifiedPage({ params }: PageProps) {
           slugNormalized.includes(productNameNormalized) ||
           productNameNormalized.includes(slugNormalized)
         ) {
-          // Found a matching product - show it
+          // Found a matching product - check if it matches a tool first
           const minLength = Math.min(slugNormalized.length, productNameNormalized.length);
           if (minLength >= 3) {
+            // Product found - render product page directly
+            // Tool links already redirect to product slugs, so product page is the canonical URL
             try {
               const { data: allProductsForRelated } = await fetchAllProducts(1, 8);
               const relatedProducts = allProductsForRelated?.filter(p => 

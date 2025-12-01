@@ -21,10 +21,10 @@ function normalizeForMatching(str: string): string {
  * Extract keywords from a string (remove common words, keep meaningful terms)
  */
 function extractKeywords(str: string): string[] {
-  const commonWords = ['pro', 'premium', 'plus', 'group', 'buy', 'access', 'tool', 'tools', 'service', 'services', 'plan', 'subscription', 'subscriptions'];
+  const commonWords = ['pro', 'premium', 'plus', 'group', 'buy', 'access', 'tool', 'tools', 'service', 'services', 'plan', 'subscription', 'subscriptions', 'combo', 'package', 'pack', 'private'];
   const normalized = normalizeForMatching(str);
   
-  // Split by common separators and filter
+  // Split by common separators and filter - more aggressive matching
   const words = normalized
     .split(/[\s\-_]+/)
     .filter(word => word.length >= 2 && !commonWords.includes(word));
@@ -33,7 +33,46 @@ function extractKeywords(str: string): string[] {
 }
 
 /**
- * Match tool with product by name/slug
+ * More aggressive matching - check if ANY meaningful keyword matches
+ * Very lenient - ANY keyword match will trigger (as requested)
+ */
+function hasMatchingKeyword(toolKeywords: string[], productKeywords: string[]): boolean {
+  if (toolKeywords.length === 0 || productKeywords.length === 0) return false;
+  
+  // Check for any keyword match (even partial) - VERY AGGRESSIVE
+  for (const toolKw of toolKeywords) {
+    if (toolKw.length < 2) continue; // Only skip single character keywords
+    
+    for (const productKw of productKeywords) {
+      if (productKw.length < 2) continue;
+      
+      // Direct match (any length)
+      if (toolKw === productKw) return true;
+      
+      // Partial match - if one contains the other (VERY aggressive)
+      if (toolKw.includes(productKw) || productKw.includes(toolKw)) {
+        // Very lenient - minimum 2 chars
+        const minLength = Math.min(toolKw.length, productKw.length);
+        if (minLength >= 2) {
+          return true;
+        }
+      }
+      
+      // Check for similar keywords (e.g., semrush vs semrushgroupbuy)
+      if (toolKw.substring(0, 3) === productKw.substring(0, 3) && toolKw.length >= 3 && productKw.length >= 3) {
+        return true;
+      }
+    }
+  }
+  
+  return false;
+}
+
+/**
+ * Match tool with product by name/slug - Find BEST match, not first match
+ * Returns the best matching product based on priority:
+ * 1. Exact matches (highest priority)
+ * 2. Best partial matches (shortest slug = better)
  */
 export function matchToolToProduct(
   tool: Tool,
@@ -44,94 +83,82 @@ export function matchToolToProduct(
   const toolNameNormalized = normalizeForMatching(tool.name);
   const toolSlugNormalized = normalizeForMatching(tool.slug);
 
-  // Try to find a match
+  let bestMatch: WooCommerceProduct | null = null;
+  let bestMatchScore = 0;
+
+  // Check all products and find the BEST match
   for (const product of products) {
+    if (product.status !== 'publish') continue;
+    
     const productNameNormalized = normalizeForMatching(product.name);
     const productSlugNormalized = normalizeForMatching(product.slug);
+    let matchScore = 0;
 
-    // Exact slug match
+    // 1. Exact slug match (HIGHEST PRIORITY - Score: 100)
     if (toolSlugNormalized === productSlugNormalized) {
-      return product;
+      return product; // Return immediately for exact match
     }
 
-    // Exact name match
+    // 2. Exact name match (HIGHEST PRIORITY - Score: 95)
     if (toolNameNormalized === productNameNormalized) {
-      return product;
+      return product; // Return immediately for exact match
     }
 
-    // Partial slug match (tool slug contains product slug or vice versa)
-    if (
-      toolSlugNormalized.includes(productSlugNormalized) ||
-      productSlugNormalized.includes(toolSlugNormalized)
-    ) {
-      // Additional check: ensure they're actually related (not just random substring)
+    // 3. Tool slug matches product slug (Score: 80-90)
+    // Check if product slug starts with tool slug + "group-buy" (PREFERRED PATTERN)
+    if (productSlugNormalized.startsWith(toolSlugNormalized) && 
+        productSlugNormalized.includes('group') && 
+        productSlugNormalized.includes('buy')) {
+      // Prefer shorter slugs (e.g., moz-group-buy over moz-pro-group-buy)
+      const extraLength = productSlugNormalized.length - toolSlugNormalized.length;
+      // Score decreases if extra length is too much (prefer shorter)
+      matchScore = extraLength <= 12 ? 90 : (extraLength <= 18 ? 85 : 80);
+    }
+    // Check if product slug starts with tool slug (Score: 70)
+    else if (productSlugNormalized.startsWith(toolSlugNormalized) && 
+             productSlugNormalized.length <= toolSlugNormalized.length + 15) {
+      matchScore = 70;
+    }
+    // Tool slug contains product slug or vice versa (Score: 60)
+    else if (productSlugNormalized.includes(toolSlugNormalized) || 
+             toolSlugNormalized.includes(productSlugNormalized)) {
       const minLength = Math.min(toolSlugNormalized.length, productSlugNormalized.length);
       if (minLength >= 3) {
-        return product;
+        matchScore = 60;
       }
     }
 
-    // Partial name match (for cases like "AHREF$" matching "Ahrefs")
-    if (
-      toolNameNormalized.includes(productNameNormalized) ||
-      productNameNormalized.includes(toolNameNormalized)
-    ) {
+    // 4. Name matching (Score: 50)
+    if (productNameNormalized.includes(toolNameNormalized) || 
+        toolNameNormalized.includes(productNameNormalized)) {
       const minLength = Math.min(toolNameNormalized.length, productNameNormalized.length);
-      if (minLength >= 4) {
-        // Additional check: check if key parts match
-        const toolKeywords = toolNameNormalized.split(/\s+/).filter(w => w.length >= 3);
-        const productKeywords = productNameNormalized.split(/\s+/).filter(w => w.length >= 3);
-        
-        if (toolKeywords.some(kw => productKeywords.includes(kw))) {
-          return product;
-        }
+      if (minLength >= 3 && matchScore < 50) {
+        matchScore = 50;
       }
     }
-    
-    // Keyword-based matching - extract meaningful keywords and match
+
+    // 5. Keyword matching (Score: 40)
     const toolKeywords = extractKeywords(tool.name + ' ' + tool.slug);
     const productKeywords = extractKeywords(product.name + ' ' + product.slug);
-    
-    // Check if any tool keyword matches any product keyword
-    if (toolKeywords.length > 0 && productKeywords.length > 0) {
-      const matchingKeywords = toolKeywords.filter(kw => 
-        productKeywords.some(pkw => 
-          kw === pkw || 
-          kw.includes(pkw) || 
-          pkw.includes(kw)
-        )
-      );
-      
-      // If we have at least one matching keyword (and it's meaningful - at least 3 chars)
-      if (matchingKeywords.length > 0 && matchingKeywords.some(kw => kw.length >= 3)) {
-        return product;
-      }
+    if (hasMatchingKeyword(toolKeywords, productKeywords) && matchScore < 40) {
+      matchScore = 40;
     }
-    
-    // Also check if normalized tool name/slug contains product keywords or vice versa
-    for (const toolKw of toolKeywords) {
-      if (toolKw.length >= 3) {
-        for (const productKw of productKeywords) {
-          if (productKw.length >= 3) {
-            // Direct keyword match
-            if (toolKw === productKw) {
-              return product;
-            }
-            // Keyword contained in other
-            if (toolKw.includes(productKw) || productKw.includes(toolKw)) {
-              // Ensure minimum length to avoid false positives
-              const minKwLength = Math.min(toolKw.length, productKw.length);
-              if (minKwLength >= 3) {
-                return product;
-              }
-            }
-          }
-        }
+
+    // Update best match if this is better
+    if (matchScore > bestMatchScore) {
+      bestMatchScore = matchScore;
+      bestMatch = product;
+    }
+    // If same score, prefer shorter slug (e.g., moz-group-buy over moz-pro-group-buy)
+    else if (matchScore === bestMatchScore && matchScore > 0 && bestMatch) {
+      if (product.slug.length < bestMatch.slug.length) {
+        bestMatch = product;
       }
     }
   }
 
-  return null;
+  // Only return if we found a good match (score >= 40)
+  return bestMatchScore >= 40 ? bestMatch : null;
 }
 
 /**

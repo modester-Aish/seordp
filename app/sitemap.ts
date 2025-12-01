@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import { fetchAllPagesComplete } from '@/lib/wordpress-api'
 import { fetchAllProductsComplete, isExcludedDuplicate } from '@/lib/woocommerce-api'
 import { getAllTools } from '@/lib/tools-data'
+import { matchToolToProduct } from '@/lib/tool-product-matcher'
+import { getToolProductRedirect } from '@/lib/tool-product-redirects'
 
 const SITE_URL = 'https://seordp.net'
 
@@ -81,6 +83,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/single-tools-list`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
   ]
 
   // Fetch WordPress pages with validation
@@ -130,14 +138,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
   // Fetch static tools with validation
+  // IMPORTANT: Only include unmatched tools (tools that don't redirect to products)
+  // Matched tools redirect to products, so their URLs shouldn't be in sitemap
+  // Unmatched tools have their own detail pages, so include them
   const tools = getAllTools()
   const toolEntries: MetadataRoute.Sitemap = (tools || [])
-    .filter((tool) => tool?.slug && tool.slug.trim() !== '') // Filter invalid slugs
+    .filter((tool) => {
+      // Filter invalid slugs
+      if (!tool?.slug || tool.slug.trim() === '') return false
+      
+      // FIRST: Check static redirect map (fastest check)
+      // If tool has a static redirect, exclude it from sitemap (it redirects to product)
+      const staticRedirect = getToolProductRedirect(tool.slug)
+      if (staticRedirect) {
+        return false // Tool redirects to product - exclude from sitemap
+      }
+      
+      // SECOND: Use dynamic matching as fallback (for tools not in static map)
+      // If tool matches a product, exclude it from sitemap (use product URL instead)
+      if (products && products.length > 0) {
+        const matchedProduct = matchToolToProduct(tool, products)
+        // If tool matches a product, exclude it from sitemap
+        if (matchedProduct && matchedProduct.status === 'publish') {
+          return false
+        }
+      }
+      
+      // Tool doesn't match any product - include it in sitemap (unmatched tool detail page)
+      return true
+    })
     .map((tool) => ({
       url: `${SITE_URL}/${tool.slug}`,
       lastModified: new Date(), // Static tools, use current date
       changeFrequency: 'monthly' as const,
-      priority: 0.8, // Same priority as products
+      priority: 0.8, // Same priority as products (since they have detail pages now)
     }))
 
   // Combine all entries and remove duplicates

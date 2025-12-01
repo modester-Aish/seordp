@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
-import ProductCard from '@/components/ProductCard';
 import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {
@@ -22,10 +21,33 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function ProductsPage() {
-  const { data: productsData, error } = await fetchAllProductsComplete();
+  // Fetch ALL products server-side - saari products load karo
+  const { data: allProducts, error, total } = await fetchAllProductsComplete();
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-16">
+        <div className="card-gradient p-8 text-center max-w-md">
+          <h2 className="mb-2 text-2xl font-bold text-white">Error Loading Products</h2>
+          <p className="text-red-400">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!allProducts || allProducts.length === 0) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-16">
+        <div className="card-gradient p-8 text-center max-w-md">
+          <h2 className="mb-2 text-2xl font-bold text-white">No Products Found</h2>
+          <p className="text-slate-400">Check back later for new products!</p>
+        </div>
+      </div>
+    );
+  }
 
   // Move "AI Content Labs Group Buy" to the end
-  let products = productsData;
+  let products = allProducts;
   if (products && products.length > 0) {
     const aiContentLabsIndex = products.findIndex(p => 
       p.name.toLowerCase().includes('ai content labs')
@@ -39,28 +61,6 @@ export default async function ProductsPage() {
         aiContentLabs
       ];
     }
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-16">
-        <div className="card-gradient p-8 text-center max-w-md">
-          <h2 className="mb-2 text-2xl font-bold text-white">Error Loading Products</h2>
-          <p className="text-red-400">{error}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!products || products.length === 0) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4 py-16">
-        <div className="card-gradient p-8 text-center max-w-md">
-          <h2 className="mb-2 text-2xl font-bold text-white">No Products Found</h2>
-          <p className="text-slate-400">Check back later for new products!</p>
-        </div>
-      </div>
-    );
   }
 
   return (
@@ -92,8 +92,8 @@ export default async function ProductsPage() {
         </div>
       </section>
 
-      {/* Products with Search */}
-      <ProductsClient products={products} />
+      {/* Products with Search - Saari products server-side se load ho chuki hain */}
+      <ProductsClient initialProducts={products} totalProducts={total || products.length} />
     </div>
   );
 }

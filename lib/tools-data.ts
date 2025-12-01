@@ -12,7 +12,42 @@ export interface Tool {
 }
 
 export const tools: Tool[] = [
-  // Removed ahrefs, semrush, moz - they now link to WooCommerce product pages
+  {
+    id: 'ahrefs',
+    name: 'AHREF$',
+    price: '$25.00',
+    originalPrice: '$99.00',
+    image: '/tools/ahrefs-logo.svg',
+    description: 'Advanced analysis and optimization toolkit for websites',
+    slug: 'ahrefs',
+    category: 'SEO Tools',
+    features: ['Site Audit', 'Keyword Explorer', 'Site Explorer', 'Content Explorer'],
+    productId: 53
+  },
+  {
+    id: 'semrush',
+    name: 'SEMRU$H',
+    price: '$4.99',
+    originalPrice: '$119.95',
+    image: '/tools/semrush-logo.svg',
+    description: 'Complete digital marketing solution for businesses',
+    slug: 'semrush',
+    category: 'SEO Tools',
+    features: ['Keyword Research', 'Competitor Analysis', 'Site Audit', 'Content Marketing'],
+    productId: 10
+  },
+  {
+    id: 'moz',
+    name: 'Moz Pro',
+    price: '$4.99',
+    originalPrice: '$99.00',
+    image: '/tools/moz-logo.svg',
+    description: 'Professional website optimization and tracking software',
+    slug: 'moz',
+    category: 'SEO Tools',
+    features: ['Keyword Explorer', 'Link Explorer', 'Site Crawl', 'Rank Tracking'],
+    productId: 12
+  },
   {
     id: 'canva',
     name: 'Canva Pro',
