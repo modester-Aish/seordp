@@ -8,34 +8,29 @@ export default function FAQSection() {
 
   const faqs = [
     {
-      question: 'What makes SEORDP different?',
-      answer: 'We provide shared access to premium software at affordable monthly rates. Our platform ensures reliable service with consistent uptime and dedicated customer support.',
-      logo: 'https://img.icons8.com/color/96/star--v1.png'
+      question: 'What Is an SEO Group Buy?',
+      answer: 'SEO group buy allows users to share the cost of SEO tool subscriptions, providing access to premium tools like Ahrefs, Moz, and SEMrush at a lower price.',
+      icon: '❓'
     },
     {
-      question: 'How quickly can I start using the tools?',
-      answer: 'Account activation is instant. Once you complete your purchase, you receive immediate access to your selected tools and services through our secure platform.',
-      logo: 'https://img.icons8.com/color/96/rocket.png'
+      question: 'How Does an SEO Group Buy Work?',
+      answer: 'When you join SEO group buy, you pool resources with other users to share the cost of SEO tools. This gives you access to high-quality tools like Ahrefs and Semrush for less.',
+      icon: '🚀'
     },
     {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards, PayPal, and other secure payment methods. All transactions are encrypted and processed through trusted payment gateways.',
-      logo: 'https://img.icons8.com/color/96/bank-card-back-side.png'
+      question: 'Are Tools Regularly Updated?',
+      answer: 'Yes, SEO group buy tools such as Semrush and Ahrefs are regularly updated to ensure you have access to the latest features and data.',
+      icon: '🔄'
     },
     {
-      question: 'What is your service reliability?',
-      answer: 'Our infrastructure maintains exceptional reliability with multiple backup systems. We monitor all services continuously to ensure smooth operation and minimal downtime.',
-      logo: 'https://img.icons8.com/color/96/shield.png'
+      question: 'Can I Use the Tools for Client Projects?',
+      answer: 'Yes, you can use the tools for both your own projects and your clients\' projects, as long as you comply with our terms.',
+      icon: '💼'
     },
     {
-      question: 'How flexible are the subscriptions?',
-      answer: 'All our plans are month-to-month with complete flexibility. You have full control to upgrade, downgrade, or cancel whenever needed without penalties.',
-      logo: 'https://img.icons8.com/color/96/calendar.png'
-    },
-    {
-      question: 'How can I get help if needed?',
-      answer: 'Our dedicated support team is available around the clock through multiple channels including live chat, email, and ticketing system to assist you promptly.',
-      logo: 'https://img.icons8.com/color/96/chat.png'
+      question: 'How Secure is My Data?',
+      answer: 'We take your privacy seriously. SEO tools group buy at seordp.net are secured with the latest encryption and data protection measures to ensure your information stays safe.',
+      icon: '🔒'
     },
   ];
 
@@ -76,15 +71,11 @@ export default function FAQSection() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full p-6 flex items-start gap-4 text-left transition-all duration-300"
               >
-                {/* Logo */}
-                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center shadow-lg transition-all duration-300 ${
+                {/* Icon */}
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-lg transition-all duration-300 ${
                   openIndex === index ? 'scale-110' : ''
                 }`}>
-                  <img 
-                    src={faq.logo}
-                    alt={faq.question}
-                    className="w-full h-full object-contain"
-                  />
+                  <span className="text-2xl">{faq.icon}</span>
                 </div>
                 
                 {/* Question */}

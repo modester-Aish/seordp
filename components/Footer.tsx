@@ -165,6 +165,17 @@ export default function Footer() {
           <p suppressHydrationWarning>
             © {new Date().getFullYear()} SEORDP. All rights reserved.
           </p>
+          <p className="mt-2">
+            Powered by:{' '}
+            <a 
+              href="https://seotoolsgroupbuy.us" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-teal-400 hover:text-teal-300 transition-colors"
+            >
+              seotoolsgroupbuy.us
+            </a>
+          </p>
         </div>
       </div>
     </footer>

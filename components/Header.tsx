@@ -294,6 +294,13 @@ export default function Header({ pages = [] }: HeaderProps) {
                 Products
               </Link>
               
+              <Link
+                href="/blog"
+                className="text-sm font-medium text-white hover:text-teal-400 transition-colors"
+              >
+                Blog
+              </Link>
+              
               {/* Info/Company Dropdown */}
               {infoPages.length > 0 && (
               <div className="relative group">
@@ -457,6 +464,15 @@ export default function Header({ pages = [] }: HeaderProps) {
                   className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
                 >
                   🛒 Products
+                </Link>
+
+                {/* Blog */}
+                <Link
+                  href="/blog"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-base font-medium text-white hover:bg-teal-500/10 hover:text-teal-400 rounded-lg transition-all"
+                >
+                  📝 Blog
                 </Link>
 
                 {/* Info/Company Pages Section */}
