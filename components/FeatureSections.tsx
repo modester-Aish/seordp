@@ -111,7 +111,7 @@ export default function FeatureSections() {
                   </h4>
                 </div>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  Once you join an SEO group buy at seordp.net, you gain access to a wide range of tools to suit your specific needs. Whether you're focusing on keyword research, backlink analysis, or site audits, our SEO tools group buy platform lets you choose exactly what you need. This versatility ensures you have everything required to build a successful SEO strategy.
+                  Once you join an SEO group buy at seordp.net, you gain access to a wide range of tools to suit your specific needs. Whether you&apos;re focusing on keyword research, backlink analysis, or site audits, our SEO tools group buy platform lets you choose exactly what you need. This versatility ensures you have everything required to build a successful SEO strategy.
                 </p>
               </div>
 
@@ -145,7 +145,7 @@ export default function FeatureSections() {
                 </h3>
               </div>
               <p className="text-xl text-slate-200 leading-relaxed">
-                Buying SEO tools group buy is an investment in your business's success. Whether you're running an SEO agency managing multiple clients or optimizing your own website, having access to premium tools at a fraction of the price can help boost your SEO efforts. seordp.net makes it possible for small businesses, freelancers, and agencies to use top-tier tools without exceeding their budget.
+                Buying SEO tools group buy is an investment in your business&apos;s success. Whether you&apos;re running an SEO agency managing multiple clients or optimizing your own website, having access to premium tools at a fraction of the price can help boost your SEO efforts. seordp.net makes it possible for small businesses, freelancers, and agencies to use top-tier tools without exceeding their budget.
               </p>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default function FeatureSections() {
                   <div className="grid md:grid-cols-3 gap-4">
                     <div className="flex items-start gap-2">
                       <span className="text-red-500 font-bold mt-1">✓</span>
-                      <span className="text-slate-700"><strong>Competitor Traffic Analysis:</strong> Understand where your competitors' traffic is coming from.</span>
+                      <span className="text-slate-700"><strong>Competitor Traffic Analysis:</strong> Understand where your competitors&apos; traffic is coming from.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-red-500 font-bold mt-1">✓</span>
@@ -225,7 +225,7 @@ export default function FeatureSections() {
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-red-500 font-bold mt-1">✓</span>
-                      <span className="text-slate-700"><strong>Content Optimization:</strong> Enhance your on-page SEO with SEMrush's content tools.</span>
+                      <span className="text-slate-700"><strong>Content Optimization:</strong> Enhance your on-page SEO with SEMrush&apos;s content tools.</span>
                     </div>
                   </div>
                 </div>
@@ -289,11 +289,11 @@ export default function FeatureSections() {
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-purple-500 font-bold mt-1">✓</span>
-                      <span className="text-slate-700"><strong>Competitor Insights:</strong> Analyze your competitors' SEO strategies.</span>
+                      <span className="text-slate-700"><strong>Competitor Insights:</strong> Analyze your competitors&apos; SEO strategies.</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-purple-500 font-bold mt-1">✓</span>
-                      <span className="text-slate-700"><strong>Backlink Data:</strong> Gain insights into your competitors' backlink strategies.</span>
+                      <span className="text-slate-700"><strong>Backlink Data:</strong> Gain insights into your competitors&apos; backlink strategies.</span>
                     </div>
                   </div>
                 </div>
@@ -327,7 +327,7 @@ export default function FeatureSections() {
               </div>
               <h3 className="text-4xl md:text-5xl font-bold mb-6">Start Enhancing Your SEO Immediately</h3>
               <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
-                With SEO group buy tools, you can access premium SEO tools at a fraction of the cost. Whether you're looking for keyword research, rank tracking, or backlink analysis, seordp.net has you covered. Start improving your SEO performance today with our top-tier tools!
+                With SEO group buy tools, you can access premium SEO tools at a fraction of the cost. Whether you&apos;re looking for keyword research, rank tracking, or backlink analysis, seordp.net has you covered. Start improving your SEO performance today with our top-tier tools!
               </p>
               <Link 
                 href="/products" 
@@ -366,7 +366,7 @@ export default function FeatureSections() {
               </h3>
             </div>
             <p className="text-lg text-slate-700 mb-6">
-              If you're interested in starting your own SEO group buy tool business, here's how you can get started:
+              If you&apos;re interested in starting your own SEO group buy tool business, here&apos;s how you can get started:
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-200">
