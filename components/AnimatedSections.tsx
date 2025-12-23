@@ -490,14 +490,16 @@ export const PopularToolsSection = () => {
               >
                 <div className="relative z-10 flex flex-col h-full">
                   <div 
-                    className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 ${
+                    className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 relative ${
                       index % 3 === 0 ? 'animate-float' : index % 3 === 1 ? 'animate-float-delay-1' : 'animate-float-delay-2'
                     }`}
                   >
-                    <img
+                    <Image
                       src={tool.image}
                       alt={`${tool.name} - ${tool.description} - Group Buy SEO Tool`}
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain p-2"
+                      sizes="80px"
                     />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2 text-center group-hover:text-teal-400 transition-colors duration-300">{tool.name}</h3>

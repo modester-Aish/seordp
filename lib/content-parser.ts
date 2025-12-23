@@ -208,7 +208,8 @@ export function extractHeadings(content: string): HeadingItem[] {
 
   const headings: HeadingItem[] = [];
   // More flexible regex that handles various HTML formats
-  const headingRegex = /<h([1-6])[^>]*>(.*?)<\/h[1-6]>/gis;
+  // Using [\s\S] instead of . with 's' flag for ES5 compatibility
+  const headingRegex = /<h([1-6])[^>]*>([\s\S]*?)<\/h[1-6]>/gi;
   const usedIds = new Set<string>();
 
   let match;
