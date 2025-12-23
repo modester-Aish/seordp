@@ -9,17 +9,17 @@ export default function FAQSection() {
   const faqs = [
     {
       question: 'What Is an SEO Group Buy?',
-      answer: 'SEO group buy allows users to share the cost of SEO tool subscriptions, providing access to premium tools like Ahrefs, Moz, and SEMrush at a lower price.',
+      answer: 'SEO group buy allows users to share the cost of SEO tool subscriptions, providing access to premium tools like Ahref$, Moz, and SEMru$h at a lower price.',
       icon: '❓'
     },
     {
       question: 'How Does an SEO Group Buy Work?',
-      answer: 'When you join SEO group buy, you pool resources with other users to share the cost of SEO tools. This gives you access to high-quality tools like Ahrefs and Semrush for less.',
+      answer: 'When you join SEO group buy, you pool resources with other users to share the cost of SEO tools. This gives you access to high-quality tools like Ahref$ and Semru$h for less.',
       icon: '🚀'
     },
     {
       question: 'Are Tools Regularly Updated?',
-      answer: 'Yes, SEO group buy tools such as Semrush and Ahrefs are regularly updated to ensure you have access to the latest features and data.',
+      answer: 'Yes, SEO group buy tools such as Semru$h and Ahref$ are regularly updated to ensure you have access to the latest features and data.',
       icon: '🔄'
     },
     {

@@ -29,7 +29,7 @@ export default function FeatureSections() {
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Why Choose SEO Group Buy?</h3>
                 <p className="text-lg text-slate-700 leading-relaxed mb-4">
-                  In the digital world, SEO is a crucial part of growing any business. However, premium SEO group buy tools like SEMrush, Ahrefs, and Moz can be expensive. SEO group buy makes these high-end tools affordable for businesses, freelancers, and small agencies. At seordp.net, we offer access to premium SEO tools group buy to help you improve your SEO strategy without the high costs.
+                  In the digital world, SEO is a crucial part of growing any business. However, premium SEO group buy tools like SEMru$h, Ahref$, and Moz can be expensive. SEO group buy makes these high-end tools affordable for businesses, freelancers, and small agencies. At seordp.net, we offer access to premium SEO tools group buy to help you improve your SEO strategy without the high costs.
                 </p>
                 <p className="text-lg text-slate-700 leading-relaxed">
                   With seordp.net, you can conduct backlink audits, keyword research, site analysis, and more—all through our group buy SEO tools. Join our platform to unlock the tools you need to optimize your website and boost your online presence.
@@ -52,7 +52,7 @@ export default function FeatureSections() {
               </div>
               <div className="space-y-4">
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Group buy SEO tools offer the most affordable way to access top-tier SEO tools. SEO tools group buy, such as SEMrush, Ahrefs, and Moz, are essential for driving higher rankings and traffic. However, the cost of individual subscriptions can be prohibitive for smaller businesses or those just getting started.
+                  Group buy SEO tools offer the most affordable way to access top-tier SEO tools. SEO tools group buy, such as SEMru$h, Ahref$, and Moz, are essential for driving higher rankings and traffic. However, the cost of individual subscriptions can be prohibitive for smaller businesses or those just getting started.
                 </p>
                 <p className="text-lg text-slate-700 leading-relaxed font-medium">
                   At seordp.net, we bring you the best of both worlds—premium tools at an affordable price. Our SEO group buy tools allow you to access the same high-quality tools that professionals use, but without the financial strain.
@@ -81,7 +81,7 @@ export default function FeatureSections() {
                   </h4>
                 </div>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  SEO group buy is an excellent way to get access to premium SEO tools without paying full price. With seordp.net, you can join a group of users to share the cost of tools like Ahrefs and Semrush, making it much more affordable for everyone. This cost-sharing model is perfect for small businesses and freelancers looking to get the most value from their SEO investments.
+                  SEO group buy is an excellent way to get access to premium SEO tools without paying full price. With seordp.net, you can join a group of users to share the cost of tools like Ahref$ and Semru$h, making it much more affordable for everyone. This cost-sharing model is perfect for small businesses and freelancers looking to get the most value from their SEO investments.
                 </p>
               </div>
 
@@ -96,7 +96,7 @@ export default function FeatureSections() {
                   </h4>
                 </div>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  At seordp.net, we provide access to some of the best group buy SEO tools available on the market. Ahrefs, SEMrush, and Moz are essential for keyword research, backlink analysis, rank tracking, and site audits. With our group buy SEO tools, you can use these tools to elevate your SEO efforts.
+                  At seordp.net, we provide access to some of the best group buy SEO tools available on the market. Ahref$, SEMru$h, and Moz are essential for keyword research, backlink analysis, rank tracking, and site audits. With our group buy SEO tools, you can use these tools to elevate your SEO efforts.
                 </p>
               </div>
 
@@ -126,7 +126,7 @@ export default function FeatureSections() {
                   </h4>
                 </div>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  When you join SEO GB Tools through our group buy SEO tools model, you get the same powerful features as you would with individual subscriptions. Tools like Ahrefs group buy and Semrush group buy are used by top SEO professionals to achieve measurable results, and now you can access them too.
+                  When you join SEO GB Tools through our group buy SEO tools model, you get the same powerful features as you would with individual subscriptions. Tools like Ahref$ group buy and Semru$h group buy are used by top SEO professionals to achieve measurable results, and now you can access them too.
                 </p>
               </div>
             </div>
@@ -171,10 +171,10 @@ export default function FeatureSections() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-                      Ahrefs Group Buy
+                      Ahref$ Group Buy
                     </h4>
                     <p className="text-lg text-slate-600 leading-relaxed">
-                      Ahrefs is a powerhouse when it comes to backlink analysis, keyword research, and website audits. With Ahrefs group buy at seordp.net, you can access this incredible tool and unlock a wealth of data to improve your SEO performance.
+                      Ahref$ is a powerhouse when it comes to backlink analysis, keyword research, and website audits. With Ahref$ group buy at seordp.net, you can access this incredible tool and unlock a wealth of data to improve your SEO performance.
                     </p>
                   </div>
                 </div>
@@ -205,10 +205,10 @@ export default function FeatureSections() {
                   </div>
                   <div className="flex-1">
                     <h4 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
-                      SEMrush Group Buy
+                      SEMru$h Group Buy
                     </h4>
                     <p className="text-lg text-slate-600 leading-relaxed">
-                      SEMrush is a comprehensive tool for competitor research, SEO audits, and content optimization. With SEMrush group buy at seordp.net, you get a complete SEO toolkit to analyze competitors, optimize your content, and boost your rankings.
+                      SEMru$h is a comprehensive tool for competitor research, SEO audits, and content optimization. With SEMru$h group buy at seordp.net, you get a complete SEO toolkit to analyze competitors, optimize your content, and boost your rankings.
                     </p>
                   </div>
                 </div>
@@ -225,7 +225,7 @@ export default function FeatureSections() {
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-red-500 font-bold mt-1">✓</span>
-                      <span className="text-slate-700"><strong>Content Optimization:</strong> Enhance your on-page SEO with SEMrush&apos;s content tools.</span>
+                      <span className="text-slate-700"><strong>Content Optimization:</strong> Enhance your on-page SEO with SEMru$h&apos;s content tools.</span>
                     </div>
                   </div>
                 </div>
@@ -310,7 +310,7 @@ export default function FeatureSections() {
                       Other SEO Services
                     </h4>
                     <p className="text-lg text-slate-600">
-                      In addition to Ahrefs, SEMrush, and Moz, we offer many more tools to support all aspects of SEO, including website audits, rank tracking, and social media SEO tools.
+                      In addition to Ahref$, SEMru$h, and Moz, we offer many more tools to support all aspects of SEO, including website audits, rank tracking, and social media SEO tools.
                     </p>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ export default function FeatureSections() {
                   Where Can You Purchase SEO Group Tools?
                 </h3>
                 <p className="text-lg text-slate-600 leading-relaxed">
-                  seordp.net is the perfect place to purchase SEO group buy tools. We offer a secure, reliable, and cost-effective way to access premium SEO tools without the hefty price tag. Join our platform today to gain access to tools like Ahrefs, Semrush, and more.
+                  seordp.net is the perfect place to purchase SEO group buy tools. We offer a secure, reliable, and cost-effective way to access premium SEO tools without the hefty price tag. Join our platform today to gain access to tools like Ahref$, Semru$h, and more.
                 </p>
               </div>
             </div>
@@ -374,7 +374,7 @@ export default function FeatureSections() {
                   1
                 </div>
                 <h4 className="text-xl font-bold text-slate-900 mb-3">Select the Tools</h4>
-                <p className="text-slate-600">Choose high-demand tools like Ahrefs group buy SEO tools and Semrush group buy.</p>
+                <p className="text-slate-600">Choose high-demand tools like Ahref$ group buy SEO tools and Semru$h group buy.</p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-200">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white font-bold text-xl mb-4">

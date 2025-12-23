@@ -178,3 +178,131 @@ export function extractPlainText(html: string): string {
   return text;
 }
 
+/**
+ * Heading Item Interface for Table of Contents
+ */
+export interface HeadingItem {
+  level: number; // 1-6 for H1-H6
+  text: string;
+  id: string;
+}
+
+/**
+ * Generate a slug from text for use as an ID
+ */
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .trim();
+}
+
+/**
+ * Extract headings from HTML content
+ * Returns array of heading items with level, text, and id
+ */
+export function extractHeadings(content: string): HeadingItem[] {
+  if (!content) return [];
+
+  const headings: HeadingItem[] = [];
+  // More flexible regex that handles various HTML formats
+  const headingRegex = /<h([1-6])[^>]*>(.*?)<\/h[1-6]>/gis;
+  const usedIds = new Set<string>();
+
+  let match;
+  // Reset regex lastIndex to avoid issues with multiple calls
+  headingRegex.lastIndex = 0;
+  
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = parseInt(match[1], 10);
+    let text = match[2];
+    
+    // Remove all HTML tags and decode entities
+    text = text.replace(/<[^>]*>/g, '');
+    text = text.replace(/&nbsp;/g, ' ');
+    text = text.replace(/&amp;/g, '&');
+    text = text.replace(/&lt;/g, '<');
+    text = text.replace(/&gt;/g, '>');
+    text = text.replace(/&quot;/g, '"');
+    text = text.trim();
+    
+    if (text && text.length > 0) {
+      let id = slugify(text);
+      
+      // Ensure unique IDs
+      let uniqueId = id;
+      let counter = 1;
+      while (usedIds.has(uniqueId)) {
+        uniqueId = `${id}-${counter}`;
+        counter++;
+      }
+      usedIds.add(uniqueId);
+
+      headings.push({
+        level,
+        text,
+        id: uniqueId,
+      });
+    }
+  }
+
+  return headings;
+}
+
+/**
+ * Add anchor IDs to all headings in HTML content
+ * This enables smooth scrolling to sections via Table of Contents
+ */
+export function addHeadingIds(content: string): string {
+  if (!content) return '';
+
+  let processedContent = content;
+  const headingRegex = /<h([1-6])([^>]*)>(.*?)<\/h[1-6]>/gi;
+  const usedIds = new Set<string>();
+
+  processedContent = processedContent.replace(headingRegex, (match, level, attributes, text) => {
+    // Check if ID already exists
+    const existingIdMatch = attributes.match(/id=["']([^"']+)["']/i);
+    if (existingIdMatch) {
+      return match; // Keep existing ID
+    }
+
+    // Extract text and create slug
+    const textContent = text.replace(/<[^>]*>/g, '').trim();
+    if (!textContent) return match;
+
+    let id = slugify(textContent);
+    
+    // Ensure unique IDs
+    let uniqueId = id;
+    let counter = 1;
+    while (usedIds.has(uniqueId)) {
+      uniqueId = `${id}-${counter}`;
+      counter++;
+    }
+    usedIds.add(uniqueId);
+
+    // Add ID attribute
+    const newAttributes = attributes.trim() 
+      ? `${attributes} id="${uniqueId}"`
+      : `id="${uniqueId}"`;
+
+    return `<h${level} ${newAttributes}>${text}</h${level}>`;
+  });
+
+  return processedContent;
+}
+
+/**
+ * Remove first heading (H1-H3) from content to avoid duplicate titles
+ */
+export function removeFirstHeading(content: string): string {
+  if (!content) return '';
+
+  // Match first H1, H2, or H3 heading
+  const firstHeadingRegex = /<h[1-3][^>]*>.*?<\/h[1-3]>/i;
+  return content.replace(firstHeadingRegex, '');
+}
+

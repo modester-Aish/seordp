@@ -102,7 +102,7 @@ export default function Footer() {
                   href="/products"
                   className="text-sm text-slate-400 hover:text-teal-400 transition-colors"
                 >
-                  Ahrefs Combo
+                  Ahref$ Combo
                 </Link>
               </li>
               <li>

@@ -27,7 +27,7 @@ export default function ModernHero() {
 
               {/* Description */}
               <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
-                Access 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro, and more. Join 45,000+ marketers, agencies, and businesses growing their online presence with affordable group buy tools.
+                Access 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro, and more. Join 45,000+ marketers, agencies, and businesses growing their online presence with affordable group buy tools.
               </p>
 
               {/* CTA Buttons */}
@@ -60,8 +60,8 @@ export default function ModernHero() {
               {/* LEFT SIDE TOOLS - Close to Pricing Card */}
               <div className="absolute -left-20 top-1/2 -translate-y-1/2 space-y-5 z-10">
                 {[
-                  { name: 'Ahrefs', logo: '/tools/ahrefs-logo.svg' },
-                  { name: 'SEMrush', logo: '/tools/semrush-logo.svg' },
+                  { name: 'Ahref$', logo: '/tools/ahrefs-logo.svg' },
+                  { name: 'SEMru$h', logo: '/tools/semrush-logo.svg' },
                   { name: 'ChatGPT Plus', logo: '/tools/chatgpt-logo.svg' },
                   { name: 'Claude AI', logo: '/tools/claude-logo.svg' },
                 ].map((tool, idx) => (
@@ -85,7 +85,7 @@ export default function ModernHero() {
                 <div className="text-white text-4xl font-black mb-2">$4.99<span className="text-xl font-normal">/mo</span></div>
                 <div className="text-white/80 text-sm mb-6">Save $495/month compared to individual subscriptions</div>
                 <div className="space-y-2 mb-6">
-                  {['✓ Ahrefs, SEMrush, Moz Pro', '✓ ChatGPT Plus & Claude AI', '✓ Canva Pro & Design Tools', '✓ 24/7 Customer Support'].map((feature, idx) => (
+                  {['✓ Ahref$, SEMru$h, Moz Pro', '✓ ChatGPT Plus & Claude AI', '✓ Canva Pro & Design Tools', '✓ 24/7 Customer Support'].map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-white text-sm">
                       <span>{feature}</span>
                     </div>
