@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ModernHero() {
   return (
@@ -67,8 +68,8 @@ export default function ModernHero() {
                 ].map((tool, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5 relative">
+                        <Image src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} fill className="object-contain" sizes="48px" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>
@@ -111,8 +112,8 @@ export default function ModernHero() {
                 ].map((tool, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5 relative">
+                        <Image src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} fill className="object-contain" sizes="48px" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>

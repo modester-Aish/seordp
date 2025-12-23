@@ -11,6 +11,7 @@ import {
   getContent,
   getExcerpt, 
   getFeaturedImageUrl,
+  getFeaturedImage,
   getAuthorName,
   formatDate,
   getReadingTime,
