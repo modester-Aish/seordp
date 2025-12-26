@@ -874,7 +874,7 @@ function PageView({ page }: { page: any }) {
                     <a href="#content" className="flex items-center gap-2 text-slate-600 hover:text-teal-600 hover:bg-teal-50 transition-all py-2 px-3 rounded-lg font-medium">
                       <span className="text-teal-500">→</span> Page Content
                     </a>
-                    <a href="#" className="flex items-center gap-2 text-slate-600 hover:text-teal-600 hover:bg-teal-50 transition-all py-2 px-3 rounded-lg font-medium">
+                    <a href="/products" className="flex items-center gap-2 text-slate-600 hover:text-teal-600 hover:bg-teal-50 transition-all py-2 px-3 rounded-lg font-medium">
                       <span className="text-teal-500">→</span> Learn More
                     </a>
                   </nav>
