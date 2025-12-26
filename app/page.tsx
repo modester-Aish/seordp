@@ -143,6 +143,119 @@ export default async function Home() {
           })
         }}
         />
+
+      {/* FAQPage Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What Is an SEO Group Buy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SEO group buy allows users to share the cost of SEO tool subscriptions, providing access to premium tools like Ahref$, Moz, and SEMru$h at a lower price."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How Does an SEO Group Buy Work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "When you join SEO group buy, you pool resources with other users to share the cost of SEO tools. This gives you access to high-quality tools like Ahref$ and Semru$h for less."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are Tools Regularly Updated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, SEO group buy tools such as Semru$h and Ahref$ are regularly updated to ensure you have access to the latest features and data."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I Use the Tools for Client Projects?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, you can use the tools for both your own projects and your clients' projects, as long as you comply with our terms."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How Secure is My Data?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We take your privacy seriously. SEO tools group buy at seordp.net are secured with the latest encryption and data protection measures to ensure your information stays safe."
+                }
+              }
+            ]
+          })
+        }}
+      />
+
+      {/* SiteNavigation Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SiteNavigationElement",
+            "name": "Main Navigation",
+            "url": "https://seordp.net",
+            "hasPart": [
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Home",
+                "url": "https://seordp.net"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Tools Shop",
+                "url": "https://seordp.net/single-tools-list"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Pricing Plans",
+                "url": "https://seordp.net/pages"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Products",
+                "url": "https://seordp.net/products"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Blog",
+                "url": "https://seordp.net/blog"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "About Us",
+                "url": "https://seordp.net/about-us"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Contact Us",
+                "url": "https://seordp.net/contact-us"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Privacy Policy",
+                "url": "https://seordp.net/privacy-policy-3"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Terms of Service",
+                "url": "https://seordp.net/terms-of-service"
+              }
+            ]
+          })
+        }}
+      />
       </div>
   );
 }
