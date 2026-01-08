@@ -4,12 +4,12 @@ import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {
-  title: 'Group Buy SEO Tools - Ahrefs, SEMrush, Moz Pro, ChatGPT Plus | SEORDP',
-  description: 'Buy premium SEO tools at 90% discount. Get Ahrefs Group Buy, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools from $4.99/month. Instant access, 24/7 support.',
-  keywords: 'group buy seo tools, ahrefs group buy, semrush group buy, moz pro group buy, chatgpt plus group buy, cheap seo tools, premium seo tools discount, seo tools subscription, shared seo tools access, bulk seo tools, affordable seo software',
+  title: 'Group Buy SEO Tools - Ahref$, SEMru$h, Moz Pro, ChatGPT Plus | SEORDP',
+  description: 'Buy premium SEO tools at 90% discount. Get Ahref$ Group Buy, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools from $4.99/month. Instant access, 24/7 support.',
+  keywords: 'group buy seo tools, ahref$ group buy, semru$h group buy, moz pro group buy, chatgpt plus group buy, cheap seo tools, premium seo tools discount, seo tools subscription, shared seo tools access, bulk seo tools, affordable seo software',
   openGraph: {
-    title: 'Buy Premium Group Buy SEO Tools at 90% OFF - Ahrefs, SEMrush, Moz Pro',
-    description: 'Get instant access to 50+ premium SEO tools. Group buy Ahrefs, SEMrush, ChatGPT Plus & more at 90% discount. Starting $4.99/month.',
+    title: 'Buy Premium Group Buy SEO Tools at 90% OFF - Ahref$, SEMru$h, Moz Pro',
+    description: 'Get instant access to 50+ premium SEO tools. Group buy Ahref$, SEMru$h, ChatGPT Plus & more at 90% discount. Starting $4.99/month.',
     url: 'https://seordp.net/products',
     type: 'website',
   },
@@ -86,7 +86,7 @@ export default async function ProductsPage() {
               Premium <span className="text-teal-400">Group Buy SEO Tools</span>
             </h1>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus & 50+ premium tools at 90% discount. Instant activation, 24/7 support, 99% uptime guarantee.
+              Access Ahref$, SEMru$h, Moz Pro, ChatGPT Plus & 50+ premium tools at 90% discount. Instant activation, 24/7 support, 99% uptime guarantee.
             </p>
           </div>
         </div>

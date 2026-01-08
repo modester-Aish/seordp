@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ModernHero() {
   return (
@@ -27,7 +28,7 @@ export default function ModernHero() {
 
               {/* Description */}
               <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
-                Access 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro, and more. Join 45,000+ marketers, agencies, and businesses growing their online presence with affordable group buy tools.
+                Access 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro, and more. Join 45,000+ marketers, agencies, and businesses growing their online presence with affordable group buy tools.
               </p>
 
               {/* CTA Buttons */}
@@ -60,15 +61,15 @@ export default function ModernHero() {
               {/* LEFT SIDE TOOLS - Close to Pricing Card */}
               <div className="absolute -left-20 top-1/2 -translate-y-1/2 space-y-5 z-10">
                 {[
-                  { name: 'Ahrefs', logo: '/tools/ahrefs-logo.svg' },
-                  { name: 'SEMrush', logo: '/tools/semrush-logo.svg' },
+                  { name: 'Ahref$', logo: '/tools/ahrefs-logo.svg' },
+                  { name: 'SEMru$h', logo: '/tools/semrush-logo.svg' },
                   { name: 'ChatGPT Plus', logo: '/tools/chatgpt-logo.svg' },
                   { name: 'Claude AI', logo: '/tools/claude-logo.svg' },
                 ].map((tool, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5 relative">
+                        <Image src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} fill className="object-contain" sizes="48px" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>
@@ -85,7 +86,7 @@ export default function ModernHero() {
                 <div className="text-white text-4xl font-black mb-2">$4.99<span className="text-xl font-normal">/mo</span></div>
                 <div className="text-white/80 text-sm mb-6">Save $495/month compared to individual subscriptions</div>
                 <div className="space-y-2 mb-6">
-                  {['✓ Ahrefs, SEMrush, Moz Pro', '✓ ChatGPT Plus & Claude AI', '✓ Canva Pro & Design Tools', '✓ 24/7 Customer Support'].map((feature, idx) => (
+                  {['✓ Ahref$, SEMru$h, Moz Pro', '✓ ChatGPT Plus & Claude AI', '✓ Canva Pro & Design Tools', '✓ 24/7 Customer Support'].map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-white text-sm">
                       <span>{feature}</span>
                     </div>
@@ -111,8 +112,8 @@ export default function ModernHero() {
                 ].map((tool, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 shadow-xl w-60 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5">
-                        <img src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} className="w-full h-full object-contain" />
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg p-2.5 relative">
+                        <Image src={tool.logo} alt={`${tool.name} - Premium SEO Tool Group Buy Access`} fill className="object-contain" sizes="48px" />
                       </div>
                       <div>
                         <div className="font-bold text-slate-900 text-sm">{tool.name}</div>

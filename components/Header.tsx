@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart, Menu, ChevronDown, X } from 'lucide-react';
+import { ShoppingCart, Menu, ChevronDown, X, Search } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { cleanPageTitle } from '@/lib/html-utils';
 import { getAllTools, Tool } from '@/lib/tools-data';
@@ -16,6 +16,16 @@ export default function Header({ pages = [] }: HeaderProps) {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<Array<{
+    type: 'post' | 'product' | 'tool';
+    title: string;
+    slug: string;
+    url: string;
+    description?: string;
+  }>>([]);
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
+  const [showSearchResults, setShowSearchResults] = useState(false);
   
   // Timeout refs for smooth closing
   const [toolsTimeout, setToolsTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -138,6 +148,50 @@ export default function Header({ pages = [] }: HeaderProps) {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  // Search functionality
+  useEffect(() => {
+    const performSearch = async () => {
+      if (!searchQuery.trim()) {
+        setSearchResults([]);
+        setShowSearchResults(false);
+        return;
+      }
+
+      setIsSearchLoading(true);
+      setShowSearchResults(true);
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSearchResults(data.results || []);
+        }
+      } catch (error) {
+        console.error('Search error:', error);
+        setSearchResults([]);
+      } finally {
+        setIsSearchLoading(false);
+      }
+    };
+
+    const timeoutId = setTimeout(performSearch, 300);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
+  // Close search results when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.search-container')) {
+        setShowSearchResults(false);
+      }
+    };
+
+    if (showSearchResults) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showSearchResults]);
 
   return (
     <header className="sticky top-4 z-[100] w-full px-4">
@@ -359,8 +413,125 @@ export default function Header({ pages = [] }: HeaderProps) {
               )}
             </div>
 
-            {/* Right side - Cart & Menu */}
-            <div className="flex items-center gap-3">
+            {/* Right side - Search, Cart & Menu */}
+            <div className="flex items-center gap-3 relative">
+              {/* Search Bar - Desktop */}
+              <div className="hidden lg:block relative search-container">
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <Search className="h-4 w-4 text-white/70" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => {
+                      if (searchQuery.trim() && searchResults.length > 0) {
+                        setShowSearchResults(true);
+                      }
+                    }}
+                    className="w-64 pl-10 pr-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder:text-white/70 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition-all text-sm"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => {
+                        setSearchQuery('');
+                        setSearchResults([]);
+                        setShowSearchResults(false);
+                      }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+                
+                {/* Search Results Dropdown */}
+                {showSearchResults && (searchQuery.trim() || searchResults.length > 0) && (
+                  <div className="absolute top-full mt-2 left-0 right-0 w-96 bg-slate-900 rounded-xl shadow-2xl border border-white/10 z-[105] max-h-[500px] overflow-y-auto">
+                    {isSearchLoading ? (
+                      <div className="p-6 text-center">
+                        <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-teal-500"></div>
+                        <p className="mt-2 text-sm text-gray-400">Searching...</p>
+                      </div>
+                    ) : searchQuery.trim() ? (
+                      searchResults.length > 0 ? (
+                        <div className="p-4">
+                          <p className="text-xs text-gray-400 mb-3">
+                            {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} found
+                          </p>
+                          <div className="space-y-2">
+                            {searchResults.map((result, index) => {
+                              const getTypeColor = (type: string) => {
+                                switch (type) {
+                                  case 'post': return 'bg-blue-100 text-blue-800';
+                                  case 'product': return 'bg-emerald-100 text-emerald-800';
+                                  case 'tool': return 'bg-purple-100 text-purple-800';
+                                  default: return 'bg-gray-100 text-gray-800';
+                                }
+                              };
+                              const getTypeLabel = (type: string) => {
+                                switch (type) {
+                                  case 'post': return 'Blog';
+                                  case 'product': return 'Product';
+                                  case 'tool': return 'Tool';
+                                  default: return 'Page';
+                                }
+                              };
+                              return (
+                                <Link
+                                  key={`${result.type}-${result.slug}-${index}`}
+                                  href={result.url}
+                                  onClick={() => {
+                                    setSearchQuery('');
+                                    setSearchResults([]);
+                                    setShowSearchResults(false);
+                                  }}
+                                  className="block p-3 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hover:border-teal-500 transition-all group"
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <span className={`px-2 py-0.5 text-xs font-semibold rounded flex-shrink-0 ${getTypeColor(result.type)}`}>
+                                      {getTypeLabel(result.type)}
+                                    </span>
+                                    <div className="flex-1 min-w-0">
+                                      <h3 className="text-sm font-semibold text-white group-hover:text-teal-400 transition-colors truncate">
+                                        {result.title}
+                                      </h3>
+                                      {result.description && (
+                                        <p className="text-xs text-gray-400 line-clamp-1 mt-1">
+                                          {result.description}
+                                        </p>
+                                      )}
+                                    </div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-6 text-center">
+                          <p className="text-sm text-gray-400">No results found</p>
+                        </div>
+                      )
+                    ) : null}
+                  </div>
+                )}
+              </div>
+
+              {/* Search Icon - Mobile */}
+              <button
+                onClick={() => {
+                  // For mobile, you can add a simple search input in mobile menu
+                  setIsMobileMenuOpen(true);
+                }}
+                className="inline-flex lg:hidden items-center justify-center text-white hover:text-teal-400 transition-colors"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5" />
+              </button>
+              
               {/* Cart Icon */}
               <button
                 className="inline-flex items-center justify-center text-white hover:text-teal-400 transition-colors"
@@ -394,6 +565,87 @@ export default function Header({ pages = [] }: HeaderProps) {
             <div className="fixed top-20 right-4 left-4 bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 z-[95] lg:hidden animate-fade-in-up overflow-hidden">
               <div className="max-h-[calc(100vh-120px)] overflow-y-auto p-6 space-y-4">
                 
+                {/* Search Bar - Mobile */}
+                <div className="mb-4">
+                  <div className="relative">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                      <Search className="h-4 w-4 text-gray-400" />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all text-sm"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => {
+                          setSearchQuery('');
+                          setSearchResults([]);
+                          setShowSearchResults(false);
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+                  {/* Mobile Search Results */}
+                  {showSearchResults && searchQuery.trim() && (
+                    <div className="mt-2 space-y-2 max-h-64 overflow-y-auto">
+                      {isSearchLoading ? (
+                        <div className="p-4 text-center">
+                          <div className="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-teal-500"></div>
+                        </div>
+                      ) : searchResults.length > 0 ? (
+                        searchResults.map((result, index) => {
+                          const getTypeColor = (type: string) => {
+                            switch (type) {
+                              case 'post': return 'bg-blue-100 text-blue-800';
+                              case 'product': return 'bg-emerald-100 text-emerald-800';
+                              case 'tool': return 'bg-purple-100 text-purple-800';
+                              default: return 'bg-gray-100 text-gray-800';
+                            }
+                          };
+                          const getTypeLabel = (type: string) => {
+                            switch (type) {
+                              case 'post': return 'Blog';
+                              case 'product': return 'Product';
+                              case 'tool': return 'Tool';
+                              default: return 'Page';
+                            }
+                          };
+                          return (
+                            <Link
+                              key={`${result.type}-${result.slug}-${index}`}
+                              href={result.url}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setSearchQuery('');
+                                setSearchResults([]);
+                                setShowSearchResults(false);
+                              }}
+                              className="block p-3 bg-slate-800 rounded-lg border border-slate-700"
+                            >
+                              <div className="flex items-start gap-2">
+                                <span className={`px-2 py-0.5 text-xs font-semibold rounded ${getTypeColor(result.type)}`}>
+                                  {getTypeLabel(result.type)}
+                                </span>
+                                <span className="text-sm text-white truncate">{result.title}</span>
+                              </div>
+                            </Link>
+                          );
+                        })
+                      ) : (
+                        <div className="p-4 text-center text-sm text-gray-400">
+                          No results found
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
                 {/* Home */}
                 <Link
                   href="/"
@@ -513,6 +765,7 @@ export default function Header({ pages = [] }: HeaderProps) {
             </div>
           </>
         )}
+
       </nav>
     </header>
   );

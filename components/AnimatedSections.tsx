@@ -79,7 +79,7 @@ export const WhyChooseSection = () => {
             Why Choose SEORDP Group Buy SEO Tools?
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Get instant access to 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro with 99.9% uptime, 24/7 support, and enterprise-grade security
+            Get instant access to 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro with 99.9% uptime, 24/7 support, and enterprise-grade security
           </p>
         </div>
 
@@ -472,7 +472,7 @@ export const PopularToolsSection = () => {
             />
           </h2>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-            Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount. Best group buy SEO tools 2025.
+            Access Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount. Best group buy SEO tools 2025.
           </p>
         </div>
 
@@ -490,14 +490,16 @@ export const PopularToolsSection = () => {
               >
                 <div className="relative z-10 flex flex-col h-full">
                   <div 
-                    className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 ${
+                    className={`w-20 h-20 rounded-2xl overflow-hidden mb-6 mx-auto bg-white p-3 group-hover:scale-110 transition-transform duration-300 relative ${
                       index % 3 === 0 ? 'animate-float' : index % 3 === 1 ? 'animate-float-delay-1' : 'animate-float-delay-2'
                     }`}
                   >
-                    <img
+                    <Image
                       src={tool.image}
                       alt={`${tool.name} - ${tool.description} - Group Buy SEO Tool`}
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain p-2"
+                      sizes="80px"
                     />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2 text-center group-hover:text-teal-400 transition-colors duration-300">{tool.name}</h3>
@@ -553,8 +555,8 @@ export const TestimonialsSection = () => {
   
   const facebookReviews = [
     { name: 'Sarah K.', rating: 5, review: 'Setting up my SEORDP account was incredibly easy. The platform is user-friendly and intuitive for browsing tools, checkout, and managing my subscription. Looking forward to them expanding their tool library even more!' },
-    { name: 'Ahmed R.', rating: 5, review: 'I had a great experience with SEORDP when subscribing to Ahrefs. The transaction was seamless, I got instant access to the tool, paid my monthly bill without hassle, and even earned reward points!' },
-    { name: 'Maria S.', rating: 5, review: 'Quick and seamless! I set up my SEORDP account with SEMrush in less than 5 minutes and started using it right away. Plus, I am earning rewards with every payment which is an added bonus!' },
+    { name: 'Ahmed R.', rating: 5, review: 'I had a great experience with SEORDP when subscribing to Ahref$. The transaction was seamless, I got instant access to the tool, paid my monthly bill without hassle, and even earned reward points!' },
+    { name: 'Maria S.', rating: 5, review: 'Quick and seamless! I set up my SEORDP account with SEMru$h in less than 5 minutes and started using it right away. Plus, I am earning rewards with every payment which is an added bonus!' },
   ];
 
   const trustpilotReviews = [

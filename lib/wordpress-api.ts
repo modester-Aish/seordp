@@ -73,6 +73,79 @@ export async function fetchAllPosts(
   }
 }
 
+// Fetch ALL posts from WordPress (handles pagination automatically)
+export async function fetchAllPostsComplete(): Promise<WordPressApiResponse<WordPressPost>> {
+  try {
+    let allPosts: WordPressPost[] = [];
+    let totalPages = 1;
+
+    // Fetch first page to get total pages
+    const params1 = new URLSearchParams({
+      page: '1',
+      per_page: '100',
+      _embed: 'true',
+    });
+
+    const firstResponse = await fetch(`${WP_API_URL}/posts?${params1.toString()}`, {
+      next: { 
+        revalidate: CACHE_REVALIDATE,
+        tags: ['posts', 'all-posts'] 
+      }
+    });
+
+    if (!firstResponse.ok) {
+      throw new Error(`HTTP error! status: ${firstResponse.status}`);
+    }
+
+    allPosts = await firstResponse.json();
+    totalPages = parseInt(firstResponse.headers.get('x-wp-totalpages') || '1');
+    const total = parseInt(firstResponse.headers.get('x-wp-total') || '0');
+
+    console.log(`📝 Fetching ${total} posts from ${totalPages} pages...`);
+
+    // Fetch remaining pages if there are more
+    if (totalPages > 1) {
+      const pagePromises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          per_page: '100',
+          _embed: 'true',
+        });
+
+        pagePromises.push(
+          fetch(`${WP_API_URL}/posts?${params.toString()}`, {
+            next: { 
+              revalidate: CACHE_REVALIDATE,
+              tags: ['posts', 'all-posts'] 
+            }
+          }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
+        );
+      }
+
+      const responses = await Promise.all(pagePromises);
+      responses.forEach(data => {
+        allPosts = [...allPosts, ...data];
+      });
+    }
+
+    console.log(`✅ Successfully loaded ${allPosts.length} posts!`);
+
+    return {
+      data: allPosts,
+      error: null,
+      total: allPosts.length,
+      totalPages: 1, // All posts in one response now
+    };
+  } catch (error: any) {
+    console.error('Error fetching all posts:', error);
+    return {
+      data: null,
+      error: handleApiError(error),
+    };
+  }
+}
+
 // Fetch a single post by slug
 export async function fetchPostBySlug(
   slug: string

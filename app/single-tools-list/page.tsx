@@ -8,7 +8,7 @@ import { ShoppingCart } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Complete Tools List - All SEO, AI, Design & Marketing Tools | SEORDP',
-  description: 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.',
+  description: 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.',
   keywords: 'complete tools list, all seo tools, group buy tools list, seo tools catalog, premium tools directory, all available tools, tools inventory, seo software list',
   alternates: {
     canonical: generateCanonicalUrl('/single-tools-list'),

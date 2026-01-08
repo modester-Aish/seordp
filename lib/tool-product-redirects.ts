@@ -2,7 +2,7 @@
  * Static Tool-to-Product Redirect Mapping
  * Auto-generated from all-product-links-data.ts (jo frontend par show hote hain)
  * 
- * Generated at: 2025-12-01T12:36:54.081Z
+ * Generated at: 2025-12-23T15:31:04.191Z
  * Total Tools Matched: 22
  * Total Products: 116
  * 
