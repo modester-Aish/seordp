@@ -35,7 +35,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
+    <section id="faq" className="section-padding bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-teal-500/5 rounded-full blur-3xl animate-float"></div>
