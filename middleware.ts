@@ -6,6 +6,13 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || ''
   const pathname = request.nextUrl.pathname
 
+  // Strip trailing slash — URLs like https://seordp.net/ahrefs-group-buy (no / at end)
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    const url = request.nextUrl.clone()
+    url.pathname = pathname.slice(0, -1)
+    return NextResponse.redirect(url, 301)
+  }
+
   // Redirect www to non-www
   if (hostname && hostname.startsWith('www.')) {
     const nonWwwHost = hostname.replace('www.', '')
