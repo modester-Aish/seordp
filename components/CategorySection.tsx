@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 interface Category {
@@ -123,18 +124,15 @@ export default function CategorySection({ categories, products = [] }: CategoryS
                   aria-label={`${category.name} Services`}
                 >
                   <div className="relative z-[1] flex h-full flex-col items-center justify-center gap-1 px-2 md:flex-row md:gap-2">
-                    <div className="shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center bg-slate-900 rounded-lg p-1 shadow-sm">
-                      <img 
+                    <div className="shrink-0 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center bg-slate-900 rounded-lg p-1 shadow-sm relative">
+                      <Image 
                         src={getCategoryIcon(category.name)} 
                         alt={category.name}
-                        className="w-full h-full object-contain"
+                        fill
+                        className="object-contain"
                         style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(89%) saturate(422%) hue-rotate(126deg) brightness(95%) contrast(101%)' }}
-                        loading="eager"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null;
-                          target.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='70' font-size='70'>${getCategoryEmoji(category.name)}</text></svg>`;
-                        }}
+                        sizes="(max-width: 768px) 24px, 32px"
+                        unoptimized
                       />
                     </div>
                     <div className="flex flex-col gap-y-1">
@@ -176,11 +174,12 @@ export default function CategorySection({ categories, products = [] }: CategoryS
                   <div className="relative h-48 overflow-hidden">
                     {product.images && product.images.length > 0 ? (
                       <>
-                        <img
+                        <Image
                           src={product.images[0].src}
                           alt={product.images[0].alt || product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          loading="lazy"
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 400px"
                         />
                         {product.on_sale && (
                           <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white animate-bounce-gentle"

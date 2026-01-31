@@ -7,8 +7,8 @@ import { cleanPageTitle } from '@/lib/html-utils';
 
 export const metadata: Metadata = {
   title: 'SEO Tools Pricing, Plans & Information | SEORDP Group Buy',
-  description: 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahrefs, SEMrush, Moz Pro plans. Find the best SEO tools subscription for your needs.',
-  keywords: 'seo tools pricing, group buy plans, ahrefs pricing, semrush pricing, seo tools packages, seo subscription plans, affordable seo tools',
+  description: 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahref$, SEMru$h, Moz Pro plans. Find the best SEO tools subscription for your needs.',
+  keywords: 'seo tools pricing, group buy plans, ahref$ pricing, semru$h pricing, seo tools packages, seo subscription plans, affordable seo tools',
   openGraph: {
     title: 'SEO Tools Pricing Plans & Packages - SEORDP Group Buy',
     description: 'Compare pricing plans for 50+ premium SEO tools. Find the perfect group buy package for your business.',

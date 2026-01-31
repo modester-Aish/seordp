@@ -31,7 +31,7 @@ const pricingData: PricingCard[] = [
       'Design & Graphics'
     ],
     tools: [
-      'SEMRUSH Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 'SerpState', 
+      'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 'SerpState', 
       'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'ChatGPT 4', 'Grammarly', 'WordAi', 
       'Quillbot', 'Spin Rewriter', 'WordHero', 'WordTune', 'SmartCopy', 'CloserCopy', 'Copy ai', 
       'Copymatic ai', 'Jasper Ai', 'WriteSonic', 'Rytr me', 'Jenni ai', 'CANVA pro', 'Crello', 
@@ -57,7 +57,7 @@ const pricingData: PricingCard[] = [
       'Content Creation'
     ],
     tools: [
-      'AHREFS', 'SEMRUSH Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
+      'AHREF$', 'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
       'SerpState', 'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'ChatGPT 4', 'Bypass GPT', 
       'Grammarly', 'Quetext premium', 'WordAi', 'Hix ai', 'Quillbot', 'Spin Rewriter', 'WordHero', 
       'WordTune', 'SmartCopy', 'CloserCopy', 'Copymatic ai', 'Jasper Ai', 'WriteSonic', 'Rytr me', 
@@ -84,7 +84,7 @@ const pricingData: PricingCard[] = [
       'Learning Platform'
     ],
     tools: [
-      'AHREFS', 'SEMRUSH Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
+      'AHREF$', 'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
       'SerpState', 'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'SEOSITECHECKUP', 'ChatGPT 4', 
       'Bypass GPT', 'Grammarly', 'Quetext premium', 'WordAi', 'You Ai', 'Claude Ai', 'Hix Ai', 'Copy Ai', 
       'Jasper Ai', 'Copymatic Ai', 'Stealthwriter Ai', 'Jenni ai', 'Quillbot', 'Spin Rewriter', 'WordHero', 
@@ -100,7 +100,7 @@ const pricingData: PricingCard[] = [
   {
     name: 'LITE PLAN',
     price: '$10',
-    toolCount: 'SEMRUSH Combo, 20+ Tools',
+    toolCount: 'SEMRU$H Combo, 20+ Tools',
     description: 'Essential tools',
     icon: '⭐',
     iconBgColor: 'from-blue-500 to-blue-600',
@@ -111,7 +111,7 @@ const pricingData: PricingCard[] = [
       'Entertainment'
     ],
     tools: [
-      'SEMRUSH Guru', 'MOZ Pro', 'Ubersuggest', 'Woorank', 'Grammarly', 'WordAi', 'Quillbot', 'Canva', 
+      'SEMRU$H Guru', 'MOZ Pro', 'Ubersuggest', 'Woorank', 'Grammarly', 'WordAi', 'Quillbot', 'Canva', 
       'Crello', 'Envato Elements', 'FotoJet', 'Invideo io', 'Netflix', 'Prime Video', 'Buzzsumo', 
       'Picmonkey', 'Motionarray', 'SkillShare', 'Turnitin', 'Linkedin Learning'
     ]

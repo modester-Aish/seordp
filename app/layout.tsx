@@ -4,6 +4,7 @@ import './globals.css'
 import HeaderServer from '@/components/HeaderServer'
 import Footer from '@/components/Footer'
 import FloatingChat from '@/components/FloatingChat'
+import BackToTop from '@/components/BackToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -59,6 +60,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: '7COb5S87UR-31vp9SChMAtLqfx88VrJJuFzcCzXhUq0',
+  },
 }
 
 export default function RootLayout({
@@ -74,6 +78,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <FloatingChat />
+          <BackToTop />
         </div>
       </body>
     </html>
