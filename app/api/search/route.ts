@@ -3,6 +3,8 @@ import { fetchAllPostsComplete } from '@/lib/wordpress-api';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { getAllTools } from '@/lib/tools-data';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;

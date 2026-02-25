@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const { data: products, error } = await fetchAllProductsComplete();

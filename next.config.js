@@ -30,7 +30,7 @@ const nextConfig = {
       },
     ],
   },
-  output: 'standalone',
+  // output: 'standalone', // disabled: causes build-time chunk errors (404/500/products)
   staticPageGenerationTimeout: 120,
 }
 

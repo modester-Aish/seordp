@@ -30,7 +30,7 @@ export async function getAllProductLinks(): Promise<ProductLink[]> {
   }
 
   try {
-    const { fetchAllProductsComplete } = await import('./woocommerce-api');
+    const { fetchAllProductsComplete } = await import('./woocommerce-api-server');
     const { data: products, error } = await fetchAllProductsComplete();
     
     if (error || !products) {
