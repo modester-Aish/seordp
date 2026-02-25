@@ -1,60 +1,14 @@
 import { MetadataRoute } from 'next'
-import { fetchAllPagesComplete } from '@/lib/wordpress-api'
-import { fetchAllProductsComplete, isExcludedDuplicate } from '@/lib/woocommerce-api'
+import { fetchAllPagesComplete, fetchAllPostsComplete as fetchAllPostsSnapshot } from '@/lib/wordpress-api'
+import { fetchAllProductsComplete, isExcludedDuplicate } from '@/lib/woocommerce-api-server'
 import { getAllTools } from '@/lib/tools-data'
 import { matchToolToProduct } from '@/lib/tool-product-matcher'
 import { getToolProductRedirect } from '@/lib/tool-product-redirects'
 
 const SITE_URL = 'https://seordp.net'
 
-// Revalidate sitemap every minute - automatically updates when WordPress content changes
-export const revalidate = 60 // 1 minute in seconds - matches content pages
-
-// Fetch all posts with pagination
-async function fetchAllPostsComplete() {
-  const WORDPRESS_BASE_URL = process.env.WORDPRESS_BASE_URL || 'https://app.faditools.com'
-  const WP_API_URL = `${WORDPRESS_BASE_URL}/wp-json/wp/v2`
-  
-  try {
-    let allPosts: any[] = []
-    let totalPages = 1
-    let currentPage = 1
-
-    // Fetch first page to get total pages
-    const firstResponse = await fetch(`${WP_API_URL}/posts?page=1&per_page=100`, {
-      next: { revalidate: 60 } // Check WordPress every minute for new posts
-    })
-
-    if (!firstResponse.ok) {
-      throw new Error(`HTTP error! status: ${firstResponse.status}`)
-    }
-
-    allPosts = await firstResponse.json()
-    totalPages = parseInt(firstResponse.headers.get('x-wp-totalpages') || '1')
-
-    // Fetch remaining pages if there are more
-    if (totalPages > 1) {
-      const pagePromises = []
-      for (let page = 2; page <= totalPages; page++) {
-        pagePromises.push(
-          fetch(`${WP_API_URL}/posts?page=${page}&per_page=100`, {
-            next: { revalidate: 60 } // Check WordPress every minute for new posts
-          }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
-        )
-      }
-
-      const responses = await Promise.all(pagePromises)
-      responses.forEach(data => {
-        allPosts = [...allPosts, ...data]
-      })
-    }
-
-    return allPosts
-  } catch (error) {
-    console.error('Error fetching all posts for sitemap:', error)
-    return []
-  }
-}
+// Revalidate sitemap periodically (based on static snapshot)
+export const revalidate = 3600 // 1 hour in seconds
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static pages
@@ -113,8 +67,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
   // Fetch WordPress posts with validation
-  const posts = await fetchAllPostsComplete()
-  const postEntries: MetadataRoute.Sitemap = (posts || [])
+  const { data: postSnapshot } = await fetchAllPostsSnapshot()
+  const postEntries: MetadataRoute.Sitemap = (postSnapshot || [])
     .filter((post) => 
       post?.slug && 
       post.slug.trim() !== '' && 

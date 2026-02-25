@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fetchAllPostsComplete } from '@/lib/wordpress-api';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { getAllTools } from '@/lib/tools-data';
 
 export async function GET(request: NextRequest) {

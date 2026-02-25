@@ -1,207 +1,19 @@
-import axios from 'axios';
-import {
-  WooCommerceProduct,
-  WooCommerceCategory,
-  WordPressApiResponse,
-  WordPressSingleResponse,
-} from '@/types/wordpress';
+/**
+ * WooCommerce helpers and types – safe to use in client and server.
+ * For fetching product data (server-only), use @/lib/woocommerce-api-server.
+ */
+import { WooCommerceProduct } from '@/types/wordpress';
+import { toLocalUploadUrl } from '@/lib/content-parser';
 
-const WORDPRESS_BASE_URL = process.env.WORDPRESS_BASE_URL || 'https://app.faditools.com';
-const WC_CONSUMER_KEY = process.env.WC_CONSUMER_KEY || '';
-const WC_CONSUMER_SECRET = process.env.WC_CONSUMER_SECRET || '';
-const WC_API_URL = `${WORDPRESS_BASE_URL}/wp-json/wc/v3`;
-
-// List of duplicate product slugs to exclude (these are duplicates of original pages)
 const EXCLUDED_DUPLICATE_SLUGS = [
-  'combo-mega-pack-tools', // Duplicate of mega-plan
-  'combo-seo-tools-ecom-plan', // Duplicate (original pages exist)
-  // Add more duplicate slugs here as needed
+  'combo-mega-pack-tools',
+  'combo-seo-tools-ecom-plan',
 ];
 
-// Helper function to check if a slug should be excluded
 export function isExcludedDuplicate(slug: string): boolean {
   return EXCLUDED_DUPLICATE_SLUGS.includes(slug);
 }
 
-// Helper function to handle API errors
-const handleApiError = (error: any): string => {
-  if (error.response) {
-    return `WooCommerce API Error: ${error.response.status} - ${error.response.statusText}`;
-  } else if (error.request) {
-    return 'No response received from WooCommerce API';
-  } else {
-    return `Request Error: ${error.message}`;
-  }
-};
-
-// Create axios instance with auth
-const wcAxios = axios.create({
-  baseURL: WC_API_URL,
-  auth: {
-    username: WC_CONSUMER_KEY,
-    password: WC_CONSUMER_SECRET,
-  },
-  timeout: 30000, // 30 seconds timeout
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Fetch all products with optional filters
-export async function fetchAllProducts(
-  page: number = 1,
-  perPage: number = 10,
-  category?: string,
-  featured?: boolean,
-  onSale?: boolean
-): Promise<WordPressApiResponse<WooCommerceProduct>> {
-  try {
-    const params: any = {
-      page,
-      per_page: perPage,
-    };
-
-    if (category) {
-      params.category = category;
-    }
-
-    if (featured !== undefined) {
-      params.featured = featured;
-    }
-
-    if (onSale !== undefined) {
-      params.on_sale = onSale;
-    }
-
-    const response = await wcAxios.get<WooCommerceProduct[]>('/products', {
-      params,
-    });
-
-    // Filter out excluded duplicate products
-    const filteredData = response.data?.filter(
-      (product) => !isExcludedDuplicate(product.slug)
-    ) || [];
-
-    return {
-      data: filteredData,
-      error: null,
-      total: parseInt(response.headers['x-wp-total'] || filteredData.length.toString()), // Use API total from headers
-      totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
-    };
-  } catch (error: any) {
-    console.error('Error fetching products:', error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-
-// Fetch a single product by slug
-export async function fetchProductBySlug(
-  slug: string
-): Promise<WordPressSingleResponse<WooCommerceProduct>> {
-  try {
-    // Check if this slug is excluded (duplicate)
-    if (isExcludedDuplicate(slug)) {
-      return {
-        data: null,
-        error: 'Product not found (duplicate excluded)',
-      };
-    }
-
-    const response = await wcAxios.get<WooCommerceProduct[]>('/products', {
-      params: {
-        slug,
-      },
-    });
-
-    if (response.data.length === 0) {
-      return {
-        data: null,
-        error: 'Product not found',
-      };
-    }
-
-    // Double check - exclude if somehow a duplicate got through
-    const product = response.data[0];
-    if (isExcludedDuplicate(product.slug)) {
-      return {
-        data: null,
-        error: 'Product not found (duplicate excluded)',
-      };
-    }
-
-    return {
-      data: product,
-      error: null,
-    };
-  } catch (error: any) {
-    console.error(`Error fetching product with slug ${slug}:`, error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-
-// Fetch a single product by ID
-export async function fetchProductById(
-  id: number
-): Promise<WordPressSingleResponse<WooCommerceProduct>> {
-  try {
-    const response = await wcAxios.get<WooCommerceProduct>(`/products/${id}`);
-
-    return {
-      data: response.data,
-      error: null,
-    };
-  } catch (error: any) {
-    console.error(`Error fetching product with ID ${id}:`, error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-
-// Fetch all product categories
-export async function fetchProductCategories(): Promise<WordPressApiResponse<WooCommerceCategory>> {
-  try {
-    const response = await wcAxios.get<WooCommerceCategory[]>('/products/categories', {
-      params: {
-        per_page: 100,
-      },
-    });
-
-    return {
-      data: response.data,
-      error: null,
-    };
-  } catch (error: any) {
-    console.error('Error fetching product categories:', error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-
-// Fetch featured products
-export async function fetchFeaturedProducts(
-  perPage: number = 4
-): Promise<WordPressApiResponse<WooCommerceProduct>> {
-  return fetchAllProducts(1, perPage, undefined, true);
-}
-
-// Fetch products on sale
-export async function fetchSaleProducts(
-  perPage: number = 4
-): Promise<WordPressApiResponse<WooCommerceProduct>> {
-  return fetchAllProducts(1, perPage, undefined, undefined, true);
-}
-
-// Helper function to get product price
 export function getProductPrice(product: WooCommerceProduct): string {
   if (product.on_sale && product.sale_price) {
     return product.sale_price;
@@ -209,39 +21,34 @@ export function getProductPrice(product: WooCommerceProduct): string {
   return product.regular_price || product.price;
 }
 
-// Helper function to get formatted price
 export function getFormattedPrice(product: WooCommerceProduct): string {
   const price = getProductPrice(product);
   return `$${parseFloat(price).toFixed(2)}`;
 }
 
-// Helper function to check if product is on sale
 export function isProductOnSale(product: WooCommerceProduct): boolean {
   return product.on_sale && !!product.sale_price;
 }
 
-// Helper function to get product image URL
 export function getProductImageUrl(
   product: WooCommerceProduct,
   index: number = 0
 ): string | null {
   if (product.images && product.images.length > index) {
-    return product.images[index].src;
+    const url = product.images[index].src;
+    return toLocalUploadUrl(url) ?? url;
   }
   return null;
 }
 
-// Helper function to get product main image
 export function getProductMainImage(product: WooCommerceProduct): string | null {
   return getProductImageUrl(product, 0);
 }
 
-// Helper function to check if product is in stock
 export function isInStock(product: WooCommerceProduct): boolean {
   return product.stock_status === 'instock';
 }
 
-// Helper function to get stock status text
 export function getStockStatusText(product: WooCommerceProduct): string {
   switch (product.stock_status) {
     case 'instock':
@@ -255,7 +62,6 @@ export function getStockStatusText(product: WooCommerceProduct): string {
   }
 }
 
-// Helper function to get discount percentage
 export function getDiscountPercentage(product: WooCommerceProduct): number | null {
   if (product.on_sale && product.regular_price && product.sale_price) {
     const regular = parseFloat(product.regular_price);
@@ -265,122 +71,25 @@ export function getDiscountPercentage(product: WooCommerceProduct): number | nul
   return null;
 }
 
-// Helper function to get plain text description
 export function getPlainDescription(product: WooCommerceProduct): string {
   return product.description.replace(/<[^>]*>/g, '');
 }
 
-// Helper function to get plain text short description
 export function getPlainShortDescription(product: WooCommerceProduct): string {
   return product.short_description.replace(/<[^>]*>/g, '');
 }
 
-// Helper function to get product checkout/signup URL
-// Uses external_url from WordPress if set, otherwise defaults to signup page
 export function getProductCheckoutUrl(product: WooCommerceProduct): string {
-  return product.external_url && product.external_url.trim() 
-    ? product.external_url 
+  return product.external_url && product.external_url.trim()
+    ? product.external_url
     : 'https://members.seotoolsgroupbuy.us/signup';
 }
 
-// Helper function to get product button text
-// Uses button_text from WordPress if set, otherwise defaults
-export function getProductButtonText(product: WooCommerceProduct, defaultText: string = 'Buy Now'): string {
-  return product.button_text && product.button_text.trim() 
-    ? product.button_text 
+export function getProductButtonText(
+  product: WooCommerceProduct,
+  defaultText: string = 'Buy Now'
+): string {
+  return product.button_text && product.button_text.trim()
+    ? product.button_text
     : defaultText;
 }
-
-// Fetch ALL products from WooCommerce (handles pagination automatically)
-export async function fetchAllProductsComplete(): Promise<WordPressApiResponse<WooCommerceProduct>> {
-  try {
-    let allProducts: WooCommerceProduct[] = [];
-    let currentPage = 1;
-    let totalPages = 1;
-
-    // Fetch first page to get total pages
-    const firstResponse = await wcAxios.get<WooCommerceProduct[]>('/products', {
-      params: {
-        page: 1,
-        per_page: 100, // WooCommerce max per page
-      },
-    });
-
-    allProducts = firstResponse.data;
-    totalPages = parseInt(firstResponse.headers['x-wp-totalpages'] || '1');
-    const total = parseInt(firstResponse.headers['x-wp-total'] || '0');
-
-    console.log(`📦 Fetching ${total} products from ${totalPages} pages...`);
-
-    // Fetch remaining pages if there are more
-    if (totalPages > 1) {
-      const pagePromises = [];
-      for (let page = 2; page <= totalPages; page++) {
-        pagePromises.push(
-          wcAxios.get<WooCommerceProduct[]>('/products', {
-            params: {
-              page,
-              per_page: 100,
-            },
-          })
-        );
-      }
-
-      const responses = await Promise.all(pagePromises);
-      responses.forEach(response => {
-        allProducts = [...allProducts, ...response.data];
-      });
-    }
-
-    // Filter out excluded duplicate products
-    const filteredProducts = allProducts.filter(
-      (product) => !isExcludedDuplicate(product.slug)
-    );
-
-    console.log(`✅ Successfully loaded ${filteredProducts.length} products! (${allProducts.length - filteredProducts.length} duplicates excluded)`);
-
-    return {
-      data: filteredProducts,
-      error: null,
-      total: allProducts.length,
-      totalPages: 1, // All products in one response now
-    };
-  } catch (error: any) {
-    console.error('Error fetching all products:', error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-
-// Search products
-export async function searchProducts(
-  query: string,
-  page: number = 1,
-  perPage: number = 10
-): Promise<WordPressApiResponse<WooCommerceProduct>> {
-  try {
-    const response = await wcAxios.get<WooCommerceProduct[]>('/products', {
-      params: {
-        search: query,
-        page,
-        per_page: perPage,
-      },
-    });
-
-    return {
-      data: response.data,
-      error: null,
-      total: parseInt(response.headers['x-wp-total'] || '0'),
-      totalPages: parseInt(response.headers['x-wp-totalpages'] || '0'),
-    };
-  } catch (error: any) {
-    console.error(`Error searching products with query "${query}":`, error);
-    return {
-      data: null,
-      error: handleApiError(error),
-    };
-  }
-}
-

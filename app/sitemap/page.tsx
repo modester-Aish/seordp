@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllPagesComplete, fetchAllPostsComplete } from '@/lib/wordpress-api';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { getAllTools } from '@/lib/tools-data';
 
 export const metadata: Metadata = {

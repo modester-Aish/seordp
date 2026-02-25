@@ -1,0 +1,2375 @@
+[
+  {
+    "id": 16,
+    "name": "Ad Management Tools",
+    "slug": "ad-management-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34875,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Ad Management Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Ad Management Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/ad-management-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/ad-management-tools/\",\"url\":\"https://backend.seordp.net/product-category/ad-management-tools/\",\"name\":\"Ad Management Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/ad-management-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/ad-management-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ad Management Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Ad Management Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Ad Management Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/ad-management-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/ad-management-tools/",
+            "url": "https://backend.seordp.net/product-category/ad-management-tools/",
+            "name": "Ad Management Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/ad-management-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/ad-management-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Ad Management Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/16",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "name": "AI Tools",
+    "slug": "ai-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34854,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 22,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>AI Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"AI Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/ai-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/ai-tools/\",\"url\":\"https://backend.seordp.net/product-category/ai-tools/\",\"name\":\"AI Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/ai-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/ai-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AI Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "AI Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "AI Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/ai-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/ai-tools/",
+            "url": "https://backend.seordp.net/product-category/ai-tools/",
+            "name": "AI Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/ai-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/ai-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/18",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "name": "Animation Tools",
+    "slug": "animation-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34892,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Animation Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Animation Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/animation-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/animation-tools/\",\"url\":\"https://backend.seordp.net/product-category/animation-tools/\",\"name\":\"Animation Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/animation-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/animation-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Animation Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Animation Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Animation Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/animation-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/animation-tools/",
+            "url": "https://backend.seordp.net/product-category/animation-tools/",
+            "name": "Animation Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/animation-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/animation-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Animation Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/19",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "name": "Content Writing Tools",
+    "slug": "content-writing-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34891,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 9,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Content Writing Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Content Writing Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/content-writing-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/content-writing-tools/\",\"url\":\"https://backend.seordp.net/product-category/content-writing-tools/\",\"name\":\"Content Writing Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/content-writing-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/content-writing-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Content Writing Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Content Writing Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Content Writing Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/content-writing-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/content-writing-tools/",
+            "url": "https://backend.seordp.net/product-category/content-writing-tools/",
+            "name": "Content Writing Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/content-writing-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/content-writing-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Content Writing Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/20",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "name": "Design Tools",
+    "slug": "design-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34890,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 19,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Design Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Design Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/design-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/design-tools/\",\"url\":\"https://backend.seordp.net/product-category/design-tools/\",\"name\":\"Design Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/design-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/design-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Design Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Design Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Design Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/design-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/design-tools/",
+            "url": "https://backend.seordp.net/product-category/design-tools/",
+            "name": "Design Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/design-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/design-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Design Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/21",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "name": "Developer Tools",
+    "slug": "developer-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34889,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 6,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Developer Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Developer Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/developer-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/developer-tools/\",\"url\":\"https://backend.seordp.net/product-category/developer-tools/\",\"name\":\"Developer Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/developer-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/developer-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Developer Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Developer Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Developer Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/developer-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/developer-tools/",
+            "url": "https://backend.seordp.net/product-category/developer-tools/",
+            "name": "Developer Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/developer-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/developer-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Developer Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/22",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "name": "Ecommerce Tools",
+    "slug": "ecommerce-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34888,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 17,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Ecommerce Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Ecommerce Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/ecommerce-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/ecommerce-tools/\",\"url\":\"https://backend.seordp.net/product-category/ecommerce-tools/\",\"name\":\"Ecommerce Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/ecommerce-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/ecommerce-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ecommerce Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Ecommerce Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Ecommerce Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/ecommerce-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/ecommerce-tools/",
+            "url": "https://backend.seordp.net/product-category/ecommerce-tools/",
+            "name": "Ecommerce Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/ecommerce-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/ecommerce-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Ecommerce Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/23",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "name": "HelloScribe",
+    "slug": "helloscribe",
+    "parent": 18,
+    "description": "",
+    "display": "default",
+    "image": null,
+    "menu_order": 0,
+    "count": 1,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>HelloScribe Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"HelloScribe Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/ai-tools/helloscribe/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/ai-tools/helloscribe/\",\"url\":\"https://backend.seordp.net/product-category/ai-tools/helloscribe/\",\"name\":\"HelloScribe Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/ai-tools/helloscribe/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/ai-tools/helloscribe/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"AI Tools\",\"item\":\"https://backend.seordp.net/product-category/ai-tools/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"HelloScribe\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "HelloScribe Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "HelloScribe Archives",
+      "og_url": "https://backend.seordp.net/product-category/ai-tools/helloscribe/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/ai-tools/helloscribe/",
+            "url": "https://backend.seordp.net/product-category/ai-tools/helloscribe/",
+            "name": "HelloScribe Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/ai-tools/helloscribe/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/ai-tools/helloscribe/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI Tools",
+                "item": "https://backend.seordp.net/product-category/ai-tools/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "HelloScribe"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/24",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ],
+      "up": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/18"
+        }
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "name": "Learning Tools",
+    "slug": "learning-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34887,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Learning Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Learning Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/learning-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/learning-tools/\",\"url\":\"https://backend.seordp.net/product-category/learning-tools/\",\"name\":\"Learning Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/learning-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/learning-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Learning Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Learning Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Learning Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/learning-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/learning-tools/",
+            "url": "https://backend.seordp.net/product-category/learning-tools/",
+            "name": "Learning Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/learning-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/learning-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Learning Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/25",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "name": "Marketing Tools",
+    "slug": "marketing-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34886,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 10,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Marketing Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Marketing Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/marketing-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/marketing-tools/\",\"url\":\"https://backend.seordp.net/product-category/marketing-tools/\",\"name\":\"Marketing Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/marketing-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/marketing-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Marketing Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Marketing Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Marketing Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/marketing-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/marketing-tools/",
+            "url": "https://backend.seordp.net/product-category/marketing-tools/",
+            "name": "Marketing Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/marketing-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/marketing-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Marketing Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/26",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "name": "Plagiarism Checker Tools",
+    "slug": "plagiarism-checker-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34885,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Plagiarism Checker Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Plagiarism Checker Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/plagiarism-checker-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/plagiarism-checker-tools/\",\"url\":\"https://backend.seordp.net/product-category/plagiarism-checker-tools/\",\"name\":\"Plagiarism Checker Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/plagiarism-checker-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/plagiarism-checker-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Plagiarism Checker Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Plagiarism Checker Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Plagiarism Checker Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/plagiarism-checker-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/plagiarism-checker-tools/",
+            "url": "https://backend.seordp.net/product-category/plagiarism-checker-tools/",
+            "name": "Plagiarism Checker Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/plagiarism-checker-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/plagiarism-checker-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Plagiarism Checker Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/27",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 28,
+    "name": "SEO TOOLS",
+    "slug": "seo-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34880,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 34,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>SEO TOOLS Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"SEO TOOLS Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/seo-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/seo-tools/\",\"url\":\"https://backend.seordp.net/product-category/seo-tools/\",\"name\":\"SEO TOOLS Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/seo-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/seo-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"SEO TOOLS\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "SEO TOOLS Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "SEO TOOLS Archives",
+      "og_url": "https://backend.seordp.net/product-category/seo-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/seo-tools/",
+            "url": "https://backend.seordp.net/product-category/seo-tools/",
+            "name": "SEO TOOLS Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/seo-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/seo-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "SEO TOOLS"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/28",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 29,
+    "name": "Social Media Tools",
+    "slug": "social-media-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34879,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 5,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Social Media Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Social Media Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/social-media-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/social-media-tools/\",\"url\":\"https://backend.seordp.net/product-category/social-media-tools/\",\"name\":\"Social Media Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/social-media-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/social-media-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Social Media Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Social Media Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Social Media Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/social-media-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/social-media-tools/",
+            "url": "https://backend.seordp.net/product-category/social-media-tools/",
+            "name": "Social Media Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/social-media-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/social-media-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Social Media Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/29",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 30,
+    "name": "Streaming Services",
+    "slug": "streaming-services",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34878,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Streaming Services Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Streaming Services Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/streaming-services/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/streaming-services/\",\"url\":\"https://backend.seordp.net/product-category/streaming-services/\",\"name\":\"Streaming Services Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/streaming-services/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/streaming-services/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Streaming Services\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Streaming Services Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Streaming Services Archives",
+      "og_url": "https://backend.seordp.net/product-category/streaming-services/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/streaming-services/",
+            "url": "https://backend.seordp.net/product-category/streaming-services/",
+            "name": "Streaming Services Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/streaming-services/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/streaming-services/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Streaming Services"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/30",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": null,
+    "menu_order": 0,
+    "count": 7,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Uncategorized Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Uncategorized Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/uncategorized/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/uncategorized/\",\"url\":\"https://backend.seordp.net/product-category/uncategorized/\",\"name\":\"Uncategorized Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/uncategorized/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/uncategorized/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Uncategorized\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Uncategorized Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Uncategorized Archives",
+      "og_url": "https://backend.seordp.net/product-category/uncategorized/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/uncategorized/",
+            "url": "https://backend.seordp.net/product-category/uncategorized/",
+            "name": "Uncategorized Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/uncategorized/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/uncategorized/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Uncategorized"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/15",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 31,
+    "name": "Video Editing Tools",
+    "slug": "video-editing-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34877,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 11,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Video Editing Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Video Editing Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/video-editing-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/video-editing-tools/\",\"url\":\"https://backend.seordp.net/product-category/video-editing-tools/\",\"name\":\"Video Editing Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/video-editing-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/video-editing-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Video Editing Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Video Editing Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Video Editing Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/video-editing-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/video-editing-tools/",
+            "url": "https://backend.seordp.net/product-category/video-editing-tools/",
+            "name": "Video Editing Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/video-editing-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/video-editing-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Video Editing Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/31",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": 32,
+    "name": "Writing Assistant Tools",
+    "slug": "writing-assistant-tools",
+    "parent": 0,
+    "description": "",
+    "display": "default",
+    "image": {
+      "id": 34876,
+      "date_created": null,
+      "date_created_gmt": null,
+      "date_modified": null,
+      "date_modified_gmt": null,
+      "src": false,
+      "name": "",
+      "alt": ""
+    },
+    "menu_order": 0,
+    "count": 12,
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v24.1 (Yoast SEO v27.0) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Writing Assistant Tools Archives - backend</title>\n<!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [Yoast SEO - Settings] menu and set up a template. -->\n<meta name=\"robots\" content=\"noindex, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Writing Assistant Tools Archives\" />\n<meta property=\"og:url\" content=\"https://backend.seordp.net/product-category/writing-assistant-tools/\" />\n<meta property=\"og:site_name\" content=\"backend\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https://backend.seordp.net/product-category/writing-assistant-tools/\",\"url\":\"https://backend.seordp.net/product-category/writing-assistant-tools/\",\"name\":\"Writing Assistant Tools Archives - backend\",\"isPartOf\":{\"@id\":\"https://backend.seordp.net/#website\"},\"breadcrumb\":{\"@id\":\"https://backend.seordp.net/product-category/writing-assistant-tools/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https://backend.seordp.net/product-category/writing-assistant-tools/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://backend.seordp.net/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Writing Assistant Tools\"}]},{\"@type\":\"WebSite\",\"@id\":\"https://backend.seordp.net/#website\",\"url\":\"https://backend.seordp.net/\",\"name\":\"Seo group buy tools\",\"description\":\"My WordPress Blog\",\"publisher\":{\"@id\":\"https://backend.seordp.net/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https://backend.seordp.net/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https://backend.seordp.net/#organization\",\"name\":\"seordp.net\",\"url\":\"https://backend.seordp.net/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\",\"url\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"contentUrl\":\"https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png\",\"width\":512,\"height\":512,\"caption\":\"seordp.net\"},\"image\":{\"@id\":\"https://backend.seordp.net/#/schema/logo/image/\"},\"sameAs\":[\"https://www.facebook.com/Seordp.net\"]}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Writing Assistant Tools Archives - backend",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Writing Assistant Tools Archives",
+      "og_url": "https://backend.seordp.net/product-category/writing-assistant-tools/",
+      "og_site_name": "backend",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://backend.seordp.net/product-category/writing-assistant-tools/",
+            "url": "https://backend.seordp.net/product-category/writing-assistant-tools/",
+            "name": "Writing Assistant Tools Archives - backend",
+            "isPartOf": {
+              "@id": "https://backend.seordp.net/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://backend.seordp.net/product-category/writing-assistant-tools/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://backend.seordp.net/product-category/writing-assistant-tools/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://backend.seordp.net/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Writing Assistant Tools"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://backend.seordp.net/#website",
+            "url": "https://backend.seordp.net/",
+            "name": "Seo group buy tools",
+            "description": "My WordPress Blog",
+            "publisher": {
+              "@id": "https://backend.seordp.net/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://backend.seordp.net/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://backend.seordp.net/#organization",
+            "name": "seordp.net",
+            "url": "https://backend.seordp.net/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://backend.seordp.net/#/schema/logo/image/",
+              "url": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "contentUrl": "https://backend.seordp.net/wp-content/uploads/2023/05/cropped-SEO.png",
+              "width": 512,
+              "height": 512,
+              "caption": "seordp.net"
+            },
+            "image": {
+              "@id": "https://backend.seordp.net/#/schema/logo/image/"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Seordp.net"
+            ]
+          }
+        ]
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories/32",
+          "targetHints": {
+            "allow": [
+              "GET",
+              "POST",
+              "PUT",
+              "PATCH",
+              "DELETE"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.seordp.net/wp-json/wc/v3/products/categories"
+        }
+      ]
+    }
+  }
+]

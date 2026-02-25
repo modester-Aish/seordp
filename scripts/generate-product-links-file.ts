@@ -5,7 +5,7 @@
 
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
-import { fetchAllProductsComplete } from '../lib/woocommerce-api';
+import { fetchAllProductsComplete } from '../lib/woocommerce-api-server';
 
 async function generateProductLinksFile() {
   try {

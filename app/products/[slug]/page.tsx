@@ -3,9 +3,8 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ShoppingCart, Star, Check, X } from 'lucide-react';
+import { fetchAllProducts, fetchProductBySlug } from '@/lib/woocommerce-api-server';
 import {
-  fetchAllProducts,
-  fetchProductBySlug,
   getFormattedPrice,
   isProductOnSale,
   getProductMainImage,

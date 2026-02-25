@@ -3,7 +3,7 @@
  * Run: npx tsx scripts/check-product-count.ts
  */
 
-import { fetchAllProductsComplete } from '../lib/woocommerce-api';
+import { fetchAllProductsComplete } from '../lib/woocommerce-api-server';
 
 async function checkProductCount() {
   try {

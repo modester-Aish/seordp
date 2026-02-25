@@ -5,8 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ShoppingCart, Star, Check, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Tool } from '@/lib/tools-data';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
-import { matchToolToProduct } from '@/lib/tool-product-matcher';
 import { WooCommerceProduct } from '@/types/wordpress';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 
@@ -25,23 +23,18 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
     setIsClient(true);
     setPurchaseCount(Math.floor(Math.random() * 70) + 30);
     
-    // Fetch products and match with tool
+    // Fetch matched product slug via server API (uses local JSON snapshot)
     const loadProductMatch = async () => {
       try {
-        // First check static redirect mapping
         const staticRedirect = getToolProductRedirect(tool.slug);
         if (staticRedirect) {
           setMatchedProductSlug(staticRedirect);
           return;
         }
-        
-        // Fallback: Dynamic matching via API
-        const { data: products } = await fetchAllProductsComplete();
-        if (products && products.length > 0) {
-          const matchedProduct = matchToolToProduct(tool, products);
-          if (matchedProduct && matchedProduct.status === 'publish') {
-            setMatchedProductSlug(matchedProduct.slug);
-          }
+        const res = await fetch(`/api/tool-product-match?slug=${encodeURIComponent(tool.slug)}`);
+        if (res.ok) {
+          const { matchedProductSlug: slug } = await res.json();
+          if (slug) setMatchedProductSlug(slug);
         }
       } catch (error) {
         console.error('Error loading product match for tool:', error);

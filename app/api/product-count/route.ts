@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 
 /**
  * Simple API route to get product count

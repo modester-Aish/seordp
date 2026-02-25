@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
+import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {

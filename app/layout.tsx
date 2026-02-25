@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import HeaderServer from '@/components/HeaderServer'
@@ -71,15 +72,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="flex min-h-screen flex-col">
-          <HeaderServer />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <FloatingChat />
-          <BackToTop />
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <Suspense fallback={null}>
+          <div className="flex min-h-screen flex-col">
+            <HeaderServer />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <FloatingChat />
+            <BackToTop />
+          </div>
+        </Suspense>
       </body>
     </html>
   )

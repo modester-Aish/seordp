@@ -25,7 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const inStock = isInStock(product);
 
   return (
-    <article className="card-gradient group relative overflow-hidden h-full flex flex-col">
+    <article className="card-gradient group relative overflow-hidden h-full flex flex-col" suppressHydrationWarning>
       {onSale && discountPercentage && (
         <div className="absolute left-3 top-3 z-10 rounded-full px-3 py-1 text-xs font-bold text-white animate-bounce-gentle"
              style={{
@@ -69,6 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {product.short_description && (
           <p
             className="mb-3 text-sm text-slate-400 line-clamp-2 min-h-[2.5rem]"
+            suppressHydrationWarning
             dangerouslySetInnerHTML={{
               __html: product.short_description,
             }}

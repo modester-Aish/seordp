@@ -6,14 +6,51 @@ import {
   WordPressCategory,
   WordPressTag,
 } from '@/types/wordpress';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
 
-const WORDPRESS_BASE_URL = process.env.WORDPRESS_BASE_URL || 'https://app.faditools.com';
-const WP_API_URL = `${WORDPRESS_BASE_URL}/wp-json/wp/v2`;
+// Helper: load JSON from public/data (snapshot exported by scripts/export-wordpress-snapshot.js)
+async function loadJsonFile<T>(fileName: string): Promise<T> {
+  const filePath = join(process.cwd(), 'public', 'data', fileName);
+  const raw = await readFile(filePath, 'utf-8');
+  return JSON.parse(raw) as T;
+}
 
-// Cache configuration - data revalidate every 1 hour
-const CACHE_REVALIDATE = 3600; // 1 hour in seconds
+// In‑memory caches so we only hit the filesystem once per process
+let cachedPosts: WordPressPost[] | null = null;
+let cachedPages: WordPressPage[] | null = null;
+let cachedCategories: WordPressCategory[] | null = null;
+let cachedTags: WordPressTag[] | null = null;
 
-// Helper function to handle API errors
+async function getAllPosts(): Promise<WordPressPost[]> {
+  if (!cachedPosts) {
+    cachedPosts = await loadJsonFile<WordPressPost[]>('wp-posts.json');
+  }
+  return cachedPosts;
+}
+
+async function getAllPages(): Promise<WordPressPage[]> {
+  if (!cachedPages) {
+    cachedPages = await loadJsonFile<WordPressPage[]>('wp-pages.json');
+  }
+  return cachedPages;
+}
+
+async function getAllCategoriesLocal(): Promise<WordPressCategory[]> {
+  if (!cachedCategories) {
+    cachedCategories = await loadJsonFile<WordPressCategory[]>('wp-categories.json');
+  }
+  return cachedCategories;
+}
+
+async function getAllTagsLocal(): Promise<WordPressTag[]> {
+  if (!cachedTags) {
+    cachedTags = await loadJsonFile<WordPressTag[]>('wp-tags.json');
+  }
+  return cachedTags;
+}
+
+// Helper function to handle API‑style errors
 const handleApiError = (error: any): string => {
   if (error instanceof Error) {
     return `Request Error: ${error.message}`;
@@ -21,7 +58,7 @@ const handleApiError = (error: any): string => {
   return 'An unknown error occurred';
 };
 
-// Fetch all posts with optional filters
+// Fetch all posts with optional filters from local snapshot
 export async function fetchAllPosts(
   page: number = 1,
   perPage: number = 10,
@@ -29,34 +66,41 @@ export async function fetchAllPosts(
   tags?: string
 ): Promise<WordPressApiResponse<WordPressPost>> {
   try {
-    const params = new URLSearchParams({
-      page: page.toString(),
-      per_page: perPage.toString(),
-      _embed: 'true',
-    });
+    let allPosts = await getAllPosts();
 
+    // Filter by category IDs (comma‑separated list, like WordPress API)
     if (categories) {
-      params.append('categories', categories);
-    }
+      const categoryIds = categories
+        .split(',')
+        .map((id) => parseInt(id.trim(), 10))
+        .filter((id) => !Number.isNaN(id));
 
-    if (tags) {
-      params.append('tags', tags);
-    }
-
-    const response = await fetch(`${WP_API_URL}/posts?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['posts'] 
+      if (categoryIds.length > 0) {
+        allPosts = allPosts.filter((post: any) =>
+          Array.isArray(post.categories) &&
+          categoryIds.some((id) => post.categories.includes(id))
+        );
       }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data: WordPressPost[] = await response.json();
-    const total = parseInt(response.headers.get('x-wp-total') || '0');
-    const totalPages = parseInt(response.headers.get('x-wp-totalpages') || '0');
+    // Filter by tag IDs (comma‑separated)
+    if (tags) {
+      const tagIds = tags
+        .split(',')
+        .map((id) => parseInt(id.trim(), 10))
+        .filter((id) => !Number.isNaN(id));
+
+      if (tagIds.length > 0) {
+        allPosts = allPosts.filter((post: any) =>
+          Array.isArray(post.tags) && tagIds.some((id) => post.tags.includes(id))
+        );
+      }
+    }
+
+    const total = allPosts.length;
+    const totalPages = perPage > 0 ? Math.max(1, Math.ceil(total / perPage)) : 1;
+    const start = (page - 1) * perPage;
+    const data = perPage > 0 ? allPosts.slice(start, start + perPage) : allPosts;
 
     return {
       data,
@@ -65,7 +109,7 @@ export async function fetchAllPosts(
       totalPages,
     };
   } catch (error: any) {
-    console.error('Error fetching posts:', error);
+    console.error('Error reading local posts snapshot:', error);
     return {
       data: null,
       error: handleApiError(error),
@@ -73,72 +117,19 @@ export async function fetchAllPosts(
   }
 }
 
-// Fetch ALL posts from WordPress (handles pagination automatically)
+// Fetch ALL posts from local snapshot
 export async function fetchAllPostsComplete(): Promise<WordPressApiResponse<WordPressPost>> {
   try {
-    let allPosts: WordPressPost[] = [];
-    let totalPages = 1;
-
-    // Fetch first page to get total pages
-    const params1 = new URLSearchParams({
-      page: '1',
-      per_page: '100',
-      _embed: 'true',
-    });
-
-    const firstResponse = await fetch(`${WP_API_URL}/posts?${params1.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['posts', 'all-posts'] 
-      }
-    });
-
-    if (!firstResponse.ok) {
-      throw new Error(`HTTP error! status: ${firstResponse.status}`);
-    }
-
-    allPosts = await firstResponse.json();
-    totalPages = parseInt(firstResponse.headers.get('x-wp-totalpages') || '1');
-    const total = parseInt(firstResponse.headers.get('x-wp-total') || '0');
-
-    console.log(`📝 Fetching ${total} posts from ${totalPages} pages...`);
-
-    // Fetch remaining pages if there are more
-    if (totalPages > 1) {
-      const pagePromises = [];
-      for (let page = 2; page <= totalPages; page++) {
-        const params = new URLSearchParams({
-          page: page.toString(),
-          per_page: '100',
-          _embed: 'true',
-        });
-
-        pagePromises.push(
-          fetch(`${WP_API_URL}/posts?${params.toString()}`, {
-            next: { 
-              revalidate: CACHE_REVALIDATE,
-              tags: ['posts', 'all-posts'] 
-            }
-          }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
-        );
-      }
-
-      const responses = await Promise.all(pagePromises);
-      responses.forEach(data => {
-        allPosts = [...allPosts, ...data];
-      });
-    }
-
-    console.log(`✅ Successfully loaded ${allPosts.length} posts!`);
+    const allPosts = await getAllPosts();
 
     return {
       data: allPosts,
       error: null,
       total: allPosts.length,
-      totalPages: 1, // All posts in one response now
+      totalPages: 1,
     };
   } catch (error: any) {
-    console.error('Error fetching all posts:', error);
+    console.error('Error reading all local posts:', error);
     return {
       data: null,
       error: handleApiError(error),
@@ -146,30 +137,15 @@ export async function fetchAllPostsComplete(): Promise<WordPressApiResponse<Word
   }
 }
 
-// Fetch a single post by slug
+// Fetch a single post by slug from local snapshot
 export async function fetchPostBySlug(
   slug: string
 ): Promise<WordPressSingleResponse<WordPressPost>> {
   try {
-    const params = new URLSearchParams({
-      slug,
-      _embed: 'true',
-    });
+    const allPosts = await getAllPosts();
+    const post = allPosts.find((p) => p.slug === slug);
 
-    const response = await fetch(`${WP_API_URL}/posts?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['posts', `post-${slug}`] 
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPost[] = await response.json();
-
-    if (data.length === 0) {
+    if (!post) {
       return {
         data: null,
         error: 'Post not found',
@@ -177,11 +153,11 @@ export async function fetchPostBySlug(
     }
 
     return {
-      data: data[0],
+      data: post,
       error: null,
     };
   } catch (error: any) {
-    console.error(`Error fetching post with slug ${slug}:`, error);
+    console.error(`Error finding post with slug ${slug} in local snapshot:`, error);
     return {
       data: null,
       error: handleApiError(error),
@@ -189,32 +165,17 @@ export async function fetchPostBySlug(
   }
 }
 
-// Fetch all pages
+// Fetch all pages from local snapshot with simple pagination
 export async function fetchAllPages(
   page: number = 1,
   perPage: number = 100
 ): Promise<WordPressApiResponse<WordPressPage>> {
   try {
-    const params = new URLSearchParams({
-      page: page.toString(),
-      per_page: perPage.toString(),
-      _embed: 'true',
-    });
-
-    const response = await fetch(`${WP_API_URL}/pages?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['pages'] 
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPage[] = await response.json();
-    const total = parseInt(response.headers.get('x-wp-total') || '0');
-    const totalPages = parseInt(response.headers.get('x-wp-totalpages') || '0');
+    const allPages = await getAllPages();
+    const total = allPages.length;
+    const totalPages = perPage > 0 ? Math.max(1, Math.ceil(total / perPage)) : 1;
+    const start = (page - 1) * perPage;
+    const data = perPage > 0 ? allPages.slice(start, start + perPage) : allPages;
 
     return {
       data,
@@ -223,7 +184,7 @@ export async function fetchAllPages(
       totalPages,
     };
   } catch (error: any) {
-    console.error('Error fetching pages:', error);
+    console.error('Error reading local pages snapshot:', error);
     return {
       data: null,
       error: handleApiError(error),
@@ -231,72 +192,19 @@ export async function fetchAllPages(
   }
 }
 
-// Fetch ALL pages from WordPress (handles pagination automatically)
+// Fetch ALL pages from local snapshot
 export async function fetchAllPagesComplete(): Promise<WordPressApiResponse<WordPressPage>> {
   try {
-    let allPages: WordPressPage[] = [];
-    let totalPages = 1;
-
-    // Fetch first page to get total pages
-    const params1 = new URLSearchParams({
-      page: '1',
-      per_page: '100',
-      _embed: 'true',
-    });
-
-    const firstResponse = await fetch(`${WP_API_URL}/pages?${params1.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['pages', 'all-pages'] 
-      }
-    });
-
-    if (!firstResponse.ok) {
-      throw new Error(`HTTP error! status: ${firstResponse.status}`);
-    }
-
-    allPages = await firstResponse.json();
-    totalPages = parseInt(firstResponse.headers.get('x-wp-totalpages') || '1');
-    const total = parseInt(firstResponse.headers.get('x-wp-total') || '0');
-
-    console.log(`📄 Fetching ${total} pages from ${totalPages} pages...`);
-
-    // Fetch remaining pages if there are more
-    if (totalPages > 1) {
-      const pagePromises = [];
-      for (let page = 2; page <= totalPages; page++) {
-        const params = new URLSearchParams({
-          page: page.toString(),
-          per_page: '100',
-          _embed: 'true',
-        });
-
-        pagePromises.push(
-          fetch(`${WP_API_URL}/pages?${params.toString()}`, {
-            next: { 
-              revalidate: CACHE_REVALIDATE,
-              tags: ['pages', 'all-pages'] 
-            }
-          }).then(res => res.ok ? res.json() : Promise.reject(new Error(`HTTP error! status: ${res.status}`)))
-        );
-      }
-
-      const responses = await Promise.all(pagePromises);
-      responses.forEach(data => {
-        allPages = [...allPages, ...data];
-      });
-    }
-
-    console.log(`✅ Successfully loaded ${allPages.length} pages!`);
+    const allPages = await getAllPages();
 
     return {
       data: allPages,
       error: null,
       total: allPages.length,
-      totalPages: 1, // All pages in one response now
+      totalPages: 1,
     };
   } catch (error: any) {
-    console.error('Error fetching all pages:', error);
+    console.error('Error reading all local pages:', error);
     return {
       data: null,
       error: handleApiError(error),
@@ -304,30 +212,15 @@ export async function fetchAllPagesComplete(): Promise<WordPressApiResponse<Word
   }
 }
 
-// Fetch a single page by slug
+// Fetch a single page by slug from local snapshot
 export async function fetchPageBySlug(
   slug: string
 ): Promise<WordPressSingleResponse<WordPressPage>> {
   try {
-    const params = new URLSearchParams({
-      slug,
-      _embed: 'true',
-    });
+    const allPages = await getAllPages();
+    const page = allPages.find((p) => p.slug === slug);
 
-    const response = await fetch(`${WP_API_URL}/pages?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['pages', `page-${slug}`] 
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressPage[] = await response.json();
-
-    if (data.length === 0) {
+    if (!page) {
       return {
         data: null,
         error: 'Page not found',
@@ -335,11 +228,11 @@ export async function fetchPageBySlug(
     }
 
     return {
-      data: data[0],
+      data: page,
       error: null,
     };
   } catch (error: any) {
-    console.error(`Error fetching page with slug ${slug}:`, error);
+    console.error(`Error finding page with slug ${slug} in local snapshot:`, error);
     return {
       data: null,
       error: handleApiError(error),
@@ -347,32 +240,16 @@ export async function fetchPageBySlug(
   }
 }
 
-// Fetch all categories
+// Fetch all categories from local snapshot
 export async function fetchAllCategories(): Promise<WordPressApiResponse<WordPressCategory>> {
   try {
-    const params = new URLSearchParams({
-      per_page: '100',
-    });
-
-    const response = await fetch(`${WP_API_URL}/categories?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['categories'] 
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressCategory[] = await response.json();
-
+    const categories = await getAllCategoriesLocal();
     return {
-      data,
+      data: categories,
       error: null,
     };
   } catch (error: any) {
-    console.error('Error fetching categories:', error);
+    console.error('Error reading local categories snapshot:', error);
     return {
       data: null,
       error: handleApiError(error),
@@ -380,32 +257,16 @@ export async function fetchAllCategories(): Promise<WordPressApiResponse<WordPre
   }
 }
 
-// Fetch all tags
+// Fetch all tags from local snapshot
 export async function fetchAllTags(): Promise<WordPressApiResponse<WordPressTag>> {
   try {
-    const params = new URLSearchParams({
-      per_page: '100',
-    });
-
-    const response = await fetch(`${WP_API_URL}/tags?${params.toString()}`, {
-      next: { 
-        revalidate: CACHE_REVALIDATE,
-        tags: ['tags'] 
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: WordPressTag[] = await response.json();
-
+    const tags = await getAllTagsLocal();
     return {
-      data,
+      data: tags,
       error: null,
     };
   } catch (error: any) {
-    console.error('Error fetching tags:', error);
+    console.error('Error reading local tags snapshot:', error);
     return {
       data: null,
       error: handleApiError(error),

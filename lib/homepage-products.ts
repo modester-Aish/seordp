@@ -7,7 +7,7 @@
  * Total: ~15 KB (instead of 7.7 MB - 99.8% choti!)
  */
 
-import { fetchAllProducts, fetchProductCategories } from './woocommerce-api';
+// Server-side fallback uses dynamic import to avoid pulling fs into client bundle
 
 export interface HomepageProduct {
   id: number;
@@ -61,9 +61,10 @@ export async function loadHomepageProducts(): Promise<HomepageProduct[]> {
       }
     }
     
-    // Fallback to WordPress API
+    // Fallback: server-only (uses local JSON snapshot)
+    const { fetchAllProducts } = await import('./woocommerce-api-server');
     const { data: products, error } = await fetchAllProducts(1, 12);
-    
+
     if (error || !products) {
       console.log('Using fallback products data');
       return [];
@@ -105,9 +106,10 @@ export async function loadHomepageCategories(): Promise<HomepageCategory[]> {
       }
     }
     
-    // Fallback to WordPress API
+    // Fallback: server-only (uses local JSON snapshot)
+    const { fetchProductCategories } = await import('./woocommerce-api-server');
     const { data: categories, error } = await fetchProductCategories();
-    
+
     if (error || !categories) {
       console.log('Using fallback categories data');
       return getFallbackCategories();

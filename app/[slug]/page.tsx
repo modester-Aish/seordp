@@ -2,7 +2,13 @@ import { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { fetchProductBySlug, fetchAllProducts } from '@/lib/woocommerce-api';
+import { fetchProductBySlug, fetchAllProducts, fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
+import {
+  getFormattedPrice,
+  getProductMainImage,
+  getProductCheckoutUrl,
+  getProductButtonText,
+} from '@/lib/woocommerce-api';
 import { 
   fetchPostBySlug, 
   fetchPageBySlug, 
@@ -29,7 +35,6 @@ import Footer from '@/components/Footer';
 import ProductDetailClient from '@/components/ProductDetailClient';
 import ToolDetailClient from '@/components/ToolDetailClient';
 import { getToolBySlug, getAllTools } from '@/lib/tools-data';
-import { fetchAllProductsComplete } from '@/lib/woocommerce-api';
 import { matchToolToProduct, getToolProductSlug } from '@/lib/tool-product-matcher';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 

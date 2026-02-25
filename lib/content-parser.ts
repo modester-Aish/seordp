@@ -4,30 +4,39 @@
  */
 
 /**
- * Remove WordPress backend URLs and replace with frontend URLs
- * Converts backend URLs (app.faditools.com, backend.seordp.net) to frontend URLs (seordp.net)
+ * Convert backend upload URL to local path so images load from public/wp-content/uploads/
+ */
+export function toLocalUploadUrl(url: string | null | undefined): string | null {
+  if (!url || typeof url !== 'string') return null;
+  const match = url.match(
+    /https?:\/\/(?:app\.faditools\.com|backend\.seordp\.net)\/wp-content\/uploads\/(.+)$/i
+  );
+  if (match) return `/wp-content/uploads/${match[1].replace(/\?.*$/, '')}`;
+  return url;
+}
+
+/**
+ * Remove WordPress backend URLs: uploads → local path, other links → seordp.net
  */
 function removeBackendUrls(content: string): string {
   if (!content) return '';
 
   let cleanedContent = content;
 
-  // Replace WordPress backend domain URLs with frontend domain
-  // Pattern: https://app.faditools.com/... or https://backend.seordp.net/...
   cleanedContent = cleanedContent.replace(
     /https?:\/\/(?:app\.faditools\.com|backend\.seordp\.net)(\/[^\s"']*)/gi,
     (match, path) => {
-      // Extract slug from path (remove /page/, /post/, /product/ prefixes if any)
       const cleanPath = path.replace(/^\/(?:pages?|posts?|products?)\//, '/');
+      if (/^\/wp-content\/uploads\//i.test(cleanPath)) return cleanPath;
       return `https://seordp.net${cleanPath}`;
     }
   );
 
-  // Replace any WordPress permalink URLs in content
   cleanedContent = cleanedContent.replace(
     /href=["']https?:\/\/(?:app\.faditools\.com|backend\.seordp\.net)([^"']+)["']/gi,
     (match, path) => {
       const cleanPath = path.replace(/^\/(?:pages?|posts?|products?)\//, '/');
+      if (/^\/wp-content\/uploads\//i.test(cleanPath)) return `href="${cleanPath}"`;
       return `href="https://seordp.net${cleanPath}"`;
     }
   );
