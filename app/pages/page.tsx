@@ -6,11 +6,11 @@ import { generateCanonicalUrl } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
 
 export const metadata: Metadata = {
-  title: 'SEO Tools Pricing, Plans & Information | SEORDP Group Buy',
+  title: 'SEO Tools Pricing, Plans & Information',
   description: 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahref$, SEMru$h, Moz Pro plans. Find the best SEO tools subscription for your needs.',
   keywords: 'seo tools pricing, group buy plans, ahref$ pricing, semru$h pricing, seo tools packages, seo subscription plans, affordable seo tools',
   openGraph: {
-    title: 'SEO Tools Pricing Plans & Packages - SEORDP Group Buy',
+    title: 'SEO Tools Pricing Plans & Packages',
     description: 'Compare pricing plans for 50+ premium SEO tools. Find the perfect group buy package for your business.',
     url: 'https://seordp.net/pages',
   },

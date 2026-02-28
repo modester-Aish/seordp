@@ -264,9 +264,11 @@ export default function InteractivePricingCards() {
                     View included tools →
                   </button>
 
-                  {/* Get Access Button - Link to plan detail page */}
+                  {/* Get Access Button - Link to signup */}
                   <Link
-                    href={`/${card.slug}`}
+                    href="https://members.buyseo.org/signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full py-3 rounded-lg font-semibold text-center block transition-all duration-300 transform hover:scale-105 shadow-lg ${
                       card.isPopular
                         ? 'hero-btn-primary'

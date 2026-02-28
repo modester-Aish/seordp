@@ -7,14 +7,14 @@ import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 import { ShoppingCart } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Complete Tools List - All SEO, AI, Design & Marketing Tools | SEORDP',
+  title: 'Complete Tools List - All SEO, AI, Design & Marketing Tools',
   description: 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.',
   keywords: 'complete tools list, all seo tools, group buy tools list, seo tools catalog, premium tools directory, all available tools, tools inventory, seo software list',
   alternates: {
     canonical: generateCanonicalUrl('/single-tools-list'),
   },
   openGraph: {
-    title: 'Complete Tools List - All Premium SEO & Marketing Tools | SEORDP',
+    title: 'Complete Tools List - All Premium SEO & Marketing Tools',
     description: 'Browse complete list of 50+ premium tools available in our group buy service.',
     url: 'https://seordp.net/single-tools-list',
     type: 'website',
@@ -144,17 +144,15 @@ export default async function SingleToolsListPage() {
                           )}
                         </div>
 
-                        {/* Buy Now Button */}
+                        {/* Order Now - abhi sab pe signup; ID baad mein laga dena */}
                         <Link
-                          href={tool.productId
-                            ? `https://members.seotoolsgroupbuy.us/cart/index/product/id/${tool.productId}/c/?`
-                            : 'https://members.seotoolsgroupbuy.us/signup'}
+                          href="https://members.buyseo.org/signup"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"
                         >
                           <ShoppingCart className="h-4 w-4" />
-                          Buy Now
+                          Order Now
                         </Link>
                       </div>
                     </div>
@@ -170,14 +168,15 @@ export default async function SingleToolsListPage() {
               Get Access to All {tools.length}+ Tools
             </h3>
             <p className="text-slate-400 mb-6 max-w-2xl mx-auto">
-              Join our group buy service and get instant access to all these premium tools at 90% discount. 
-              Starting from just $4.99/month with 24/7 support and instant setup.
+              Join our group buy service and get instant access to all these premium tools at 90% discount.
             </p>
             <Link
-              href="/products"
+              href="https://members.buyseo.org/signup"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hero-btn-primary"
             >
-              View All Plans
+              Order Now
             </Link>
           </div>
         </div>

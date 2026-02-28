@@ -5,12 +5,12 @@ import { generateCanonicalUrl } from '@/lib/canonical';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | SEORDP',
+  title: 'Contact Us',
   description: 'Get in touch with SEORDP. Email support, business hours, social media. We aim to respond within 24 hours. Contact us for SEO tools, group buy, or partnerships.',
   keywords: 'contact SEORDP, support, customer service, SEO tools support, group buy help',
   alternates: { canonical: generateCanonicalUrl('/contact-us') },
   openGraph: {
-    title: 'Contact Us | SEORDP',
+    title: 'Contact Us',
     description: 'Get in touch with SEORDP. Email support, business hours, social media. We respond within 24 hours.',
     url: 'https://seordp.net/contact-us',
     type: 'website',

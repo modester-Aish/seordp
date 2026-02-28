@@ -34,7 +34,7 @@ export default function ModernHero() {
               {/* CTA Buttons */}
               <div className="flex flex-wrap items-center gap-4">
                 <a 
-                  href="https://members.seotoolsgroupbuy.us/signup" 
+                  href="https://members.buyseo.org/signup" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-lg transition-all duration-200 shadow-lg"
@@ -93,7 +93,7 @@ export default function ModernHero() {
                   ))}
                 </div>
                 <a 
-                  href="https://members.seotoolsgroupbuy.us/signup"
+                  href="https://members.buyseo.org/signup"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-3 bg-white text-teal-600 font-bold rounded-xl hover:bg-slate-100 transition-colors text-center"

@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // Validate slug first
   if (!slug || slug.trim() === '') {
     return {
-      title: 'Page Not Found | SEORDP',
+      title: 'Page Not Found',
     };
   }
   
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .substring(0, 160);
             
             return {
-              title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
+              title: `${product.name} - Group Buy SEO Tool at ${product.price}`,
               description: cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`,
               keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy tools`,
               openGraph: {
@@ -106,7 +106,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .substring(0, 160);
             
             return {
-              title: `${matchedProduct.name} - Group Buy SEO Tool at ${matchedProduct.price} | SEORDP`,
+              title: `${matchedProduct.name} - Group Buy SEO Tool at ${matchedProduct.price}`,
               description: cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`,
               keywords: `${matchedProduct.name} group buy, ${matchedProduct.name} cheap, ${matchedProduct.name} discount, buy ${matchedProduct.name}, seo tools, group buy tools`,
               openGraph: {
@@ -127,8 +127,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       
       // No matching product - return tool metadata (TOOL DETAIL PAGE)
       return {
-        title: `${tool.name} - Group Buy SEO Tool at ${tool.price} | SEORDP`,
-        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price}. 24/7 support, 99% uptime guarantee.`,
+        title: `${tool.name} - Group Buy SEO Tool at ${tool.price}`,
+        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price}.`,
         keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
         openGraph: {
           title: `${tool.name} - Premium Group Buy Access`,
@@ -151,8 +151,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           .substring(0, 160);
         
         return {
-          title: `${product.name} - Group Buy SEO Tool at ${product.price} | SEORDP`,
-          description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. 24/7 support, 99% uptime guarantee. Group buy SEO tools at 90% discount.`,
+          title: `${product.name} - Group Buy SEO Tool at ${product.price}`,
+          description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. Group buy SEO tools at 90% discount.`,
           keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
           openGraph: {
             title: `${product.name} - Premium Group Buy Access`,
@@ -174,7 +174,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const { data: post } = await fetchPostBySlug(slug);
       if (post && post.status === 'publish') {
         return {
-          title: `${getTitle(post)} | SEORDP`,
+          title: getTitle(post),
           description: getExcerpt(post),
           alternates: {
             canonical: generateCanonicalUrl(`/${slug}`),
@@ -190,7 +190,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const { data: page } = await fetchPageBySlug(slug);
       if (page && page.status === 'publish') {
         return {
-          title: `${getTitle(page)} | SEORDP`,
+          title: getTitle(page),
           description: getExcerpt(page),
           alternates: {
             canonical: generateCanonicalUrl(`/${slug}`),
@@ -205,7 +205,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
   
   return {
-    title: 'Page Not Found | SEORDP',
+    title: 'Page Not Found',
   };
 }
 

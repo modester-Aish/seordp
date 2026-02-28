@@ -4,7 +4,7 @@ import { fetchAllPosts } from '@/lib/wordpress-api';
 import { generateCanonicalUrl } from '@/lib/canonical';
 
 export const metadata: Metadata = {
-  title: 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools | SEORDP',
+  title: 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools',
   description: 'Learn SEO strategies, group buy tools tutorials, Ahref$ tips, SEMru$h guides, and digital marketing insights. Expert blog for SEO professionals and agencies.',
   keywords: 'seo blog, seo tips, ahref$ tutorial, semru$h guide, group buy seo tools blog, digital marketing tips, seo best practices, seo strategies 2025',
   openGraph: {

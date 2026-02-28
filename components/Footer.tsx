@@ -237,12 +237,12 @@ export default function Footer() {
               <p className="mt-2 text-xs">
                 Powered by:{' '}
                 <a 
-                  href="https://seotoolsgroupbuy.us" 
+                  href="https://members.buyseo.org" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-teal-400 hover:text-teal-300 transition-colors"
                 >
-                  seotoolsgroupbuy.us
+                  members.buyseo.org
                 </a>
               </p>
             </div>

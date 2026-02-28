@@ -79,10 +79,8 @@ export function getPlainShortDescription(product: WooCommerceProduct): string {
   return product.short_description.replace(/<[^>]*>/g, '');
 }
 
-export function getProductCheckoutUrl(product: WooCommerceProduct): string {
-  return product.external_url && product.external_url.trim()
-    ? product.external_url
-    : 'https://members.seotoolsgroupbuy.us/signup';
+export function getProductCheckoutUrl(_product: WooCommerceProduct): string {
+  return 'https://members.buyseo.org/signup';
 }
 
 export function getProductButtonText(

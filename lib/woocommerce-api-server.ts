@@ -136,11 +136,13 @@ export async function fetchAllProductsComplete(): Promise<
 > {
   try {
     const allProducts = await getAllProductsLocal();
-    const filteredProducts = allProducts.filter((p) => !isExcludedDuplicate(p.slug));
+    const filteredProducts = allProducts.filter(
+      (p) => p.status === 'publish' && !isExcludedDuplicate(p.slug)
+    );
     return {
       data: filteredProducts,
       error: null,
-      total: allProducts.length,
+      total: filteredProducts.length,
       totalPages: 1,
     };
   } catch (error) {

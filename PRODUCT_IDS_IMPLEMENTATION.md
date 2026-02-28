@@ -3,7 +3,7 @@
 ### 1. **Slug Matching** (Highest Priority - Exact Match)
 - Product ka slug check hota hai `slugToProductId` mapping file mein
 - Example: `product.slug = "ahrefs"` → Direct match → Product ID: `53`
-- URL: `https://members.seotoolsgroupbuy.us/cart/index/product/id/53/c/?`
+- URL: `https://members.buyseo.org/cart/index/product/id/53/c/?`
 
 ### 2. **Name Matching** (Fuzzy Match)
 - Agar slug se match nahi mila, to product name se keywords extract kiye jate hain
@@ -16,11 +16,11 @@
 
 ### 4. **WooCommerce ID** (Fallback)
 - Agar affiliate_link bhi nahi hai, to WooCommerce product ID se URL generate hota hai
-- Example: `product.id = 123` → URL: `https://members.seotoolsgroupbuy.us/cart/index/product/id/123/c/?`
+- Example: `product.id = 123` → URL: `https://members.buyseo.org/cart/index/product/id/123/c/?`
 
 ### 5. **Signup Page** (Final Fallback)
 - Sab kuch fail ho jaye to general signup page par redirect
-- URL: `https://members.seotoolsgroupbuy.us/signup`
+- URL: `https://members.buyseo.org/signup`
 
 ---
 
@@ -77,7 +77,7 @@ my-website/
     'ahrefs',         // Slug
     'https://...'    // External URL
   )
-  // Returns: https://members.seotoolsgroupbuy.us/cart/index/product/id/53/c/?
+  // Returns: https://members.buyseo.org/cart/index/product/id/53/c/?
   ```
 
 ---
@@ -230,7 +230,7 @@ my-website/
 
 **Result:** 
 - Priority 1: Slug "ahrefs" matches → Uses ID 53
-- URL: `https://members.seotoolsgroupbuy.us/cart/index/product/id/53/c/?`
+- URL: `https://members.buyseo.org/cart/index/product/id/53/c/?`
 
 ### Example 2: Product Card
 
@@ -264,7 +264,7 @@ getBuyNowUrl('Random Tool XYZ', 999, 'random-tool-xyz', null)
 // Priority 2: No name match
 // Priority 3: No external URL
 // Priority 4: Uses fallback ID 999
-// Returns: https://members.seotoolsgroupbuy.us/cart/index/product/id/999/c/?
+// Returns: https://members.buyseo.org/cart/index/product/id/999/c/?
 ```
 
 ---
@@ -304,7 +304,7 @@ getProductIdByName('New Product Tool') // Should return 200
 
 // Test full URL
 getBuyNowUrl('New Product Tool', 999, 'new-product', null)
-// Should return: https://members.seotoolsgroupbuy.us/cart/index/product/id/200/c/?
+// Should return: https://members.buyseo.org/cart/index/product/id/200/c/?
 ```
 
 ---
@@ -375,7 +375,7 @@ Development mode mein (`npm run dev`), console logging automatically enable hoti
 
 ✅ Slug match (suffix removed): ahrefs → 53
 
-✅ Using slug match URL: https://members.seotoolsgroupbuy.us/cart/index/product/id/53/c/?
+✅ Using slug match URL: https://members.buyseo.org/cart/index/product/id/53/c/?
 ```
 
 ### Step 3: Check Results

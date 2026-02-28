@@ -10,8 +10,8 @@ import ModernHero from '@/components/ModernHero';
 import FeatureSections from '@/components/FeatureSections';
 
 export const metadata: Metadata = {
-  title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF | SEORDP',
-  description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support from $4.99/month.',
+  title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF',
+  description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users.',
   keywords: 'group buy seo tools, cheap seo tools, ahref$ group buy, semru$h group buy, moz pro group buy, best seo tools 2025, affordable seo tools, premium seo tools, seo tools discount, chatgpt plus group buy, canva pro group buy, seo group buy service, shared seo tools, bulk seo tools, seo tools subscription, digital marketing tools, keyword research tools, backlink analysis tools, competitor analysis tools, seo software group buy',
   authors: [{ name: 'SEORDP Team' }],
   creator: 'SEORDP',
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF | SEORDP',
-    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support.',
+    title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF',
+    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users.',
     url: 'https://seordp.net',
     siteName: 'SEORDP',
     locale: 'en_US',
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF | SEORDP',
-    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users. Instant setup, 24/7 support.',
+    title: 'Best Group Buy SEO Tools 2025 - Ahref$, SEMru$h, Moz Pro at 90% OFF',
+    description: 'Access 50+ premium SEO tools at 90% discount. Get Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users.',
     creator: '@seordp',
     site: '@seordp',
   },

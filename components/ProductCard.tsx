@@ -67,7 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {product.short_description && (
-          <p
+          <div
             className="mb-3 text-sm text-slate-400 line-clamp-2 min-h-[2.5rem]"
             suppressHydrationWarning
             dangerouslySetInnerHTML={{
@@ -76,21 +76,22 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         )}
 
-        <div className="mb-4 flex items-center gap-1">
+        <div className="mb-4 flex items-center gap-1" suppressHydrationWarning>
           <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`h-4 w-4 ${
-                  i < Math.floor(parseFloat(product.average_rating))
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'text-slate-600'
-                }`}
-              />
-            ))}
+            {[...Array(5)].map((_, i) => {
+              const rating = Math.min(5, Math.max(0, Math.floor(Number(product.average_rating) || 0)));
+              return (
+                <Star
+                  key={i}
+                  className={`h-4 w-4 ${
+                    i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-slate-600'
+                  }`}
+                />
+              );
+            })}
           </div>
           <span className="text-sm text-slate-400">
-            ({product.rating_count})
+            ({Number(product.rating_count) || 0})
           </span>
         </div>
 

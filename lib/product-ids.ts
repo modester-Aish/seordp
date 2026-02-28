@@ -1,5 +1,5 @@
 // Product/Tool ID mapping for Buy Now links
-// Base URL: https://members.seotoolsgroupbuy.us/cart/index/product/id/{ID}/c/?
+// Base URL: https://members.buyseo.org/cart/index/product/id/{ID}/c/?
 
 // Check if we're in development mode for auto-debugging
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -553,82 +553,21 @@ export function getProductId(name: string): number | null {
   return getProductIdByName(name);
 }
 
+const SIGNUP_URL = 'https://members.buyseo.org/signup';
+
 /**
- * Generate Buy Now URL with priority order:
- * 1. Slug matching (if slug provided)
- * 2. Name matching (fuzzy match)
- * 3. External URL (if provided)
- * 4. Fallback ID (WooCommerce product ID)
- * 5. Default signup URL
- * 
- * @param productName - Product name
- * @param fallbackId - WooCommerce product ID (optional, for priority 4)
- * @param slug - Product slug (optional, for priority 1 matching)
- * @param externalUrl - External URL from WooCommerce (optional, for priority 3)
- * @param debug - Enable console logging for debugging
- * @returns Buy Now URL
+ * Generate Buy Now URL – ab hamesha signup link return hota hai.
+ * Affiliate (aff/go/Seordpnet) aur ID/cart links hata diye; sab products pe sirf signup.
+ *
+ * @returns Buy Now URL (signup)
  */
 export function getBuyNowUrl(
-  productName: string, 
-  fallbackId?: number,
-  slug?: string,
-  externalUrl?: string,
-  debug: boolean = isDevelopment // Auto-enable in development mode
+  _productName?: string,
+  _fallbackId?: number,
+  _slug?: string,
+  _externalUrl?: string,
+  _debug?: boolean
 ): string {
-  if (debug) {
-    console.log('🔍 Buy Now URL Generation:', {
-      productName,
-      slug,
-      fallbackId,
-      externalUrl
-    });
-  }
-  
-  // Priority 1: Slug Matching (Exact Match)
-  if (slug) {
-    const slugId = getProductIdBySlug(slug, debug);
-    if (slugId) {
-      const url = `https://members.seotoolsgroupbuy.us/cart/index/product/id/${slugId}/c/?`;
-      if (debug) {
-        console.log('✅ Using slug match URL:', url);
-      }
-      return url;
-    }
-  }
-  
-  // Priority 2: Name Matching (Fuzzy Match)
-  if (productName) {
-    const nameId = getProductIdByName(productName, debug);
-    if (nameId) {
-      const url = `https://members.seotoolsgroupbuy.us/cart/index/product/id/${nameId}/c/?`;
-      if (debug) {
-        console.log('✅ Using name match URL:', url);
-      }
-      return url;
-    }
-  }
-  
-  // Priority 3: Affiliate Link (External URL)
-  if (externalUrl && externalUrl.trim()) {
-    if (debug) {
-      console.log('✅ Using external URL:', externalUrl);
-    }
-    return externalUrl.trim();
-  }
-  
-  // Priority 4: WooCommerce ID (Fallback)
-  if (fallbackId) {
-    const url = `https://members.seotoolsgroupbuy.us/cart/index/product/id/${fallbackId}/c/?`;
-    if (debug) {
-      console.log('⚠️ Using fallback WooCommerce ID URL:', url);
-    }
-    return url;
-  }
-  
-  // Priority 5: Signup Page (Final Fallback)
-  if (debug) {
-    console.log('⚠️ Using default signup URL');
-  }
-  return 'https://members.seotoolsgroupbuy.us/signup';
+  return SIGNUP_URL;
 }
 

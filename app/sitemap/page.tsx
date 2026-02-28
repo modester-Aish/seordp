@@ -5,7 +5,7 @@ import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { getAllTools } from '@/lib/tools-data';
 
 export const metadata: Metadata = {
-  title: 'HTML Sitemap - SEORDP',
+  title: 'HTML Sitemap',
   description: 'Complete sitemap of all pages, blog posts, products, and tools on SEORDP.',
   robots: {
     index: true,

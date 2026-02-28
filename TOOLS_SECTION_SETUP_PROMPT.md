@@ -42,8 +42,8 @@ Homepage pe "50+ Premium SEO Tools & Services" section mein static tools add kiy
 - **Buy Now Link Logic:**
   ```typescript
   href={tool.productId 
-    ? `https://members.seotoolsgroupbuy.us/cart/index/product/id/${tool.productId}/c/?` 
-    : 'https://members.seotoolsgroupbuy.us/signup'}
+    ? `https://members.buyseo.org/cart/index/product/id/${tool.productId}/c/?` 
+    : 'https://members.buyseo.org/signup'}
   ```
 
 ### 3. Homepage Tools Section (`components/AnimatedSections.tsx`)
@@ -128,9 +128,9 @@ Homepage pe "50+ Premium SEO Tools & Services" section mein static tools add kiy
 
 ### For Static Tools
 1. **Priority 1:** Agar `tool.productId` hai → Use cart link with ID
-   - `https://members.seotoolsgroupbuy.us/cart/index/product/id/{productId}/c/?`
+   - `https://members.buyseo.org/cart/index/product/id/{productId}/c/?`
 2. **Priority 2:** Agar `tool.productId` nahi hai → Use default signup URL
-   - `https://members.seotoolsgroupbuy.us/signup`
+   - `https://members.buyseo.org/signup`
 
 ### For WooCommerce Products
 1. **Priority 1:** Agar `product.external_url` set hai → Use that

@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'SEORDP - Modern SEO & Web Development Tools',
-    template: '%s | SEORDP',
+    default: 'Modern SEO & Web Development Tools',
+    template: '%s',
   },
   description: 'Discover powerful SEO tools, web development resources, and premium products. Built with Next.js and WordPress for optimal performance.',
   keywords: ['seo', 'web development', 'tools', 'resources', 'wordpress', 'nextjs', 'ecommerce', 'rdp'],
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'SEORDP - Modern SEO & Web Development Tools',
+    title: 'Modern SEO & Web Development Tools',
     description: 'Discover powerful SEO tools, web development resources, and premium products.',
     url: 'https://seordp.net',
     siteName: 'SEORDP',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEORDP - Modern SEO & Web Development Tools',
+    title: 'Modern SEO & Web Development Tools',
     description: 'Discover powerful SEO tools, web development resources, and premium products.',
     creator: '@seordp',
   },

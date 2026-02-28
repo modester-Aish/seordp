@@ -79,7 +79,7 @@ export const WhyChooseSection = () => {
             Why Choose SEORDP Group Buy SEO Tools?
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Get instant access to 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro with 99.9% uptime, 24/7 support, and enterprise-grade security
+            Get instant access to 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro with 99.9% uptime and enterprise-grade security
           </p>
         </div>
 

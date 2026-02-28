@@ -751,7 +751,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                 {/* CTA Button */}
                 <div className="pt-4 border-t border-white/10">
                   <a
-                    href="https://members.seotoolsgroupbuy.us/signup"
+                    href="https://members.buyseo.org/signup"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}

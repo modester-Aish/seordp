@@ -209,9 +209,7 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
 
                 {/* Buy Now Button */}
                 <a
-                  href={tool.productId 
-                    ? `https://members.seotoolsgroupbuy.us/cart/index/product/id/${tool.productId}/c/?` 
-                    : 'https://members.seotoolsgroupbuy.us/signup'}
+                  href="https://members.buyseo.org/signup"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl block text-center mb-6"
