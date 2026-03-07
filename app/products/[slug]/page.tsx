@@ -17,7 +17,7 @@ import {
   getProductButtonText,
 } from '@/lib/woocommerce-api';
 import { getBuyNowUrl } from '@/lib/product-ids';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, ensureMinDescriptionLength, truncateMetaTitle } from '@/lib/canonical';
 import { getSeoMeta, getSeoH1 } from '@/lib/seo-from-csv';
 import { removeFirstHeading } from '@/lib/content-parser';
 import ProductCard from '@/components/ProductCard';
@@ -49,8 +49,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const imageUrl = getProductMainImage(product);
   const csv = getSeoMeta(params.slug) ?? getSeoMeta(product.name);
-  const title = csv?.meta_title ?? product.name;
-  const description = csv?.meta_description ?? product.short_description.replace(/<[^>]*>/g, '').substring(0, 160);
+  const title = truncateMetaTitle(csv?.meta_title ?? product.name);
+  const description = ensureMinDescriptionLength(csv?.meta_description ?? product.short_description.replace(/<[^>]*>/g, '').substring(0, 160));
 
   return {
     title,
@@ -60,7 +60,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       type: 'website',
       url: `https://seordp.net/${params.slug}`,
-      images: imageUrl ? [{ url: imageUrl }] : undefined,
+      siteName: 'SEORDP',
+      images: imageUrl ? [{ url: imageUrl }] : [defaultOgImage],
     },
     twitter: {
       card: 'summary_large_image',

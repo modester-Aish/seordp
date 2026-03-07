@@ -43,6 +43,7 @@ export const metadata: Metadata = {
     siteName: 'SEORDP',
     locale: 'en_US',
     type: 'website',
+    images: [{ url: 'https://seordp.net/icon', width: 512, height: 512, alt: 'SEORDP' }],
   },
   twitter: {
     card: 'summary_large_image',

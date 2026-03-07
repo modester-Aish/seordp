@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Mail, Clock, MapPin, MessageCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import ContactForm from '@/components/ContactForm';
 import { getSeoMeta } from '@/lib/seo-from-csv';
 
 function getContactMetadata(): Metadata {
   const csv = getSeoMeta('Contact Us');
-  const title = csv?.meta_title ?? 'Contact Us';
-  const description = csv?.meta_description ?? 'Get in touch with SEORDP. Email support, business hours, social media. We aim to respond within 24 hours. Contact us for SEO tools, group buy, or partnerships.';
+  const title = truncateMetaTitle(csv?.meta_title ?? 'Contact Us');
+  const description = truncateMetaDescription(csv?.meta_description ?? 'Get in touch with SEORDP. Email support, business hours, social media. We aim to respond within 24 hours. Contact us for SEO tools, group buy, or partnerships.');
   return {
     title,
     description,
@@ -18,7 +18,9 @@ function getContactMetadata(): Metadata {
       title,
       description,
       url: 'https://seordp.net/contact-us',
+      siteName: 'SEORDP',
       type: 'website',
+      images: [defaultOgImage],
     },
   };
 }

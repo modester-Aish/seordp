@@ -27,8 +27,10 @@ import {
   extractHeadings,
   addHeadingIds,
   removeFirstHeading,
+  ensureImgAlt,
+  downgradeH1ToH2,
 } from '@/lib/content-parser';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, ensureMinDescriptionLength, truncateMetaTitle } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
 import { Calendar, Clock, ArrowLeft, List, BookOpen } from 'lucide-react';
 import Footer from '@/components/Footer';
@@ -74,18 +76,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .replace(/<[^>]*>/g, '')
               .substring(0, 160);
             
-            const csv = getSeoMeta(staticRedirect) ?? getSeoMeta(product.name);
-            const title = csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`;
-            const desc = csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`);
+            const csv = getSeoMeta(slug) ?? getSeoMeta(staticRedirect) ?? getSeoMeta(product.name);
+            const title = truncateMetaTitle(csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`);
+            const desc = ensureMinDescriptionLength(csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`));
             return {
               title,
               description: desc,
               keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy tools`,
               openGraph: {
-                title: csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`,
+                title,
                 description: desc,
                 type: 'website',
                 url: `https://seordp.net/${staticRedirect}`,
+                siteName: 'SEORDP',
+                images: [defaultOgImage],
               },
               alternates: {
                 canonical: generateCanonicalUrl(`/${staticRedirect}`),
@@ -109,18 +113,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .replace(/<[^>]*>/g, '')
               .substring(0, 160);
             
-            const csv = getSeoMeta(matchedProduct.slug) ?? getSeoMeta(matchedProduct.name);
-            const title = csv?.meta_title ?? `${matchedProduct.name} | Group Buy SEO Tools`;
-            const desc = csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`);
+            const csv = getSeoMeta(slug) ?? getSeoMeta(matchedProduct.slug) ?? getSeoMeta(matchedProduct.name);
+            const title = truncateMetaTitle(csv?.meta_title ?? `${matchedProduct.name} | Group Buy SEO Tools`);
+            const desc = ensureMinDescriptionLength(csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`));
             return {
               title,
               description: desc,
               keywords: `${matchedProduct.name} group buy, ${matchedProduct.name} cheap, ${matchedProduct.name} discount, buy ${matchedProduct.name}, seo tools, group buy tools`,
               openGraph: {
-                title: csv?.meta_title ?? `${matchedProduct.name} | Group Buy SEO Tools`,
+                title,
                 description: desc,
                 type: 'website',
                 url: `https://seordp.net/${matchedProduct.slug}`,
+                siteName: 'SEORDP',
+                images: [defaultOgImage],
               },
               alternates: {
                 canonical: generateCanonicalUrl(`/${matchedProduct.slug}`),
@@ -132,16 +138,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         // Continue with tool metadata if product fetch fails
       }
       
-      // No matching product - return tool metadata (TOOL DETAIL PAGE)
+// No matching product - return tool metadata (TOOL DETAIL PAGE)
+      const toolCsv = getSeoMeta(slug);
+      const toolDesc = ensureMinDescriptionLength(toolCsv?.meta_description ?? `${tool.description}. Get instant access to ${tool.name} at ${tool.price}.`);
+      const toolTitle = truncateMetaTitle(toolCsv?.meta_title ?? `${tool.name} | Group Buy SEO Tools`);
       return {
-        title: `${tool.name} | Group Buy SEO Tools`,
-        description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price}.`,
+        title: toolTitle,
+        description: toolDesc,
         keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
         openGraph: {
-          title: `${tool.name} | Group Buy SEO Tools`,
-          description: tool.description,
+          title: toolTitle,
+          description: toolDesc,
           type: 'website',
           url: `https://seordp.net/${tool.slug}`,
+          siteName: 'SEORDP',
+          images: [defaultOgImage],
         },
         alternates: {
           canonical: generateCanonicalUrl(`/${tool.slug}`),
@@ -157,17 +168,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           .replace(/<[^>]*>/g, '')
           .substring(0, 160);
         const csv = getSeoMeta(slug) ?? getSeoMeta(product.name);
-        const title = csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`;
-        const desc = csv?.meta_description ?? (cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. Group buy SEO tools at 90% discount.`);
+        const title = truncateMetaTitle(csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`);
+        const desc = ensureMinDescriptionLength(csv?.meta_description ?? (cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. Group buy SEO tools at 90% discount.`));
         return {
           title,
           description: desc,
           keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
           openGraph: {
-            title: csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`,
+            title,
             description: desc,
             type: 'website',
             url: `https://seordp.net/${slug}`,
+            siteName: 'SEORDP',
+            images: [defaultOgImage],
           },
           alternates: {
             canonical: generateCanonicalUrl(`/${slug}`),
@@ -183,14 +196,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const { data: post } = await fetchPostBySlug(slug);
       if (post && post.status === 'publish') {
         const postTitle = getTitle(post);
-        const csv = getSeoMeta(postTitle);
-        const title = csv?.meta_title ?? postTitle;
-        const description = csv?.meta_description ?? getExcerpt(post);
+        const csv = getSeoMeta(slug) ?? getSeoMeta(postTitle);
+        const title = truncateMetaTitle(csv?.meta_title ?? postTitle);
+        const description = ensureMinDescriptionLength(csv?.meta_description ?? getExcerpt(post));
+        const pageUrl = generateCanonicalUrl(`/${slug}`);
         return {
           title,
           description,
+          openGraph: {
+            title,
+            description: description ?? undefined,
+            type: 'article',
+            url: pageUrl,
+            siteName: 'SEORDP',
+            images: [defaultOgImage],
+          },
           alternates: {
-            canonical: generateCanonicalUrl(`/${slug}`),
+            canonical: pageUrl,
           },
         };
       }
@@ -203,14 +225,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const { data: page } = await fetchPageBySlug(slug);
       if (page && page.status === 'publish') {
         const pageTitle = getTitle(page);
-        const csv = getSeoMeta(pageTitle);
-        const title = csv?.meta_title ?? pageTitle;
-        const description = csv?.meta_description ?? getExcerpt(page);
+        const csv = getSeoMeta(slug) ?? getSeoMeta(pageTitle);
+        const title = truncateMetaTitle(csv?.meta_title ?? pageTitle);
+        const description = ensureMinDescriptionLength(csv?.meta_description ?? getExcerpt(page));
+        const pageUrl = generateCanonicalUrl(`/${slug}`);
         return {
           title,
           description,
+          openGraph: {
+            title,
+            description: description ?? undefined,
+            type: 'website',
+            url: pageUrl,
+            siteName: 'SEORDP',
+            images: [defaultOgImage],
+          },
           alternates: {
-            canonical: generateCanonicalUrl(`/${slug}`),
+            canonical: pageUrl,
           },
         };
       }
@@ -558,7 +589,7 @@ async function BlogPostView({ post }: { post: any }) {
               <div className="p-8 md:p-10 lg:p-12">
                 <div
                   className="blog-content prose prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  dangerouslySetInnerHTML={{ __html: ensureImgAlt(downgradeH1ToH2(content), title) }}
                 />
               </div>
             </article>
@@ -913,7 +944,7 @@ function PageView({ page }: { page: any }) {
                 <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-slate-200">
                   <div
                     className="page-content overflow-x-hidden max-w-none"
-                    dangerouslySetInnerHTML={{ __html: cleanContent }}
+                    dangerouslySetInnerHTML={{ __html: ensureImgAlt(downgradeH1ToH2(cleanContent), cleanTitle) }}
                   />
                 </div>
               </article>
