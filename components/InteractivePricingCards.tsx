@@ -31,7 +31,7 @@ const pricingData: PricingCard[] = [
       'Design & Graphics'
     ],
     tools: [
-      'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 'SerpState', 
+      'SEMrush Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 'SerpState', 
       'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'ChatGPT 4', 'Grammarly', 'WordAi', 
       'Quillbot', 'Spin Rewriter', 'WordHero', 'WordTune', 'SmartCopy', 'CloserCopy', 'Copy ai', 
       'Copymatic ai', 'Jasper Ai', 'WriteSonic', 'Rytr me', 'Jenni ai', 'CANVA pro', 'Crello', 
@@ -44,7 +44,7 @@ const pricingData: PricingCard[] = [
     ]
   },
   {
-    name: 'AHREF$ COMBO',
+    name: 'Ahrefs Combo',
     price: '$25',
     toolCount: '60+ Tools',
     description: 'Best value package',
@@ -57,7 +57,7 @@ const pricingData: PricingCard[] = [
       'Content Creation'
     ],
     tools: [
-      'AHREF$', 'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
+      'Ahrefs', 'SEMrush Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
       'SerpState', 'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'ChatGPT 4', 'Bypass GPT', 
       'Grammarly', 'Quetext premium', 'WordAi', 'Hix ai', 'Quillbot', 'Spin Rewriter', 'WordHero', 
       'WordTune', 'SmartCopy', 'CloserCopy', 'Copymatic ai', 'Jasper Ai', 'WriteSonic', 'Rytr me', 
@@ -84,7 +84,7 @@ const pricingData: PricingCard[] = [
       'Learning Platform'
     ],
     tools: [
-      'AHREF$', 'SEMRU$H Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
+      'Ahrefs', 'SEMrush Guru', 'MOZ Pro', 'Majestic', 'Kwfinder', 'Keywordtool io', 'Ubersuggest', 
       'SerpState', 'Answer the public', 'Woorank', 'Spyfu', 'SEOptimer', 'SEOSITECHECKUP', 'ChatGPT 4', 
       'Bypass GPT', 'Grammarly', 'Quetext premium', 'WordAi', 'You Ai', 'Claude Ai', 'Hix Ai', 'Copy Ai', 
       'Jasper Ai', 'Copymatic Ai', 'Stealthwriter Ai', 'Jenni ai', 'Quillbot', 'Spin Rewriter', 'WordHero', 
@@ -100,7 +100,7 @@ const pricingData: PricingCard[] = [
   {
     name: 'LITE PLAN',
     price: '$10',
-    toolCount: 'SEMRU$H Combo, 20+ Tools',
+    toolCount: 'SEMrush Combo, 20+ Tools',
     description: 'Essential tools',
     icon: '⭐',
     iconBgColor: 'from-blue-500 to-blue-600',
@@ -111,7 +111,7 @@ const pricingData: PricingCard[] = [
       'Entertainment'
     ],
     tools: [
-      'SEMRU$H Guru', 'MOZ Pro', 'Ubersuggest', 'Woorank', 'Grammarly', 'WordAi', 'Quillbot', 'Canva', 
+      'SEMrush Guru', 'MOZ Pro', 'Ubersuggest', 'Woorank', 'Grammarly', 'WordAi', 'Quillbot', 'Canva', 
       'Crello', 'Envato Elements', 'FotoJet', 'Invideo io', 'Netflix', 'Prime Video', 'Buzzsumo', 
       'Picmonkey', 'Motionarray', 'SkillShare', 'Turnitin', 'Linkedin Learning'
     ]
@@ -184,132 +184,100 @@ export default function InteractivePricingCards() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* New style: Linear/Figma inspired – corner ribbon, checkmarks, glass, ring highlight. Flip same. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {pricingData.map((card, index) => (
             <div
               key={index}
-              className="relative h-[500px] animate-fade-in-up"
-              style={{ 
-                perspective: '1000px',
-                animationDelay: `${index * 0.1}s`
-              }}
+              className={`relative animate-fade-in-up ${card.isPopular ? 'h-[520px] lg:-mt-1' : 'h-[500px]'}`}
+              style={{ perspective: '1200px', animationDelay: `${index * 0.06}s` }}
               onMouseLeave={() => handleMouseLeave(index)}
             >
               <div
-                className="relative w-full h-full transition-all duration-700"
+                className="relative w-full h-full transition-transform duration-500 ease-out"
                 style={{
                   transformStyle: 'preserve-3d',
                   transform: flippedCards[index] ? 'rotateY(180deg)' : 'rotateY(0deg)'
                 }}
               >
-                {/* Front Side - Dark Theme */}
+                {/* Front: glass card, top-right corner ribbon, price hero, checkmark list */}
                 <div
-                  className="absolute w-full h-full card-gradient p-6 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden"
+                  className={`absolute w-full h-full rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${
+                    card.isPopular
+                      ? 'ring-2 ring-teal-400/50 bg-slate-800/90 shadow-2xl shadow-teal-500/10 scale-[1.02]'
+                      : 'border border-slate-600/60 bg-slate-800/80 backdrop-blur-sm hover:border-slate-500'
+                  }`}
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  {card.isPopular && (
-                    <div className="absolute -top-3 right-4 px-4 py-2 rounded-full text-sm font-bold text-white z-50 animate-bounce-gentle shadow-lg"
-                         style={{ background: 'linear-gradient(135deg, #ef4444, #f87171)' }}>
-                      Most Popular
+                  {/* Corner ribbon (top-right) – Linear/Figma style accent */}
+                  <div className={`absolute top-0 right-0 w-20 h-20 overflow-hidden rounded-tr-2xl`}>
+                    <div className={`absolute top-0 right-0 w-28 h-28 rotate-45 translate-x-10 -translate-y-10 bg-gradient-to-br ${card.iconBgColor} opacity-90`} />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1 relative z-10">
+                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mb-1">{card.name}</span>
+                    <div className="mb-1">
+                      <span className="text-4xl font-bold text-white tabular-nums tracking-tight">{card.price}</span>
                     </div>
-                  )}
+                    <span className="text-slate-500 text-sm mb-4 block">per month</span>
+                    <p className="text-slate-400 text-xs mb-4">{card.toolCount}</p>
 
-                  {/* Icon */}
-                  <div className="flex justify-center mb-4">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${card.iconBgColor} rounded-full flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 animate-float`}>
-                      {card.icon}
-                    </div>
-                  </div>
-
-                  {/* Plan Name */}
-                  <h3 className="text-2xl font-bold text-white text-center mb-2">
-                    {card.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-slate-400 text-center text-sm mb-4">
-                    {card.description}
-                  </p>
-
-                  {/* Price */}
-                  <div className="text-center mb-4">
-                    <span className="text-4xl font-bold text-teal-400">{card.price}</span>
-                    <span className="text-slate-400 text-lg">/month</span>
-                  </div>
-
-                  {/* Tool Count */}
-                  <div className="text-center mb-6">
-                    <span className="text-sm font-semibold text-slate-300">{card.toolCount}</span>
-                  </div>
-
-                  {/* Benefits */}
-                  <div className="flex-1 mb-6">
-                    <ul className="space-y-3">
-                      {card.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-center text-slate-300">
-                          <svg className="w-5 h-5 text-teal-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                          <span className="text-sm">{benefit}</span>
+                    {/* Checkmark list – Linear/Notion style */}
+                    <ul className="flex-1 space-y-2 mb-4">
+                      {card.tools.slice(0, 6).map((tool, i) => (
+                        <li key={i} className="flex items-center gap-2 text-slate-300 text-sm">
+                          <span className="flex-shrink-0 w-4 h-4 rounded-full bg-teal-500/20 flex items-center justify-center">
+                            <span className="text-teal-400 text-[10px] font-bold">✓</span>
+                          </span>
+                          <span className="truncate">{tool}</span>
                         </li>
                       ))}
                     </ul>
+
+                    <button
+                      onClick={() => handleViewTools(index)}
+                      className="text-teal-400 text-xs font-medium mb-4 hover:text-teal-300 transition-colors"
+                    >
+                      View all {card.tools.length} tools →
+                    </button>
+
+                    <Link
+                      href="https://members.seotoolsgroupbuy.us/signup"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full py-3 rounded-xl font-semibold text-sm text-center block transition-all ${
+                        card.isPopular
+                          ? 'bg-teal-500 text-white hover:bg-teal-400'
+                          : 'bg-transparent border-2 border-slate-500 text-white hover:bg-slate-700/50 hover:border-slate-400'
+                      }`}
+                    >
+                      Get started
+                    </Link>
                   </div>
-
-                  {/* View Tools Button */}
-                  <button
-                    onClick={() => handleViewTools(index)}
-                    className="text-teal-400 underline text-sm font-medium mb-4 hover:text-teal-300 transition-colors"
-                  >
-                    View included tools →
-                  </button>
-
-                  {/* Get Access Button - Link to signup */}
-                  <Link
-                    href="https://members.buyseo.org/signup"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full py-3 rounded-lg font-semibold text-center block transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                      card.isPopular
-                        ? 'hero-btn-primary'
-                        : 'btn-primary'
-                    }`}
-                  >
-                    Get Instant Access
-                  </Link>
                 </div>
 
-                {/* Back Side - Dark Theme */}
+                {/* Back: gradient header + checkmark list */}
                 <div
-                  className="absolute w-full h-full card-gradient p-6"
+                  className="absolute w-full h-full rounded-2xl overflow-hidden flex flex-col border border-slate-600/60 bg-slate-800/90"
                   style={{
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(180deg)'
                   }}
                 >
-                  <div className="h-full flex flex-col">
-                    {/* Return instruction */}
-                    <div className="text-slate-400 text-sm mb-4">
-                      ← Hover out to return
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-4">
-                      {card.name} Tools
-                    </h3>
-
-                    {/* Tools List */}
-                    <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '400px' }}>
-                      <div className="grid grid-cols-2 gap-2">
+                  <div className="h-16 bg-gradient-to-b from-teal-500/20 to-transparent shrink-0" />
+                  <div className="p-5 flex flex-col flex-1 min-h-0">
+                    <p className="text-slate-500 text-xs mb-3 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-teal-400/80" /> Hover out to return
+                    </p>
+                    <h3 className="text-sm font-bold text-white mb-3">{card.name} – All tools</h3>
+                    <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar" style={{ maxHeight: '340px' }}>
+                      <ul className="space-y-1.5">
                         {card.tools.map((tool, i) => (
-                          <div key={i} className="flex items-start text-sm">
-                            <svg className="w-4 h-4 text-teal-400 mr-1 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-slate-300">{tool}</span>
-                          </div>
+                          <li key={i} className="flex items-center gap-2 text-slate-400 text-xs">
+                            <span className="text-teal-400/80">✓</span>
+                            <span className="truncate">{tool}</span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                     </div>
                   </div>
                 </div>

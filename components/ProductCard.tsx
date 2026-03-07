@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
 import { ShoppingCart, Star } from 'lucide-react';
 import { WooCommerceProduct } from '@/types/wordpress';
 import {
@@ -44,12 +44,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Link href={`/${product.slug}`}>
         <div className="relative w-full h-48 overflow-hidden bg-slate-700">
           {imageUrl ? (
-            <Image
+            <SafeImage
               src={imageUrl}
               alt={product.name}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              fallback={<span className="text-5xl">📦</span>}
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center border-2 border-dashed border-teal-500/30">

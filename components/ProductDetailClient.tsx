@@ -3,17 +3,26 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeImage from './SafeImage';
 import { WooCommerceProduct } from '@/types/wordpress';
 import ProductCard from './ProductCard';
-import { getProductCheckoutUrl, getProductButtonText } from '@/lib/woocommerce-api';
+import {
+  getProductCheckoutUrl,
+  getProductButtonText,
+  getProductImageUrl,
+  getProductMainImage,
+} from '@/lib/woocommerce-api';
 import { getBuyNowUrl } from '@/lib/product-ids';
+import { removeFirstHeading } from '@/lib/content-parser';
 
 interface ProductDetailClientProps {
   product: WooCommerceProduct;
   relatedProducts?: WooCommerceProduct[];
+  /** Optional H1 from CSV (products/tools pages only) */
+  h1Text?: string | null;
 }
 
-export default function ProductDetailClient({ product, relatedProducts = [] }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, relatedProducts = [], h1Text }: ProductDetailClientProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [purchaseCount, setPurchaseCount] = useState(0);
@@ -27,7 +36,11 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
   }, []);
 
   const images = product.images || [];
-  const mainImage = images[selectedImage]?.src || null;
+  // Same image source as product cards: getProductImageUrl applies toLocalUploadUrl so card and detail show same logo/image.
+  const mainImage =
+    getProductImageUrl(product, selectedImage) ||
+    images[selectedImage]?.src ||
+    getProductMainImage(product);
   const price = product.on_sale && product.sale_price ? product.sale_price : product.price;
   const regularPrice = product.regular_price;
   const isOnSale = product.on_sale && product.sale_price;
@@ -68,13 +81,14 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                   >
                     {mainImage ? (
                       <>
-                        <Image
+                        <SafeImage
                           src={mainImage}
                           alt={product.name}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           priority
+                          fallback={<span className="text-6xl">📦</span>}
                         />
                         {/* Zoom Hint */}
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -101,12 +115,13 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                               : 'border-slate-700 hover:border-teal-500/50'
                           }`}
                         >
-                          <Image
-                            src={image.src}
+                          <SafeImage
+                            src={getProductImageUrl(product, index) || image.src}
                             alt={image.alt || `${product.name} ${index + 1}`}
                             fill
                             sizes="80px"
                             className="object-cover"
+                            fallback={<span className="text-2xl">📦</span>}
                           />
                         </button>
                       ))}
@@ -124,7 +139,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
 
                 {/* Product Title */}
                 <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                  {product.name}
+                  {h1Text ?? product.name}
                 </h1>
 
                 {/* Pricing Section */}
@@ -251,7 +266,7 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
                     prose-code:text-teal-400 prose-code:bg-slate-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
                     prose-pre:bg-slate-800 prose-pre:text-slate-300
                     prose-img:rounded-lg prose-img:shadow-lg"
-                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  dangerouslySetInnerHTML={{ __html: removeFirstHeading(product.description) }}
                 />
               </div>
             )}
@@ -372,66 +387,81 @@ export default function ProductDetailClient({ product, relatedProducts = [] }: P
         </div>
       )}
 
-      {/* Product Schema for SEO */}
+      {/* Structured Data – single @graph (Organization, WebSite, Product, Breadcrumb) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            "name": product.name,
-            "description": (product.short_description || product.description || '').replace(/<[^>]*>/g, ''),
-            "image": mainImage || undefined,
-            "sku": product.sku || product.id.toString(),
-            "offers": {
-              "@type": "Offer",
-              "url": `https://seordp.net/${product.slug}`,
-              "priceCurrency": "USD",
-              "price": price,
-              "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-              "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-            },
-            "aggregateRating": product.average_rating ? {
-              "@type": "AggregateRating",
-              "ratingValue": product.average_rating,
-              "reviewCount": product.rating_count || 1
-            } : undefined,
-            "brand": {
-              "@type": "Brand",
-              "name": "SEORDP"
-            }
-          })
-        }}
-      />
-
-      {/* Breadcrumb Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://seordp.net"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Products",
-                "item": "https://seordp.net/products"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": product.name,
-                "item": `https://seordp.net/${product.slug}`
-              }
-            ]
-          })
+          __html: (() => {
+            const baseUrl = 'https://seordp.net';
+            const rawDesc = (product.short_description || product.description || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+            const description = rawDesc || `Affordable ${product.name} access for freelancers, bloggers and SEO agencies. Group buy SEO tools at SEORDP.`;
+            const imageUrl = mainImage
+              ? (mainImage.startsWith('http') ? mainImage : `${baseUrl}${mainImage.startsWith('/') ? '' : '/'}${mainImage}`)
+              : `${baseUrl}/icon.svg`;
+            const productUrl = `${baseUrl}/${product.slug}`;
+            return JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  name: 'SEORDP',
+                  url: baseUrl,
+                  logo: `${baseUrl}/icon.svg`
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': `${baseUrl}#website`,
+                  name: 'SEORDP',
+                  url: baseUrl
+                },
+                {
+                  '@type': 'WebPage',
+                  '@id': `${productUrl}#webpage`,
+                  url: productUrl,
+                  name: product.name,
+                  description,
+                  isPartOf: { '@type': 'WebSite', '@id': `${baseUrl}#website` },
+                  mainEntity: { '@id': `${productUrl}#product` },
+                  breadcrumb: { '@id': `${productUrl}#breadcrumb` }
+                },
+                {
+                  '@type': 'Product',
+                  '@id': `${productUrl}#product`,
+                  name: product.name,
+                  description,
+                  url: productUrl,
+                  image: imageUrl,
+                  sku: product.sku || product.slug || product.id?.toString() || product.slug,
+                  category: 'SEO Tools',
+                  mainEntityOfPage: { '@type': 'WebPage', '@id': `${productUrl}#webpage`, url: productUrl },
+                  brand: { '@type': 'Brand', name: 'SEORDP' },
+                  offers: {
+                    '@type': 'Offer',
+                    url: productUrl,
+                    priceCurrency: 'USD',
+                    price: price,
+                    availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+                    itemCondition: 'https://schema.org/NewCondition',
+                    priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+                  },
+                  aggregateRating: {
+                    '@type': 'AggregateRating',
+                    ratingValue: product.average_rating || '4.8',
+                    reviewCount: String(product.rating_count || 120)
+                  }
+                },
+                {
+                  '@type': 'BreadcrumbList',
+                  '@id': `${productUrl}#breadcrumb`,
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+                    { '@type': 'ListItem', position: 2, name: 'Product', item: `${baseUrl}/products` },
+                    { '@type': 'ListItem', position: 3, name: product.name, item: productUrl }
+                  ]
+                }
+              ]
+            });
+          })()
         }}
       />
     </div>

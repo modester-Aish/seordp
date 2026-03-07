@@ -1,25 +1,33 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
 import { getAllTools } from '@/lib/tools-data';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
+import { getSeoMeta } from '@/lib/seo-from-csv';
 import { ShoppingCart } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Complete Tools List - All SEO, AI, Design & Marketing Tools',
-  description: 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.',
-  keywords: 'complete tools list, all seo tools, group buy tools list, seo tools catalog, premium tools directory, all available tools, tools inventory, seo software list',
-  alternates: {
-    canonical: generateCanonicalUrl('/single-tools-list'),
-  },
-  openGraph: {
-    title: 'Complete Tools List - All Premium SEO & Marketing Tools',
-    description: 'Browse complete list of 50+ premium tools available in our group buy service.',
-    url: 'https://seordp.net/single-tools-list',
-    type: 'website',
-  },
-};
+function getSingleToolsListMetadata(): Metadata {
+  const csv = getSeoMeta('Single Tools List');
+  const title = csv?.meta_title ?? 'Complete Tools List - All SEO, AI, Design & Marketing Tools';
+  const description = csv?.meta_description ?? 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.';
+  return {
+    title,
+    description,
+    keywords: 'complete tools list, all seo tools, group buy tools list, seo tools catalog, premium tools directory, all available tools, tools inventory, seo software list',
+    alternates: {
+      canonical: generateCanonicalUrl('/single-tools-list'),
+    },
+    openGraph: {
+      title,
+      description,
+      url: 'https://seordp.net/single-tools-list',
+      type: 'website',
+    },
+  };
+}
+
+export const metadata: Metadata = getSingleToolsListMetadata();
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -95,14 +103,15 @@ export default async function SingleToolsListPage() {
                       className="card-gradient group relative overflow-hidden h-full flex flex-col rounded-xl border border-slate-700 hover:border-teal-500 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/20"
                     >
                       {/* Tool Image */}
-                      <Link href={getToolLink(tool.id, tool.slug)} className="relative w-full h-40 overflow-hidden bg-slate-800">
+                      <Link href={getToolLink(tool.id, tool.slug)} target="_blank" rel="noopener noreferrer" className="relative w-full h-40 overflow-hidden bg-slate-800">
                         {tool.image ? (
-                          <Image
+                          <SafeImage
                             src={tool.image}
                             alt={tool.name}
                             fill
                             className="object-contain p-4 transition-transform duration-300 group-hover:scale-110"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            fallback={<span className="text-4xl">🔧</span>}
                           />
                         ) : (
                           <div className="w-full h-full bg-gradient-to-br from-teal-500/20 to-purple-500/20 flex items-center justify-center">
@@ -113,7 +122,7 @@ export default async function SingleToolsListPage() {
 
                       {/* Tool Info */}
                       <div className="p-5 flex flex-col flex-1">
-                        <Link href={getToolLink(tool.id, tool.slug)}>
+                        <Link href={getToolLink(tool.id, tool.slug)} target="_blank" rel="noopener noreferrer">
                           <h3 className="text-lg font-bold text-white mb-2 transition-colors group-hover:text-teal-400 line-clamp-2 min-h-[3rem]">
                             {tool.name}
                           </h3>
@@ -146,7 +155,7 @@ export default async function SingleToolsListPage() {
 
                         {/* Order Now - abhi sab pe signup; ID baad mein laga dena */}
                         <Link
-                          href="https://members.buyseo.org/signup"
+                          href="https://members.seotoolsgroupbuy.us/signup"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-full inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition-all duration-300 btn-primary"
@@ -171,7 +180,7 @@ export default async function SingleToolsListPage() {
               Join our group buy service and get instant access to all these premium tools at 90% discount.
             </p>
             <Link
-              href="https://members.buyseo.org/signup"
+              href="https://members.seotoolsgroupbuy.us/signup"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hero-btn-primary"

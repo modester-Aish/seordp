@@ -8,6 +8,7 @@ import {
   getTitle,
   getContent,
 } from '@/lib/wordpress-api';
+import { cleanWordPressContent, removeFirstHeading } from '@/lib/content-parser';
 import { generateCanonicalUrl } from '@/lib/canonical';
 
 interface PageProps {
@@ -65,7 +66,8 @@ export default async function WordPressPage({ params }: PageProps) {
   }
 
   const title = getTitle(page);
-  const content = getContent(page);
+  const rawContent = getContent(page);
+  const content = removeFirstHeading(cleanWordPressContent(rawContent));
 
   return (
     <article className="min-h-screen bg-slate-900">

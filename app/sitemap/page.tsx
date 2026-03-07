@@ -26,8 +26,9 @@ export default async function SitemapPage() {
   const products = productsResult.data || [];
   const tools = getAllTools();
 
-  // Filter published content
-  const publishedPages = pages.filter((p) => p.status === 'publish');
+  // Filter published content (exclude duplicate / -2 pages)
+  const EXCLUDED_PAGE_SLUGS = ['shop-2', 'refund_returns-2'];
+  const publishedPages = pages.filter((p) => p.status === 'publish' && !EXCLUDED_PAGE_SLUGS.includes(p.slug));
   const publishedPosts = posts.filter((p) => p.status === 'publish');
   const publishedProducts = products.filter((p) => p.status === 'publish');
 

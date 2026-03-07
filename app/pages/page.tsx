@@ -1,28 +1,50 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
-import { fetchAllPagesComplete, getFeaturedImage } from '@/lib/wordpress-api';
+import { fetchAllPagesComplete } from '@/lib/wordpress-api';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
+import { getSeoMeta } from '@/lib/seo-from-csv';
 
-export const metadata: Metadata = {
-  title: 'SEO Tools Pricing, Plans & Information',
-  description: 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahref$, SEMru$h, Moz Pro plans. Find the best SEO tools subscription for your needs.',
-  keywords: 'seo tools pricing, group buy plans, ahref$ pricing, semru$h pricing, seo tools packages, seo subscription plans, affordable seo tools',
-  openGraph: {
-    title: 'SEO Tools Pricing Plans & Packages',
-    description: 'Compare pricing plans for 50+ premium SEO tools. Find the perfect group buy package for your business.',
-    url: 'https://seordp.net/pages',
-  },
-  alternates: {
-    canonical: generateCanonicalUrl('/pages'),
-  },
-};
+/** Returns which data is missing for a page (title, content, excerpt). */
+function getMissingData(page: { title?: { rendered?: string }; content?: { rendered?: string }; excerpt?: { rendered?: string } }): string[] {
+  const missing: string[] = [];
+  const title = (page.title?.rendered ?? '').trim();
+  const content = (page.content?.rendered ?? '').trim();
+  const excerpt = (page.excerpt?.rendered ?? '').trim();
+  if (!title) missing.push('title');
+  if (!content || content.length < 20) missing.push('content');
+  if (!excerpt) missing.push('excerpt');
+  return missing;
+}
+
+function getPagesMetadata(): Metadata {
+  const csv = getSeoMeta('Pages');
+  const title = csv?.meta_title ?? 'SEO Tools Pricing, Plans & Information';
+  const description = csv?.meta_description ?? 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahrefs, SEMrush, Moz Pro plans. Find the best SEO tools subscription for your needs.';
+  return {
+    title,
+    description,
+    keywords: 'seo tools pricing, group buy plans, ahrefs pricing, semrush pricing, seo tools packages, seo subscription plans, affordable seo tools',
+    openGraph: {
+      title,
+      description,
+      url: 'https://seordp.net/pages',
+    },
+    alternates: {
+      canonical: generateCanonicalUrl('/pages'),
+    },
+  };
+}
+
+export const metadata: Metadata = getPagesMetadata();
 
 export const revalidate = 60; // Revalidate every 60 seconds (1 minute)
 
+const EXCLUDED_PAGE_SLUGS = ['shop-2', 'refund_returns-2'];
+
 export default async function PagesListingPage() {
-  const { data: pages, error } = await fetchAllPagesComplete();
+  const { data: rawPages, error } = await fetchAllPagesComplete();
+  const pages = (rawPages || []).filter((p) => !EXCLUDED_PAGE_SLUGS.includes(p.slug));
 
   if (error) {
     return (

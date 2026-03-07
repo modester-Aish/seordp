@@ -80,7 +80,7 @@ export function getPlainShortDescription(product: WooCommerceProduct): string {
 }
 
 export function getProductCheckoutUrl(_product: WooCommerceProduct): string {
-  return 'https://members.buyseo.org/signup';
+  return 'https://members.seotoolsgroupbuy.us/signup';
 }
 
 export function getProductButtonText(

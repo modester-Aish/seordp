@@ -1,10 +1,12 @@
 import { fetchAllPagesComplete } from '@/lib/wordpress-api';
 import Header from './Header';
 
-export default async function HeaderServer() {
-  // Fetch ALL WordPress pages for dropdown
-  const { data: pages } = await fetchAllPagesComplete();
+const EXCLUDED_PAGE_SLUGS = ['shop-2', 'refund_returns-2'];
 
-  return <Header pages={pages || []} />;
+export default async function HeaderServer() {
+  const { data: rawPages } = await fetchAllPagesComplete();
+  const pages = (rawPages || []).filter((p) => !EXCLUDED_PAGE_SLUGS.includes(p.slug));
+
+  return <Header pages={pages} />;
 }
 

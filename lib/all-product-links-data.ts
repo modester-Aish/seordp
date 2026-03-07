@@ -1,7 +1,7 @@
 /**
  * All Product Links - Auto-generated from WooCommerce
  * 
- * Generated at: 2026-02-25T00:54:41.976Z
+ * Generated at: 2026-03-07T16:45:32.680Z
  * Total Products: 116
  * 
  * DO NOT EDIT MANUALLY - This file is auto-generated
@@ -1202,10 +1202,10 @@ export const ALL_PRODUCT_LINKS: ProductLink[] = [
     categories: [{"id":23,"name":"Ecommerce Tools","slug":"ecommerce-tools"}],
   },
 
-  // 99. Semrush Group buy
+  // 99. SEMrush Group Buy
   {
     slug: 'semrush-group-buy',
-    name: 'Semrush Group buy',
+    name: 'SEMrush Group Buy',
     id: 1686,
     price: '5',
     regularPrice: '249',

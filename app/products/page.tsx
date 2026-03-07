@@ -2,21 +2,29 @@ import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { getSeoMeta } from '@/lib/seo-from-csv';
 
-export const metadata: Metadata = {
-  title: 'Group Buy SEO Tools - Ahref$, SEMru$h, Moz Pro, ChatGPT Plus',
-  description: 'Buy premium SEO tools at 90% discount. Get Ahref$ Group Buy, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools.',
-  keywords: 'group buy seo tools, ahref$ group buy, semru$h group buy, moz pro group buy, chatgpt plus group buy, cheap seo tools, premium seo tools discount, seo tools subscription, shared seo tools access, bulk seo tools, affordable seo software',
-  openGraph: {
-    title: 'Buy Premium Group Buy SEO Tools at 90% OFF - Ahref$, SEMru$h, Moz Pro',
-    description: 'Get instant access to 50+ premium SEO tools. Group buy Ahref$, SEMru$h, ChatGPT Plus & more at 90% discount.',
-    url: 'https://seordp.net/products',
-    type: 'website',
-  },
-  alternates: {
-    canonical: generateCanonicalUrl('/products'),
-  },
-};
+function getProductsMetadata(): Metadata {
+  const csv = getSeoMeta('Products');
+  const title = csv?.meta_title ?? 'Group Buy SEO Tools - Ahrefs, SEMrush, Moz Pro, ChatGPT Plus';
+  const description = csv?.meta_description ?? 'Buy premium SEO tools at 90% discount. Get Ahrefs Group Buy, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools.';
+  return {
+    title,
+    description,
+    keywords: 'group buy seo tools, ahrefs group buy, semrush group buy, moz pro group buy, chatgpt plus group buy, cheap seo tools, premium seo tools discount, seo tools subscription, shared seo tools access, bulk seo tools, affordable seo software',
+    openGraph: {
+      title,
+      description,
+      url: 'https://seordp.net/products',
+      type: 'website',
+    },
+    alternates: {
+      canonical: generateCanonicalUrl('/products'),
+    },
+  };
+}
+
+export const metadata: Metadata = getProductsMetadata();
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -86,7 +94,7 @@ export default async function ProductsPage() {
               Premium <span className="text-teal-400">Group Buy SEO Tools</span>
             </h1>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Access Ahref$, SEMru$h, Moz Pro, ChatGPT Plus & 50+ premium tools at 90% discount.
+              Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus & 50+ premium tools at 90% discount.
             </p>
           </div>
         </div>

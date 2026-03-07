@@ -2,12 +2,14 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import SafeImage from '@/components/SafeImage';
 import { ArrowLeft, ShoppingCart, Star, Check, X } from 'lucide-react';
-import { fetchAllProducts, fetchProductBySlug } from '@/lib/woocommerce-api-server';
+import { fetchAllProducts, fetchProductBySlug, fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
 import {
   getFormattedPrice,
   isProductOnSale,
   getProductMainImage,
+  getProductImageUrl,
   getDiscountPercentage,
   isInStock,
   getStockStatusText,
@@ -16,6 +18,9 @@ import {
 } from '@/lib/woocommerce-api';
 import { getBuyNowUrl } from '@/lib/product-ids';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { getSeoMeta, getSeoH1 } from '@/lib/seo-from-csv';
+import { removeFirstHeading } from '@/lib/content-parser';
+import ProductCard from '@/components/ProductCard';
 
 interface PageProps {
   params: {
@@ -43,22 +48,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const imageUrl = getProductMainImage(product);
-  const price = getFormattedPrice(product);
+  const csv = getSeoMeta(params.slug) ?? getSeoMeta(product.name);
+  const title = csv?.meta_title ?? product.name;
+  const description = csv?.meta_description ?? product.short_description.replace(/<[^>]*>/g, '').substring(0, 160);
 
   return {
-    title: product.name,
-    description: product.short_description.replace(/<[^>]*>/g, '').substring(0, 160),
+    title,
+    description,
     openGraph: {
-      title: product.name,
-      description: product.short_description.replace(/<[^>]*>/g, ''),
+      title,
+      description,
       type: 'website',
       url: `https://seordp.net/${params.slug}`,
       images: imageUrl ? [{ url: imageUrl }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
-      title: product.name,
-      description: product.short_description.replace(/<[^>]*>/g, ''),
+      title,
+      description,
       images: imageUrl ? [imageUrl] : undefined,
     },
     alternates: {
@@ -73,6 +80,13 @@ export default async function ProductPage({ params }: PageProps) {
   if (error || !product) {
     notFound();
   }
+
+  const { data: allProducts } = await fetchAllProductsComplete();
+  const others = (allProducts ?? []).filter(p => p.id !== product.id && p.status === 'publish');
+  const sameCategory = product.categories?.length
+    ? others.filter(p => p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id)))
+    : [];
+  const relatedProducts = (sameCategory.length > 0 ? sameCategory : others).slice(0, 8);
 
   const imageUrl = getProductMainImage(product);
   const formattedPrice = getFormattedPrice(product);
@@ -138,12 +152,13 @@ export default async function ProductPage({ params }: PageProps) {
                         key={image.id}
                         className="relative aspect-square overflow-hidden rounded-lg bg-slate-800 border border-slate-700 hover:border-teal-600 transition-colors cursor-pointer"
                       >
-                        <Image
-                          src={image.src}
+                        <SafeImage
+                          src={getProductImageUrl(product, index) || image.src}
                           alt={image.alt || `${product.name} - Image ${index + 1}`}
                           fill
                           className="object-cover"
                           sizes="(max-width: 1024px) 25vw, 12.5vw"
+                          fallback={<span className="text-2xl">📦</span>}
                         />
                       </div>
                     ))}
@@ -155,7 +170,7 @@ export default async function ProductPage({ params }: PageProps) {
             {/* Product Info */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <h1 className="mb-4 text-responsive-4xl font-bold tracking-tight text-white">
-                {product.name}
+                {getSeoH1(params.slug) ?? getSeoH1(product.name) ?? product.name}
               </h1>
 
             {/* Rating */}
@@ -219,7 +234,7 @@ export default async function ProductPage({ params }: PageProps) {
             {product.short_description && (
               <div
                 className="prose prose-invert mb-6 max-w-none prose-p:text-slate-300"
-                dangerouslySetInnerHTML={{ __html: product.short_description }}
+                dangerouslySetInnerHTML={{ __html: removeFirstHeading(product.short_description) }}
               />
             )}
 
@@ -294,12 +309,24 @@ export default async function ProductPage({ params }: PageProps) {
                 </h2>
                 <div
                   className="prose prose-invert max-w-none prose-headings:text-white prose-p:text-slate-300 prose-a:text-teal-400 hover:prose-a:text-teal-300 prose-li:text-slate-300"
-                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  dangerouslySetInnerHTML={{ __html: removeFirstHeading(product.description) }}
                 />
               </div>
             )}
           </div>
         </div>
+
+        {/* Related Products */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-16 pt-12 border-t border-slate-700">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">Related Products</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {relatedProducts.slice(0, 4).map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       </div>
     </div>

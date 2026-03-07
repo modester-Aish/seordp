@@ -1,3 +1,8 @@
+/**
+ * Pages & Posts data – 100% from LOCAL JSON only.
+ * NO live WordPress API calls. All data from public/data/*.json (wp-pages.json, wp-posts.json, etc.).
+ * Snapshot is created by scripts/export-wordpress-snapshot.js when you want to refresh data.
+ */
 import {
   WordPressPost,
   WordPressPage,
@@ -9,7 +14,7 @@ import {
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 
-// Helper: load JSON from public/data (snapshot exported by scripts/export-wordpress-snapshot.js)
+// Load JSON from public/data (snapshot from scripts/export-wordpress-snapshot.js)
 async function loadJsonFile<T>(fileName: string): Promise<T> {
   const filePath = join(process.cwd(), 'public', 'data', fileName);
   const raw = await readFile(filePath, 'utf-8');

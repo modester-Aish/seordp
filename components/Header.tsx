@@ -113,7 +113,7 @@ export default function Header({ pages = [] }: HeaderProps) {
   // Pricing Plans data (static plans)
   const pricingPlans = [
     { name: 'SMALL PLAN', slug: 'small-plan', price: '$15' },
-    { name: 'AHREF$ COMBO', slug: 'ahrefs-combo', price: '$25' },
+    { name: 'Ahrefs Combo', slug: 'ahrefs-combo', price: '$25' },
     { name: 'MEGA PLAN', slug: 'mega-plan', price: '$50' },
     { name: 'LITE PLAN', slug: 'lite-plan', price: '$10' },
     { name: 'WRITER PLAN', slug: 'writer-plan', price: '$15' },
@@ -465,10 +465,10 @@ export default function Header({ pages = [] }: HeaderProps) {
                             {searchResults.map((result, index) => {
                               const getTypeColor = (type: string) => {
                                 switch (type) {
-                                  case 'post': return 'bg-blue-100 text-blue-800';
-                                  case 'product': return 'bg-emerald-100 text-emerald-800';
-                                  case 'tool': return 'bg-purple-100 text-purple-800';
-                                  default: return 'bg-gray-100 text-gray-800';
+                                  case 'post': return 'bg-blue-500/20 text-blue-300';
+                                  case 'product': return 'bg-teal-500/20 text-teal-300';
+                                  case 'tool': return 'bg-purple-500/20 text-purple-300';
+                                  default: return 'bg-slate-500/20 text-slate-300';
                                 }
                               };
                               const getTypeLabel = (type: string) => {
@@ -602,10 +602,10 @@ export default function Header({ pages = [] }: HeaderProps) {
                         searchResults.map((result, index) => {
                           const getTypeColor = (type: string) => {
                             switch (type) {
-                              case 'post': return 'bg-blue-100 text-blue-800';
-                              case 'product': return 'bg-emerald-100 text-emerald-800';
-                              case 'tool': return 'bg-purple-100 text-purple-800';
-                              default: return 'bg-gray-100 text-gray-800';
+                              case 'post': return 'bg-blue-500/20 text-blue-300';
+                              case 'product': return 'bg-teal-500/20 text-teal-300';
+                              case 'tool': return 'bg-purple-500/20 text-purple-300';
+                              default: return 'bg-slate-500/20 text-slate-300';
                             }
                           };
                           const getTypeLabel = (type: string) => {
@@ -751,7 +751,7 @@ export default function Header({ pages = [] }: HeaderProps) {
                 {/* CTA Button */}
                 <div className="pt-4 border-t border-white/10">
                   <a
-                    href="https://members.buyseo.org/signup"
+                    href="https://members.seotoolsgroupbuy.us/signup"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}

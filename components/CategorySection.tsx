@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
+import { toLocalUploadUrl } from '@/lib/content-parser';
 import { useState } from 'react';
 
 interface Category {
@@ -174,12 +176,13 @@ export default function CategorySection({ categories, products = [] }: CategoryS
                   <div className="relative h-48 overflow-hidden">
                     {product.images && product.images.length > 0 ? (
                       <>
-                        <Image
-                          src={product.images[0].src}
+                        <SafeImage
+                          src={toLocalUploadUrl(product.images[0].src) || product.images[0].src}
                           alt={product.images[0].alt || product.name}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 400px"
+                          fallback={<span className="text-4xl">📦</span>}
                         />
                         {product.on_sale && (
                           <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold text-white animate-bounce-gentle"

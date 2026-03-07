@@ -79,7 +79,7 @@ export const WhyChooseSection = () => {
             Why Choose SEORDP Group Buy SEO Tools?
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Get instant access to 50+ premium SEO tools including Ahref$, SEMru$h, Moz Pro with 99.9% uptime and enterprise-grade security
+            Get instant access to 50+ premium SEO tools including Ahrefs, SEMrush, Moz Pro with 99.9% uptime and enterprise-grade security
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export const PopularToolsSection = () => {
   // Map to component format - define tools array first
   const tools = [
     {
-      name: 'AHREF$',
+      name: 'Ahrefs',
       id: 'ahrefs',
       price: '$25.00',
       originalPrice: '$99.00',
@@ -125,7 +125,7 @@ export const PopularToolsSection = () => {
       description: 'Advanced analysis and optimization toolkit for websites'
     },
     {
-      name: 'SEMRU$H',
+      name: 'SEMrush',
       id: 'semrush',
       price: '$4.99',
       originalPrice: '$119.95',
@@ -472,7 +472,7 @@ export const PopularToolsSection = () => {
             />
           </h2>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-            Access Ahref$, SEMru$h, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount. Best group buy SEO tools 2025.
+            Access Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount. Best group buy SEO tools 2025.
           </p>
         </div>
 
@@ -485,6 +485,8 @@ export const PopularToolsSection = () => {
               <Link
                 key={index}
                 href={linkHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 p-6 group animate-fade-in-up hover:bg-white/15 transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/20 hover:-translate-y-2 block cursor-pointer h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -555,8 +557,8 @@ export const TestimonialsSection = () => {
   
   const facebookReviews = [
     { name: 'Sarah K.', rating: 5, review: 'Setting up my SEORDP account was incredibly easy. The platform is user-friendly and intuitive for browsing tools, checkout, and managing my subscription. Looking forward to them expanding their tool library even more!' },
-    { name: 'Ahmed R.', rating: 5, review: 'I had a great experience with SEORDP when subscribing to Ahref$. The transaction was seamless, I got instant access to the tool, paid my monthly bill without hassle, and even earned reward points!' },
-    { name: 'Maria S.', rating: 5, review: 'Quick and seamless! I set up my SEORDP account with SEMru$h in less than 5 minutes and started using it right away. Plus, I am earning rewards with every payment which is an added bonus!' },
+    { name: 'Ahmed R.', rating: 5, review: 'I had a great experience with SEORDP when subscribing to Ahrefs. The transaction was seamless, I got instant access to the tool, paid my monthly bill without hassle, and even earned reward points!' },
+    { name: 'Maria S.', rating: 5, review: 'Quick and seamless! I set up my SEORDP account with SEMrush in less than 5 minutes and started using it right away. Plus, I am earning rewards with every payment which is an added bonus!' },
   ];
 
   const trustpilotReviews = [

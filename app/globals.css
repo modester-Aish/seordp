@@ -130,6 +130,34 @@ body {
     transform: translateY(-4px);
   }
 
+  /* Force light text on dark cards (fixes WordPress/dynamic content with black text) */
+  .card-gradient,
+  .card-gradient .prose {
+    color: #e2e8f0;
+  }
+  .card-gradient p,
+  .card-gradient li,
+  .card-gradient .prose p,
+  .card-gradient .prose li,
+  .card-gradient h1, .card-gradient h2, .card-gradient h3,
+  .card-gradient h4, .card-gradient h5, .card-gradient h6,
+  .card-gradient .prose h1, .card-gradient .prose h2, .card-gradient .prose h3,
+  .card-gradient .prose h4, .card-gradient .prose h5, .card-gradient .prose h6 {
+    color: #e2e8f0 !important;
+  }
+  .card-gradient a,
+  .card-gradient .prose a {
+    color: #2dd4bf !important;
+  }
+  .card-gradient a:hover,
+  .card-gradient .prose a:hover {
+    color: #5eead4 !important;
+  }
+  .card-gradient strong,
+  .card-gradient .prose strong {
+    color: #f8fafc !important;
+  }
+
   /* Button Styles */
   .btn-primary {
     @apply px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300;

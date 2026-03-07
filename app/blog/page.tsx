@@ -2,20 +2,28 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllPosts } from '@/lib/wordpress-api';
 import { generateCanonicalUrl } from '@/lib/canonical';
+import { getSeoMeta } from '@/lib/seo-from-csv';
 
-export const metadata: Metadata = {
-  title: 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools',
-  description: 'Learn SEO strategies, group buy tools tutorials, Ahref$ tips, SEMru$h guides, and digital marketing insights. Expert blog for SEO professionals and agencies.',
-  keywords: 'seo blog, seo tips, ahref$ tutorial, semru$h guide, group buy seo tools blog, digital marketing tips, seo best practices, seo strategies 2025',
-  openGraph: {
-    title: 'SEO Blog & Tutorials - Master Group Buy SEO Tools',
-    description: 'Expert SEO tips, group buy tools tutorials, and digital marketing strategies. Learn from industry professionals.',
-    url: 'https://seordp.net/blog',
-  },
-  alternates: {
-    canonical: generateCanonicalUrl('/blog'),
-  },
-};
+function getBlogMetadata(): Metadata {
+  const csv = getSeoMeta('Blog');
+  const title = csv?.meta_title ?? 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools';
+  const description = csv?.meta_description ?? 'Learn SEO strategies, group buy tools tutorials, Ahrefs tips, SEMrush guides, and digital marketing insights. Expert blog for SEO professionals and agencies.';
+  return {
+    title,
+    description,
+    keywords: 'seo blog, seo tips, ahrefs tutorial, semrush guide, group buy seo tools blog, digital marketing tips, seo best practices, seo strategies 2025',
+    openGraph: {
+      title,
+      description,
+      url: 'https://seordp.net/blog',
+    },
+    alternates: {
+      canonical: generateCanonicalUrl('/blog'),
+    },
+  };
+}
+
+export const metadata: Metadata = getBlogMetadata();
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -67,7 +75,7 @@ export default async function BlogPage() {
               <span className="text-teal-400">SEO Blog</span> & Tutorials
             </h1>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Master group buy SEO tools with expert tips, Ahref$ tutorials, SEMru$h guides, and proven digital marketing strategies
+              Master group buy SEO tools with expert tips, Ahrefs tutorials, SEMrush guides, and proven digital marketing strategies
             </p>
           </div>
         </div>
