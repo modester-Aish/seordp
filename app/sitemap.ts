@@ -57,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((page) => 
       page?.slug && 
       page.slug.trim() !== '' && 
+      page.slug !== 'shop-2' && page.slug !== 'refund_returns-2' &&
       page.status === 'publish' // Only published pages
     )
     .map((page) => ({

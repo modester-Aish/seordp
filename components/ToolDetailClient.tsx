@@ -3,17 +3,21 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeImage from './SafeImage';
 import { ShoppingCart, Star, Check, ArrowLeft, ExternalLink } from 'lucide-react';
 import { Tool } from '@/lib/tools-data';
 import { WooCommerceProduct } from '@/types/wordpress';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
+import { getBuyNowUrlWithId } from '@/lib/product-ids';
 
 interface ToolDetailClientProps {
   tool: Tool;
   relatedTools?: Tool[];
+  /** Optional H1 from CSV (tools pages only) */
+  h1Text?: string | null;
 }
 
-export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetailClientProps) {
+export default function ToolDetailClient({ tool, relatedTools = [], h1Text }: ToolDetailClientProps) {
   const [purchaseCount, setPurchaseCount] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isClient, setIsClient] = useState(false);
@@ -81,15 +85,22 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
                   </div>
 
                   {/* Main Image */}
-                  <div className="relative aspect-square bg-white rounded-xl overflow-hidden mb-6 flex items-center justify-center p-8">
-                    <Image
-                      src={tool.image}
-                      alt={tool.name}
-                      width={300}
-                      height={300}
-                      className="object-contain"
-                      priority
-                    />
+                  <div className="relative aspect-square bg-slate-800 rounded-xl overflow-hidden mb-6 flex items-center justify-center p-8">
+                    {tool.image ? (
+                      <SafeImage
+                        src={tool.image}
+                        alt={tool.name}
+                        width={300}
+                        height={300}
+                        className="object-contain"
+                        priority
+                        fallback={<span className="text-6xl">🔧</span>}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-6xl">🔧</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Stats */}
@@ -122,12 +133,14 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
                 )}
 
                 {/* Tool Name */}
-                <h1 className="text-5xl font-bold text-white mb-4">{tool.name}</h1>
+                <h1 className="text-5xl font-bold text-white mb-4">{h1Text ?? tool.name}</h1>
 
                 {/* View Product Details Page Button - Prominent placement */}
                 {matchedProductSlug && (
                   <Link
                     href={`/${matchedProductSlug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-base transition-all duration-300 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-teal-600 text-white hover:scale-105 shadow-lg mb-4"
                   >
                     <ExternalLink className="h-5 w-5" />
@@ -207,9 +220,9 @@ export default function ToolDetailClient({ tool, relatedTools = [] }: ToolDetail
                   </div>
                 </div>
 
-                {/* Buy Now Button */}
+                {/* Buy Now Button – ID wala cart link jab productId ho, warna signup */}
                 <a
-                  href="https://members.buyseo.org/signup"
+                  href={tool.productId ? getBuyNowUrlWithId(tool.productId) : 'https://members.seotoolsgroupbuy.us/signup'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-purple-600 text-white hover:scale-105 shadow-xl block text-center mb-6"

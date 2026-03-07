@@ -190,8 +190,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {/* Main Content Section */}
       <section className="bg-gray-50 py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-screen-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full mx-auto">
             {/* Left Sidebar - Table of Contents */}
             <aside className="lg:col-span-3 order-1 lg:order-none">
               <div className="sticky top-24 bg-white rounded-lg shadow-md border border-gray-200 p-6">
@@ -332,7 +332,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         }
 
         .blog-content {
-          color: #1f2937;
+          color: #000;
           font-size: 1.125rem;
           line-height: 1.8;
         }
@@ -342,7 +342,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 800;
           margin-top: 2rem;
           margin-bottom: 1rem;
-          color: #111827;
+          color: #000;
           line-height: 1.2;
         }
 
@@ -351,7 +351,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 700;
           margin-top: 2rem;
           margin-bottom: 1rem;
-          color: #111827;
+          color: #000;
           line-height: 1.3;
           padding-bottom: 0.5rem;
           border-bottom: 2px solid #10b981;
@@ -368,7 +368,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 600;
           margin-top: 1.5rem;
           margin-bottom: 0.75rem;
-          color: #1f2937;
+          color: #000;
           line-height: 1.4;
         }
 
@@ -383,7 +383,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 600;
           margin-top: 1.25rem;
           margin-bottom: 0.5rem;
-          color: #374151;
+          color: #000;
         }
 
         .blog-content h5 {
@@ -391,7 +391,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 600;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
-          color: #4b5563;
+          color: #000;
         }
 
         .blog-content h6 {
@@ -399,12 +399,12 @@ export default async function BlogPostPage({ params }: PageProps) {
           font-weight: 600;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
-          color: #6b7280;
+          color: #000;
         }
 
         .blog-content p {
           margin-bottom: 1.25rem;
-          color: #1f2937;
+          color: #000;
           font-size: 1.125rem;
           line-height: 1.8;
         }
@@ -436,6 +436,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         .blog-content li {
           margin-bottom: 0.5rem;
           line-height: 1.8;
+          color: #000;
         }
 
         .blog-content img {
@@ -453,7 +454,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           padding: 1rem 1.5rem;
           margin: 1.5rem 0;
           font-style: italic;
-          color: #374151;
+          color: #000;
         }
 
         .blog-content code {

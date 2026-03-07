@@ -37,6 +37,7 @@ import ToolDetailClient from '@/components/ToolDetailClient';
 import { getToolBySlug, getAllTools } from '@/lib/tools-data';
 import { matchToolToProduct, getToolProductSlug } from '@/lib/tool-product-matcher';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
+import { getSeoMeta, getSeoH1 } from '@/lib/seo-from-csv';
 
 // Force dynamic rendering to avoid build timeouts
 export const dynamic = 'force-dynamic';
@@ -73,13 +74,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .replace(/<[^>]*>/g, '')
               .substring(0, 160);
             
+            const csv = getSeoMeta(staticRedirect) ?? getSeoMeta(product.name);
+            const title = csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`;
+            const desc = csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`);
             return {
-              title: `${product.name} - Group Buy SEO Tool at ${product.price}`,
-              description: cleanDescription || `${tool.description}. Get instant access to ${product.name} at ${product.price}.`,
+              title,
+              description: desc,
               keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy tools`,
               openGraph: {
-                title: `${product.name} - Premium Group Buy Access`,
-                description: cleanDescription || tool.description,
+                title: csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`,
+                description: desc,
                 type: 'website',
                 url: `https://seordp.net/${staticRedirect}`,
               },
@@ -105,13 +109,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               .replace(/<[^>]*>/g, '')
               .substring(0, 160);
             
+            const csv = getSeoMeta(matchedProduct.slug) ?? getSeoMeta(matchedProduct.name);
+            const title = csv?.meta_title ?? `${matchedProduct.name} | Group Buy SEO Tools`;
+            const desc = csv?.meta_description ?? (cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`);
             return {
-              title: `${matchedProduct.name} - Group Buy SEO Tool at ${matchedProduct.price}`,
-              description: cleanDescription || `${tool.description}. Get instant access to ${matchedProduct.name} at ${matchedProduct.price}.`,
+              title,
+              description: desc,
               keywords: `${matchedProduct.name} group buy, ${matchedProduct.name} cheap, ${matchedProduct.name} discount, buy ${matchedProduct.name}, seo tools, group buy tools`,
               openGraph: {
-                title: `${matchedProduct.name} - Premium Group Buy Access`,
-                description: cleanDescription || tool.description,
+                title: csv?.meta_title ?? `${matchedProduct.name} | Group Buy SEO Tools`,
+                description: desc,
                 type: 'website',
                 url: `https://seordp.net/${matchedProduct.slug}`,
               },
@@ -127,11 +134,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       
       // No matching product - return tool metadata (TOOL DETAIL PAGE)
       return {
-        title: `${tool.name} - Group Buy SEO Tool at ${tool.price}`,
+        title: `${tool.name} | Group Buy SEO Tools`,
         description: `${tool.description}. Get instant access to ${tool.name} at ${tool.price}.`,
         keywords: `${tool.name} group buy, ${tool.name} cheap, ${tool.name} discount, buy ${tool.name}, seo tools, group buy tools`,
         openGraph: {
-          title: `${tool.name} - Premium Group Buy Access`,
+          title: `${tool.name} | Group Buy SEO Tools`,
           description: tool.description,
           type: 'website',
           url: `https://seordp.net/${tool.slug}`,
@@ -149,14 +156,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         const cleanDescription = (product.short_description || product.description || '')
           .replace(/<[^>]*>/g, '')
           .substring(0, 160);
-        
+        const csv = getSeoMeta(slug) ?? getSeoMeta(product.name);
+        const title = csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`;
+        const desc = csv?.meta_description ?? (cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. Group buy SEO tools at 90% discount.`);
         return {
-          title: `${product.name} - Group Buy SEO Tool at ${product.price}`,
-          description: cleanDescription || `Buy ${product.name} at ${product.price}. Instant access to premium SEO tool. Group buy SEO tools at 90% discount.`,
+          title,
+          description: desc,
           keywords: `${product.name} group buy, ${product.name} cheap, ${product.name} discount, buy ${product.name}, seo tools, group buy seo tools`,
           openGraph: {
-            title: `${product.name} - Premium Group Buy Access`,
-            description: cleanDescription || `Get instant access to ${product.name} at 90% discount. Only ${product.price}`,
+            title: csv?.meta_title ?? `${product.name} | Group Buy SEO Tools`,
+            description: desc,
             type: 'website',
             url: `https://seordp.net/${slug}`,
           },
@@ -173,9 +182,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     try {
       const { data: post } = await fetchPostBySlug(slug);
       if (post && post.status === 'publish') {
+        const postTitle = getTitle(post);
+        const csv = getSeoMeta(postTitle);
+        const title = csv?.meta_title ?? postTitle;
+        const description = csv?.meta_description ?? getExcerpt(post);
         return {
-          title: getTitle(post),
-          description: getExcerpt(post),
+          title,
+          description,
           alternates: {
             canonical: generateCanonicalUrl(`/${slug}`),
           },
@@ -189,9 +202,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     try {
       const { data: page } = await fetchPageBySlug(slug);
       if (page && page.status === 'publish') {
+        const pageTitle = getTitle(page);
+        const csv = getSeoMeta(pageTitle);
+        const title = csv?.meta_title ?? pageTitle;
+        const description = csv?.meta_description ?? getExcerpt(page);
         return {
-          title: getTitle(page),
-          description: getExcerpt(page),
+          title,
+          description,
           alternates: {
             canonical: generateCanonicalUrl(`/${slug}`),
           },
@@ -262,10 +279,11 @@ export default async function UnifiedPage({ params }: PageProps) {
           t.category === tool.category
         ).slice(0, 8);
         
-        return <ToolDetailClient tool={tool} relatedTools={relatedTools} />;
+        const toolH1 = getSeoH1(tool.slug) ?? getSeoH1(tool.name);
+        return <ToolDetailClient tool={tool} relatedTools={relatedTools} h1Text={toolH1} />;
       } catch (error) {
-        // If related tools fetch fails, still render the tool
-        return <ToolDetailClient tool={tool} relatedTools={[]} />;
+        const toolH1 = getSeoH1(tool.slug) ?? getSeoH1(tool.name);
+        return <ToolDetailClient tool={tool} relatedTools={[]} h1Text={toolH1} />;
       }
   }
   
@@ -277,18 +295,19 @@ export default async function UnifiedPage({ params }: PageProps) {
       // Product found - render product page directly (no redirect)
       // Tool links already redirect to product slugs, so product page is the canonical URL
       
-      // Fetch related products from same category
+      // Related: same category; agar nahi mile to kuch bhi other products (niche dikhane ke liye)
       try {
-        const { data: allProducts } = await fetchAllProducts(1, 8);
-        const relatedProducts = allProducts?.filter(p => 
-          p.id !== product.id && 
-          p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id))
-        ) || [];
-        
-        return <ProductDetailClient product={product} relatedProducts={relatedProducts} />;
+        const { data: allProducts } = await fetchAllProductsComplete();
+        const others = (allProducts ?? []).filter(p => p.id !== product.id && p.status === 'publish');
+        const sameCategory = product.categories?.length
+          ? others.filter(p => p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id)))
+          : [];
+        const relatedProducts = (sameCategory.length > 0 ? sameCategory : others).slice(0, 8);
+        const productH1 = getSeoH1(slug) ?? getSeoH1(product.name);
+        return <ProductDetailClient product={product} relatedProducts={relatedProducts} h1Text={productH1} />;
       } catch (error) {
-        // If related products fetch fails, still render the product
-        return <ProductDetailClient product={product} relatedProducts={[]} />;
+        const productH1 = getSeoH1(slug) ?? getSeoH1(product.name);
+        return <ProductDetailClient product={product} relatedProducts={[]} h1Text={productH1} />;
       }
     }
   } catch (error) {
@@ -324,15 +343,17 @@ export default async function UnifiedPage({ params }: PageProps) {
             // Product found - render product page directly
             // Tool links already redirect to product slugs, so product page is the canonical URL
             try {
-              const { data: allProductsForRelated } = await fetchAllProducts(1, 8);
-              const relatedProducts = allProductsForRelated?.filter(p => 
-                p.id !== product.id && 
-                p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id))
-              ) || [];
-              
-              return <ProductDetailClient product={product} relatedProducts={relatedProducts} />;
+              const { data: allForRelated } = await fetchAllProductsComplete();
+              const others = (allForRelated ?? []).filter(p => p.id !== product.id && p.status === 'publish');
+              const sameCategory = product.categories?.length
+                ? others.filter(p => p.categories?.some(cat => product.categories?.some(pCat => pCat.id === cat.id)))
+                : [];
+              const relatedProducts = (sameCategory.length > 0 ? sameCategory : others).slice(0, 8);
+              const productH1 = getSeoH1(slug) ?? getSeoH1(product.name);
+              return <ProductDetailClient product={product} relatedProducts={relatedProducts} h1Text={productH1} />;
             } catch (error) {
-              return <ProductDetailClient product={product} relatedProducts={[]} />;
+              const productH1 = getSeoH1(slug) ?? getSeoH1(product.name);
+              return <ProductDetailClient product={product} relatedProducts={[]} h1Text={productH1} />;
             }
           }
         }
@@ -474,8 +495,8 @@ async function BlogPostView({ post }: { post: any }) {
 
       {/* Main Content Section */}
       <section className="bg-gray-50 py-12 md:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-6 max-w-screen-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full mx-auto">
             {/* Left Sidebar - Table of Contents */}
             <aside className="lg:col-span-3 order-1 lg:order-none">
               <div className="sticky top-24 bg-white rounded-lg shadow-md border border-gray-200 p-6">
@@ -616,7 +637,7 @@ async function BlogPostView({ post }: { post: any }) {
         }
 
         .blog-content {
-          color: #1f2937;
+          color: #000;
           font-size: 1.125rem;
           line-height: 1.8;
         }
@@ -626,7 +647,7 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 800;
           margin-top: 2rem;
           margin-bottom: 1rem;
-          color: #111827;
+          color: #000;
           line-height: 1.2;
         }
 
@@ -635,7 +656,7 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 700;
           margin-top: 2rem;
           margin-bottom: 1rem;
-          color: #111827;
+          color: #000;
           line-height: 1.3;
           padding-bottom: 0.5rem;
           border-bottom: 2px solid #10b981;
@@ -652,7 +673,7 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 600;
           margin-top: 1.5rem;
           margin-bottom: 0.75rem;
-          color: #1f2937;
+          color: #000;
           line-height: 1.4;
         }
 
@@ -667,7 +688,7 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 600;
           margin-top: 1.25rem;
           margin-bottom: 0.5rem;
-          color: #374151;
+          color: #000;
         }
 
         .blog-content h5 {
@@ -675,7 +696,7 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 600;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
-          color: #4b5563;
+          color: #000;
         }
 
         .blog-content h6 {
@@ -683,12 +704,12 @@ async function BlogPostView({ post }: { post: any }) {
           font-weight: 600;
           margin-top: 1rem;
           margin-bottom: 0.5rem;
-          color: #6b7280;
+          color: #000;
         }
 
         .blog-content p {
           margin-bottom: 1.25rem;
-          color: #1f2937;
+          color: #000;
           font-size: 1.125rem;
           line-height: 1.8;
         }
@@ -720,6 +741,7 @@ async function BlogPostView({ post }: { post: any }) {
         .blog-content li {
           margin-bottom: 0.5rem;
           line-height: 1.8;
+          color: #000;
         }
 
         .blog-content img {
@@ -737,7 +759,7 @@ async function BlogPostView({ post }: { post: any }) {
           padding: 1rem 1.5rem;
           margin: 1.5rem 0;
           font-style: italic;
-          color: #374151;
+          color: #000;
         }
 
         .blog-content code {
@@ -816,7 +838,7 @@ function PageView({ page }: { page: any }) {
   const title = getTitle(page);
   const cleanTitle = cleanPageTitle(title);
   const featuredImage = getFeaturedImage(page);
-  const cleanContent = cleanWordPressContent(page.content?.rendered || '');
+  const cleanContent = removeFirstHeading(cleanWordPressContent(page.content?.rendered || ''));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-x-hidden">
@@ -890,10 +912,7 @@ function PageView({ page }: { page: any }) {
               <article id="content" className="overflow-x-hidden">
                 <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 border border-slate-200">
                   <div
-                    className="overflow-x-hidden max-w-none
-                      [&_div]:max-w-full [&_div]:overflow-x-auto
-                      [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg
-                      [&_table]:w-full [&_table]:overflow-x-auto"
+                    className="page-content overflow-x-hidden max-w-none"
                     dangerouslySetInnerHTML={{ __html: cleanContent }}
                   />
                 </div>
@@ -902,6 +921,106 @@ function PageView({ page }: { page: any }) {
           </div>
         </div>
       </div>
+
+      {/* Page content typography & design */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .page-content {
+          color: #0f172a;
+          font-size: 1.0625rem;
+          line-height: 1.75;
+        }
+        .page-content h2 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 2px solid #0d9488;
+          line-height: 1.3;
+        }
+        .page-content h2:first-child { margin-top: 0; }
+        .page-content h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #0f172a;
+          margin-top: 1.5rem;
+          margin-bottom: 0.5rem;
+          line-height: 1.4;
+        }
+        .page-content h4 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #134e4a;
+          margin-top: 1.25rem;
+          margin-bottom: 0.5rem;
+        }
+        .page-content h5, .page-content h6 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #0f172a;
+          margin-top: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        .page-content p {
+          margin-bottom: 1.25rem;
+          color: #0f172a;
+          line-height: 1.75;
+        }
+        .page-content ul {
+          margin-bottom: 1.25rem;
+          padding-left: 1.5rem;
+          list-style-type: disc;
+        }
+        .page-content ol {
+          margin-bottom: 1.25rem;
+          padding-left: 1.5rem;
+          list-style-type: decimal;
+        }
+        .page-content li {
+          margin-bottom: 0.5rem;
+          line-height: 1.75;
+          color: #0f172a;
+        }
+        .page-content li strong { color: #0f172a; }
+        .page-content a {
+          color: #0d9488;
+          text-decoration: underline;
+          font-weight: 500;
+        }
+        .page-content a:hover { color: #0f766e; }
+        .page-content strong { font-weight: 700; color: #0f172a; }
+        .page-content img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 0.5rem;
+          margin: 1rem 0;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .page-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1.25rem 0;
+        }
+        .page-content th, .page-content td {
+          padding: 0.75rem 1rem;
+          border: 1px solid #e2e8f0;
+          text-align: left;
+        }
+        .page-content th {
+          background: #f1f5f9;
+          font-weight: 600;
+          color: #0f172a;
+        }
+        .page-content blockquote {
+          border-left: 4px solid #0d9488;
+          background: #f0fdfa;
+          padding: 1rem 1.25rem;
+          margin: 1.25rem 0;
+          font-style: italic;
+          color: #0f172a;
+        }
+      `}} />
     </div>
   );
 }

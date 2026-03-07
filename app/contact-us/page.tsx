@@ -3,19 +3,27 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Mail, Clock, MapPin, MessageCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/canonical';
 import ContactForm from '@/components/ContactForm';
+import { getSeoMeta } from '@/lib/seo-from-csv';
 
-export const metadata: Metadata = {
-  title: 'Contact Us',
-  description: 'Get in touch with SEORDP. Email support, business hours, social media. We aim to respond within 24 hours. Contact us for SEO tools, group buy, or partnerships.',
-  keywords: 'contact SEORDP, support, customer service, SEO tools support, group buy help',
-  alternates: { canonical: generateCanonicalUrl('/contact-us') },
-  openGraph: {
-    title: 'Contact Us',
-    description: 'Get in touch with SEORDP. Email support, business hours, social media. We respond within 24 hours.',
-    url: 'https://seordp.net/contact-us',
-    type: 'website',
-  },
-};
+function getContactMetadata(): Metadata {
+  const csv = getSeoMeta('Contact Us');
+  const title = csv?.meta_title ?? 'Contact Us';
+  const description = csv?.meta_description ?? 'Get in touch with SEORDP. Email support, business hours, social media. We aim to respond within 24 hours. Contact us for SEO tools, group buy, or partnerships.';
+  return {
+    title,
+    description,
+    keywords: 'contact SEORDP, support, customer service, SEO tools support, group buy help',
+    alternates: { canonical: generateCanonicalUrl('/contact-us') },
+    openGraph: {
+      title,
+      description,
+      url: 'https://seordp.net/contact-us',
+      type: 'website',
+    },
+  };
+}
+
+export const metadata: Metadata = getContactMetadata();
 
 const SUPPORT_EMAIL = 'support@seordp.net';
 

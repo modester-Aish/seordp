@@ -1,5 +1,5 @@
 // Product/Tool ID mapping for Buy Now links
-// Base URL: https://members.buyseo.org/cart/index/product/id/{ID}/c/?
+// Base URL: https://members.seotoolsgroupbuy.us/cart/index/product/id/{ID}/c/?
 
 // Check if we're in development mode for auto-debugging
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -553,21 +553,42 @@ export function getProductId(name: string): number | null {
   return getProductIdByName(name);
 }
 
-const SIGNUP_URL = 'https://members.buyseo.org/signup';
+const AMEMBER_BASE = 'https://members.seotoolsgroupbuy.us';
+const SIGNUP_URL = `${AMEMBER_BASE}/signup`;
+const CART_URL_TEMPLATE = `${AMEMBER_BASE}/cart/index/product/id/{ID}/c/?`;
 
 /**
- * Generate Buy Now URL – ab hamesha signup link return hota hai.
- * Affiliate (aff/go/Seordpnet) aur ID/cart links hata diye; sab products pe sirf signup.
+ * Buy Now URL when aMember product ID is known (ID wala cart link).
+ * Use this for tool/product pages jahan productId available ho.
+ */
+export function getBuyNowUrlWithId(productId: number): string {
+  return CART_URL_TEMPLATE.replace('{ID}', String(productId));
+}
+
+/**
+ * Generate Buy Now URL: ID milne par cart link, warna signup.
+ * Resolves aMember product ID from slug → name → fallbackId → external_url.
  *
- * @returns Buy Now URL (signup)
+ * @returns Cart URL (id/XXX/c/?) when ID resolved, else signup URL
  */
 export function getBuyNowUrl(
-  _productName?: string,
-  _fallbackId?: number,
-  _slug?: string,
-  _externalUrl?: string,
-  _debug?: boolean
+  productName?: string,
+  fallbackId?: number,
+  slug?: string,
+  externalUrl?: string,
+  debug?: boolean
 ): string {
+  let id: number | null = null;
+
+  if (externalUrl && /\/cart\/index\/product\/id\/(\d+)\//i.test(externalUrl)) {
+    const match = externalUrl.match(/\/id\/(\d+)\//);
+    if (match) id = parseInt(match[1], 10);
+  }
+  if (id == null && slug) id = getProductIdBySlug(slug, debug ?? false);
+  if (id == null && productName) id = getProductIdByName(productName, debug ?? false);
+  if (id == null && fallbackId != null && fallbackId > 0) id = fallbackId;
+
+  if (id != null) return getBuyNowUrlWithId(id);
   return SIGNUP_URL;
 }
 

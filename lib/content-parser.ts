@@ -117,6 +117,38 @@ function fixBrokenLinks(content: string): string {
   return fixedContent;
 }
 
+/**
+ * Remove "Powered by" / "powered by" text and following link or domain from content
+ * (e.g. "Powered by: members.buyseo.org", "powered by Seotoolsgroupbuy.us")
+ */
+export function stripPoweredBy(content: string): string {
+  if (!content) return '';
+
+  let out = content;
+
+  // Remove whole block (p, div) that only contains "powered by" + link/domain
+  out = out.replace(
+    /<p[^>]*>\s*powered\s+by\s*:?\s*(?:<a[^>]*>.*?<\/a>|[^<]*?[\w.-]+\.(?:org|us|com|net)[^\s<]*)\s*<\/p>/gi,
+    ''
+  );
+  out = out.replace(
+    /<div[^>]*>\s*powered\s+by\s*:?\s*(?:<a[^>]*>.*?<\/a>|[^<]*?[\w.-]+\.(?:org|us|com|net)[^\s<]*)\s*<\/div>/gi,
+    ''
+  );
+
+  // Remove inline "powered by" + link (e.g. inside a paragraph with other text)
+  out = out.replace(
+    /\bpowered\s+by\s*:?\s*(<a[^>]*>.*?<\/a>|[^\s<]*[\w.-]+\.(?:org|us|com|net)[^\s<]*)/gi,
+    ''
+  );
+
+  // Clean up empty paragraphs left behind
+  out = out.replace(/<p>\s*<\/p>/g, '');
+  out = out.replace(/\n\s*\n\s*\n/g, '\n\n');
+
+  return out.trim();
+}
+
 export function removeShortcodes(content: string): string {
   if (!content) return '';
 
@@ -156,6 +188,9 @@ export function cleanWordPressContent(content: string): string {
 
   // Fix broken internal links (remove /pages/ prefix)
   cleanContent = fixBrokenLinks(cleanContent);
+
+  // Remove "Powered by" + website (e.g. members.buyseo.org, Seotoolsgroupbuy.us)
+  cleanContent = stripPoweredBy(cleanContent);
 
   // Remove WordPress specific attributes that might leak through
   cleanContent = cleanContent.replace(/data-[a-z\-]+=["'][^"']*["']/gi, '');

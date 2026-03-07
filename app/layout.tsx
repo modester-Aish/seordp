@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Modern SEO & Web Development Tools',
+    default: 'SEORDP – Group Buy SEO Tools',
     template: '%s',
   },
   description: 'Discover powerful SEO tools, web development resources, and premium products. Built with Next.js and WordPress for optimal performance.',

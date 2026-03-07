@@ -9,12 +9,13 @@ export interface Tool {
   features?: string[];
   category?: string;
   productId?: number; // Product ID for Buy Now link
+  bgColor?: string;
 }
 
 export const tools: Tool[] = [
   {
     id: 'ahrefs',
-    name: 'AHREF$',
+    name: 'Ahrefs',
     price: '$25.00',
     originalPrice: '$99.00',
     image: '/tools/ahrefs-logo.svg',
@@ -26,7 +27,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'semrush',
-    name: 'SEMRU$H',
+    name: 'SEMrush',
     price: '$4.99',
     originalPrice: '$119.95',
     image: '/tools/semrush-logo.svg',
@@ -34,7 +35,7 @@ export const tools: Tool[] = [
     slug: 'semrush',
     category: 'SEO Tools',
     features: ['Keyword Research', 'Competitor Analysis', 'Site Audit', 'Content Marketing'],
-    productId: 10
+    productId: 8
   },
   {
     id: 'moz',
@@ -46,7 +47,7 @@ export const tools: Tool[] = [
     slug: 'moz',
     category: 'SEO Tools',
     features: ['Keyword Explorer', 'Link Explorer', 'Site Crawl', 'Rank Tracking'],
-    productId: 12
+    productId: 19
   },
   {
     id: 'canva',
@@ -57,7 +58,8 @@ export const tools: Tool[] = [
     description: 'Creative design platform with professional resources',
     slug: 'canva',
     category: 'Design Tools',
-    features: ['Design Templates', 'Photo Editor', 'Brand Kit', 'Collaboration']
+    features: ['Design Templates', 'Photo Editor', 'Brand Kit', 'Collaboration'],
+    productId: 65
   },
   {
     id: 'chatgpt-plus',
@@ -68,7 +70,8 @@ export const tools: Tool[] = [
     description: 'Advanced AI assistant for productivity',
     slug: 'chatgpt-plus',
     category: 'AI Tools',
-    features: ['GPT-4 Access', 'Faster Responses', 'Priority Access', 'Plugins']
+    features: ['GPT-4 Access', 'Faster Responses', 'Priority Access', 'Plugins'],
+    productId: 59
   },
   {
     id: 'claude',
