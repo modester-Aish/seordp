@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllPagesComplete } from '@/lib/wordpress-api';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import { cleanPageTitle } from '@/lib/html-utils';
 import { getSeoMeta } from '@/lib/seo-from-csv';
 
@@ -19,8 +19,8 @@ function getMissingData(page: { title?: { rendered?: string }; content?: { rende
 
 function getPagesMetadata(): Metadata {
   const csv = getSeoMeta('Pages');
-  const title = csv?.meta_title ?? 'SEO Tools Pricing, Plans & Information';
-  const description = csv?.meta_description ?? 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahrefs, SEMrush, Moz Pro plans. Find the best SEO tools subscription for your needs.';
+  const title = truncateMetaTitle(csv?.meta_title ?? 'SEO Tools Pricing, Plans & Information');
+  const description = truncateMetaDescription(csv?.meta_description ?? 'Explore group buy SEO tools pricing plans, packages, and detailed information. Compare Ahrefs, SEMrush, Moz Pro plans. Find the best SEO tools subscription for your needs.');
   return {
     title,
     description,
@@ -29,6 +29,9 @@ function getPagesMetadata(): Metadata {
       title,
       description,
       url: 'https://seordp.net/pages',
+      siteName: 'SEORDP',
+      type: 'website',
+      images: [defaultOgImage],
     },
     alternates: {
       canonical: generateCanonicalUrl('/pages'),
@@ -40,7 +43,7 @@ export const metadata: Metadata = getPagesMetadata();
 
 export const revalidate = 60; // Revalidate every 60 seconds (1 minute)
 
-const EXCLUDED_PAGE_SLUGS = ['shop-2', 'refund_returns-2'];
+const EXCLUDED_PAGE_SLUGS = ['shop-2', 'refund_returns-2', 'single-seo-tools', 'cheapest-group-buy-seo-tools-provide-100-premium-tools'];
 
 export default async function PagesListingPage() {
   const { data: rawPages, error } = await fetchAllPagesComplete();

@@ -178,6 +178,29 @@ export function removeShortcodes(content: string): string {
   return cleanContent;
 }
 
+/**
+ * Ensure every <img> in HTML has an alt attribute (for accessibility and SEO).
+ * If alt is missing or empty, sets alt to fallbackAlt.
+ * Handles <img ...>, <img ... />, and empty/whitespace-only alt.
+ */
+export function ensureImgAlt(html: string, fallbackAlt: string): string {
+  if (!html || !fallbackAlt) return html || '';
+  const safeAlt = fallbackAlt.replace(/"/g, '&quot;').trim() || 'Image';
+  // Match <img> with optional whitespace and attributes (including self-closing />)
+  return html.replace(/<img(\s[^>]*?)?\s*\/?>/gi, (_match, attrs) => {
+    const a = (attrs || '').trim();
+    const hasAlt = /alt\s*=\s*["'][^"']*["']/i.test(a);
+    const hasEmptyAlt = /alt\s*=\s*["']\s*["']/i.test(a);
+    if (hasAlt && !hasEmptyAlt) return _match;
+    const isSelfClosing = /\s*\/\s*$/.test(a);
+    const attrsNoSlash = a.replace(/\s*\/\s*$/, '').trimEnd();
+    const fixedAttrs = hasEmptyAlt
+      ? attrsNoSlash.replace(/alt\s*=\s*["']\s*["']/i, `alt="${safeAlt}"`)
+      : `${attrsNoSlash} alt="${safeAlt}"`;
+    return isSelfClosing ? `<img ${fixedAttrs} />` : `<img ${fixedAttrs}>`;
+  });
+}
+
 export function cleanWordPressContent(content: string): string {
   if (!content) return '';
 
@@ -349,5 +372,17 @@ export function removeFirstHeading(content: string): string {
   // Match first H1, H2, or H3 heading
   const firstHeadingRegex = /<h[1-3][^>]*>.*?<\/h[1-3]>/i;
   return content.replace(firstHeadingRegex, '');
+}
+
+/**
+ * Replace all H1 with H2 in HTML so the page has only one H1 (the main title).
+ * Use for product/page description body to fix "Multiple H1s" SEO issue.
+ * Uses word boundary and closing-tag match so every variant is caught.
+ */
+export function downgradeH1ToH2(content: string): string {
+  if (!content) return '';
+  return content
+    .replace(/<\/h1\s*>/gi, '</h2>')
+    .replace(/<h1\b/gi, '<h2');
 }
 

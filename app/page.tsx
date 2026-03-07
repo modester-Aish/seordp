@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage } from '@/lib/canonical';
 import { WhyChooseSection, PopularToolsSection, TestimonialsSection } from '@/components/AnimatedSections';
 import InteractivePricingCards from '@/components/InteractivePricingCards';
 import FAQSection from '@/components/FAQSection';
@@ -30,10 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Best Group Buy SEO Tools 2025 - Ahrefs, SEMrush, Moz Pro at 90% OFF',
     description: 'Access 50+ premium SEO tools at 90% discount. Get Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more. Join 45,000+ users.',
-    url: 'https://seordp.net',
+    url: 'https://seordp.net/',
     siteName: 'SEORDP',
     locale: 'en_US',
     type: 'website',
+    images: [defaultOgImage],
   },
   twitter: {
     card: 'summary_large_image',

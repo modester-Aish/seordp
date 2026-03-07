@@ -8,8 +8,8 @@ import {
   getTitle,
   getContent,
 } from '@/lib/wordpress-api';
-import { cleanWordPressContent, removeFirstHeading } from '@/lib/content-parser';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { cleanWordPressContent, removeFirstHeading, ensureImgAlt, downgradeH1ToH2 } from '@/lib/content-parser';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 
 interface PageProps {
   params: {
@@ -36,15 +36,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = getTitle(page);
+  const title = truncateMetaTitle(getTitle(page));
 
+  const description = truncateMetaDescription(page.excerpt?.rendered?.replace(/<[^>]*>/g, '') || '');
   return {
     title,
-    description: page.excerpt?.rendered?.replace(/<[^>]*>/g, '').substring(0, 160) || '',
+    description,
     openGraph: {
       title,
+      description,
       type: 'website',
       url: `https://seordp.net/${params.slug}`,
+      siteName: 'SEORDP',
+      images: [defaultOgImage],
     },
     twitter: {
       card: 'summary',
@@ -99,7 +103,7 @@ export default async function WordPressPage({ params }: PageProps) {
             <div className="card-gradient p-8 md:p-12 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <div
                 className="prose prose-lg prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-a:text-teal-400 prose-a:no-underline hover:prose-a:text-teal-300 hover:prose-a:underline prose-img:rounded-lg prose-p:text-slate-300 prose-li:text-slate-300 prose-strong:text-white prose-code:text-teal-400"
-                dangerouslySetInnerHTML={{ __html: content }}
+                dangerouslySetInnerHTML={{ __html: ensureImgAlt(downgradeH1ToH2(content), title) }}
               />
             </div>
           </div>

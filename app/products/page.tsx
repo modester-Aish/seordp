@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import ProductsClient from './ProductsClient';
 import { fetchAllProductsComplete } from '@/lib/woocommerce-api-server';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import { getSeoMeta } from '@/lib/seo-from-csv';
 
 function getProductsMetadata(): Metadata {
   const csv = getSeoMeta('Products');
-  const title = csv?.meta_title ?? 'Group Buy SEO Tools - Ahrefs, SEMrush, Moz Pro, ChatGPT Plus';
-  const description = csv?.meta_description ?? 'Buy premium SEO tools at 90% discount. Get Ahrefs Group Buy, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools.';
+  const title = truncateMetaTitle(csv?.meta_title ?? 'Group Buy SEO Tools - Ahrefs, SEMrush, Moz Pro, ChatGPT Plus');
+  const description = truncateMetaDescription(csv?.meta_description ?? 'Buy premium SEO tools at 90% discount. Get Ahrefs Group Buy, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & 50+ tools.');
   return {
     title,
     description,
@@ -16,7 +16,9 @@ function getProductsMetadata(): Metadata {
       title,
       description,
       url: 'https://seordp.net/products',
+      siteName: 'SEORDP',
       type: 'website',
+      images: [defaultOgImage],
     },
     alternates: {
       canonical: generateCanonicalUrl('/products'),

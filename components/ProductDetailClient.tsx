@@ -13,7 +13,7 @@ import {
   getProductMainImage,
 } from '@/lib/woocommerce-api';
 import { getBuyNowUrl } from '@/lib/product-ids';
-import { removeFirstHeading } from '@/lib/content-parser';
+import { removeFirstHeading, ensureImgAlt, downgradeH1ToH2 } from '@/lib/content-parser';
 
 interface ProductDetailClientProps {
   product: WooCommerceProduct;
@@ -266,7 +266,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], h1T
                     prose-code:text-teal-400 prose-code:bg-slate-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
                     prose-pre:bg-slate-800 prose-pre:text-slate-300
                     prose-img:rounded-lg prose-img:shadow-lg"
-                  dangerouslySetInnerHTML={{ __html: removeFirstHeading(product.description) }}
+                  dangerouslySetInnerHTML={{ __html: ensureImgAlt(downgradeH1ToH2(removeFirstHeading(product.description)), product.name) }}
                 />
               </div>
             )}

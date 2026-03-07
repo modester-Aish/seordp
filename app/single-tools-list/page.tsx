@@ -2,15 +2,15 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import SafeImage from '@/components/SafeImage';
 import { getAllTools } from '@/lib/tools-data';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import { getToolProductRedirect } from '@/lib/tool-product-redirects';
 import { getSeoMeta } from '@/lib/seo-from-csv';
 import { ShoppingCart } from 'lucide-react';
 
 function getSingleToolsListMetadata(): Metadata {
   const csv = getSeoMeta('Single Tools List');
-  const title = csv?.meta_title ?? 'Complete Tools List - All SEO, AI, Design & Marketing Tools';
-  const description = csv?.meta_description ?? 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.';
+  const title = truncateMetaTitle(csv?.meta_title ?? 'Complete Tools List - All SEO, AI, Design & Marketing Tools');
+  const description = truncateMetaDescription(csv?.meta_description ?? 'Browse complete list of 50+ premium tools available in our group buy service. Get instant access to Ahrefs, SEMrush, Moz Pro, ChatGPT Plus, Canva Pro & more at 90% discount.');
   return {
     title,
     description,
@@ -22,7 +22,9 @@ function getSingleToolsListMetadata(): Metadata {
       title,
       description,
       url: 'https://seordp.net/single-tools-list',
+      siteName: 'SEORDP',
       type: 'website',
+      images: [defaultOgImage],
     },
   };
 }

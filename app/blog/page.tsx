@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { fetchAllPosts } from '@/lib/wordpress-api';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import { getSeoMeta } from '@/lib/seo-from-csv';
 
 function getBlogMetadata(): Metadata {
   const csv = getSeoMeta('Blog');
-  const title = csv?.meta_title ?? 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools';
-  const description = csv?.meta_description ?? 'Learn SEO strategies, group buy tools tutorials, Ahrefs tips, SEMrush guides, and digital marketing insights. Expert blog for SEO professionals and agencies.';
+  const title = truncateMetaTitle(csv?.meta_title ?? 'SEO Blog - Tips, Tutorials & Best Practices for Group Buy Tools');
+  const description = truncateMetaDescription(csv?.meta_description ?? 'Learn SEO strategies, group buy tools tutorials, Ahrefs tips, SEMrush guides, and digital marketing insights. Expert blog for SEO professionals and agencies.');
   return {
     title,
     description,
@@ -16,6 +16,9 @@ function getBlogMetadata(): Metadata {
       title,
       description,
       url: 'https://seordp.net/blog',
+      siteName: 'SEORDP',
+      type: 'website',
+      images: [defaultOgImage],
     },
     alternates: {
       canonical: generateCanonicalUrl('/blog'),

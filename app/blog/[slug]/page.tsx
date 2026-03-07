@@ -14,12 +14,14 @@ import {
   getReadingTime,
   getExcerpt,
 } from '@/lib/wordpress-api';
-import { generateCanonicalUrl } from '@/lib/canonical';
+import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import { 
   cleanWordPressContent, 
   extractHeadings, 
   addHeadingIds,
   removeFirstHeading,
+  ensureImgAlt,
+  downgradeH1ToH2,
   HeadingItem 
 } from '@/lib/content-parser';
 import Footer from '@/components/Footer';
@@ -49,8 +51,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = getTitle(post);
-  const excerpt = getExcerpt(post);
+  const title = truncateMetaTitle(getTitle(post));
+  const excerpt = truncateMetaDescription(getExcerpt(post));
   const imageUrl = getFeaturedImageUrl(post);
 
   return {
@@ -61,9 +63,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: excerpt,
       type: 'article',
       url: `https://seordp.net/blog/${params.slug}`,
+      siteName: 'SEORDP',
       publishedTime: post.date,
       modifiedTime: post.modified,
-      images: imageUrl ? [{ url: imageUrl }] : [],
+      images: imageUrl ? [{ url: imageUrl }] : [defaultOgImage],
     },
     twitter: {
       card: 'summary_large_image',
@@ -253,7 +256,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="p-8 md:p-10 lg:p-12">
                 <div
                   className="blog-content prose prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  dangerouslySetInnerHTML={{ __html: ensureImgAlt(downgradeH1ToH2(content), title) }}
                 />
               </div>
             </article>
