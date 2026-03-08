@@ -42,17 +42,9 @@ export default function Footer() {
       {/* Dark copyright bar - Noxtools style */}
       <div className="bg-slate-950 border-t border-slate-800">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-400">
-            <p suppressHydrationWarning>
-              Copyright 2023 - {new Date().getFullYear()} All Rights Reserved By SEORDP
-            </p>
-            <a
-              href="mailto:support@seordp.net"
-              className="text-teal-400 hover:text-teal-300 transition-colors"
-            >
-              support@seordp.net
-            </a>
-          </div>
+          <p className="text-center text-sm text-slate-400" suppressHydrationWarning>
+            Copyright 2023 - {new Date().getFullYear()} All Rights Reserved By SEORDP
+          </p>
         </div>
       </div>
     </footer>

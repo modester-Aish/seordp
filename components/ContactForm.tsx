@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Send } from 'lucide-react';
 
-const SUPPORT_EMAIL = 'support@seordp.net';
+const CONTACT_EMAIL = typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_CONTACT_EMAIL ? process.env.NEXT_PUBLIC_CONTACT_EMAIL : '';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -15,7 +15,9 @@ export default function ContactForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const mailto = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject || 'Contact from SEORDP')}&body=${encodeURIComponent(body)}`;
+    const mailto = CONTACT_EMAIL
+      ? `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || 'Contact from SEORDP')}&body=${encodeURIComponent(body)}`
+      : `mailto:?subject=${encodeURIComponent(subject || 'Contact from SEORDP')}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     setSubmitted(true);
   }
@@ -29,12 +31,6 @@ export default function ContactForm() {
       {submitted ? (
         <div className="space-y-4 text-slate-300">
           <p className="text-teal-400 font-medium">Your email client will open.</p>
-          <p className="text-sm">
-            If it didn&apos;t open, email us directly at{' '}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-teal-400 hover:text-teal-300 underline">
-              {SUPPORT_EMAIL}
-            </a>
-          </p>
           <button
             type="button"
             onClick={() => { setSubmitted(false); setName(''); setEmail(''); setSubject(''); setMessage(''); }}
