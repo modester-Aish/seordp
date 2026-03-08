@@ -139,10 +139,6 @@ const pagesToCreate = [
 <h2>Contact Us</h2>
 <p>We're here to help! Get in touch with us through any of the following methods:</p>
 
-<h3>Email Support</h3>
-<p>For general inquiries, support questions, or feedback, please email us at:</p>
-<p><strong>Email:</strong> <a href="mailto:support@seordp.net">support@seordp.net</a></p>
-
 <h3>Business Hours</h3>
 <p>Our customer support team is available:</p>
 <ul>

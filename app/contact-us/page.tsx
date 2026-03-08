@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Mail, Clock, MapPin, MessageCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, MapPin, MessageCircle, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { generateCanonicalUrl, defaultOgImage, truncateMetaDescription, truncateMetaTitle } from '@/lib/canonical';
 import ContactForm from '@/components/ContactForm';
 import { getSeoMeta } from '@/lib/seo-from-csv';
@@ -26,8 +26,6 @@ function getContactMetadata(): Metadata {
 }
 
 export const metadata: Metadata = getContactMetadata();
-
-const SUPPORT_EMAIL = 'support@seordp.net';
 
 const socialLinks = [
   { href: 'https://www.facebook.com/seordp', label: 'Facebook', Icon: Facebook },
@@ -79,23 +77,6 @@ export default function ContactUsPage() {
 
             {/* Contact Info Cards - 2 cols */}
             <div className="lg:col-span-2 space-y-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              {/* Email */}
-              <a
-                href={`mailto:${SUPPORT_EMAIL}`}
-                className="block card-gradient p-6 rounded-2xl border-2 border-slate-700 hover:border-teal-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 group"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-teal-500/20 flex items-center justify-center group-hover:bg-teal-500/30 transition-colors">
-                    <Mail className="h-6 w-6 text-teal-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">Email</h3>
-                    <p className="text-slate-400 text-sm mb-2">General inquiries & support</p>
-                    <span className="text-teal-400 group-hover:text-teal-300 font-medium break-all">{SUPPORT_EMAIL}</span>
-                  </div>
-                </div>
-              </a>
-
               {/* Business Hours */}
               <div className="card-gradient p-6 rounded-2xl border-2 border-slate-700 hover:border-teal-500/30 transition-all duration-300">
                 <div className="flex items-start gap-4">
@@ -124,11 +105,7 @@ export default function ContactUsPage() {
                     <h3 className="font-bold text-white mb-2">Address</h3>
                     <p className="text-slate-400 text-sm">
                       <strong className="text-slate-300">SEORDP</strong><br />
-                      For written correspondence, please email us at{' '}
-                      <a href={`mailto:${SUPPORT_EMAIL}`} className="text-teal-400 hover:text-teal-300 underline">
-                        {SUPPORT_EMAIL}
-                      </a>
-                      . We&apos;ll provide a physical address when needed.
+                      For written correspondence, use the contact form above. We&apos;ll provide a physical address when needed.
                     </p>
                   </div>
                 </div>
